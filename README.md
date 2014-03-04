@@ -1,6 +1,6 @@
 # R interface to Arvix
 
-Package is in early development.
+Package is in early development (not yet installable.)
 
 __Installation__  
 
@@ -8,7 +8,9 @@ __Installation__
 devtools::install_github("ropensci/aRvix")
 ```
 
+__Notes__  
 
+* [Arvix API](http://arxiv.org/help/api/index)
 
 
 ---
