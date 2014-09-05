@@ -1,16 +1,16 @@
-# R interface to Arvix
+# R interface to arXiv
 
 Package is in early development (not yet installable.)
 
 __Installation__  
 
 ```coffee
-devtools::install_github("ropensci/aRvix")
+devtools::install_github("ropensci/aRxiv")
 ```
 
 __Notes__  
 
-* [Arvix API](http://arxiv.org/help/api/index)
+* [arXiv API](http://arxiv.org/help/api/index)
 
 
 ---
