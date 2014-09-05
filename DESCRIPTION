@@ -1,5 +1,5 @@
 Package: aRxiv
-Title: Programmatic interface to full-text search for arXiV
+Title: Programmatic interface to full-text search for arXiv
 Version: 0.1
 Authors@R: 'Karthik Ram <karthik.ram@gmail.com> [aut, cre]'
 Description: 
