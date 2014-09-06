@@ -1,6 +1,6 @@
 # R interface to arXiv
 
-Package is in early development (not yet installable.)
+Package is in early development.
 
 __Installation__  
 
