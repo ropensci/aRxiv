@@ -58,6 +58,7 @@ function(query = NULL, id_list=NULL, start = 0, end = 10,
 
 
     # do search
+    delay_if_necessary()
     search_result <- POST(query_url,
                           body=list(search_query=query, id_list=id_list,
                                     start=start, max_results=end-start+1,
