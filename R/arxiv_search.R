@@ -13,7 +13,6 @@
 #' @param  end Where to end search results
 #' @param sort_by How to sort the results
 #' @param ascending If TRUE, sort in increasing order; else decreasing
-#' @importFrom XML xmlToList getNodeSet xmlParse
 #' @import httr
 #' @export
 #' @return Parse XML result as a list
@@ -31,17 +30,12 @@ function(query = NULL, id_list=NULL, start = NULL, end = NULL,
     sort_by <- match.arg(sort_by)
     sort_order <- ifelse(ascending, "ascending", "descending")
 
-    search_res <- POST(query_url,
-                       body=list(search_query=query, id_list=id_list,
-                                 start=start, max_results=end-start+1,
-                                 sort_by=sort_by, sort_order=sort_order))
+    search_result <- POST(query_url,
+                          body=list(search_query=query, id_list=id_list,
+                                    start=start, max_results=end-start+1,
+                                    sort_by=sort_by, sort_order=sort_order))
 
-    stop_for_status(search_res)
+    stop_for_status(search_result)
 
-    doc <- xmlParse(content(search_res, "text"), asText=TRUE)
-    nodes <- rapply(list(doc), function(a) getNodeSet(a, path="/"),
-                    how="replace")
-    result <- rapply(nodes, function(x) xmlToList(x), how="replace")[[1]][[1]][[1]]
-
-    result
+    result2list(search_result)
 }
