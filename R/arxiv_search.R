@@ -15,7 +15,6 @@
 #' @param sort_by How to sort the results
 #' @param ascending If TRUE, sort in increasing order; else decreasing
 #' @param batchsize Maximum number of records to request at one time
-#' @param delay Time between requests, in seconds
 #' @param force If TRUE, force search request even if it seems extreme
 #'
 #' @import httr
@@ -25,6 +24,7 @@
 #'
 #' @examples
 #' # search for author Broman and category stat.AP (applied statistics)
+#' \dontshow{options(aRxiv_delay=1)}
 #' z <- arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, end=10)
 #' z$totalResults
 #' sapply(z[names(z)=="entry"], function(a) a$title)
@@ -44,7 +44,7 @@ function(query = NULL, id_list=NULL, start = 0, end = 10,
     sort_order <- ifelse(ascending, "ascending", "descending")
 
     if(is.null(start)) start <- 0
-    if(is.null(end)) end <- archive_count(query, list)-1
+    if(is.null(end)) end <- arxiv_count(query, list)-1
 
     stopifnot(start >= 0)
     stopifnot(end >= 0)

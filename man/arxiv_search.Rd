@@ -22,8 +22,6 @@ arxiv_search(query = NULL, id_list = NULL, start = 0, end = 10,
 
 \item{batchsize}{Maximum number of records to request at one time}
 
-\item{delay}{Time between requests, in seconds}
-
 \item{force}{If TRUE, force search request even if it seems extreme}
 }
 \value{
@@ -34,6 +32,7 @@ Allows for progammatic searching of the arXiv pre-print repository.
 }
 \examples{
 # search for author Broman and category stat.AP (applied statistics)
+\dontshow{options(aRxiv_delay=1)}
 z <- arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, end=10)
 z$totalResults
 sapply(z[names(z)=="entry"], function(a) a$title)
