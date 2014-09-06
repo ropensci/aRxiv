@@ -23,13 +23,13 @@ The main function is `arxiv_search()`. Here's an example of its use:
 arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, end=10)
 ```
 
-__
+___
 
 
 ### Notes
 
 * [arXiv API](http://arxiv.org/help/api/index)
-
+* [arXiv API user manual](http://arxiv.org/help/api/user-manual)
 
 ---
 
