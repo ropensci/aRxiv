@@ -25,7 +25,9 @@ function() {
 delay_if_necessary <-
 function()
 {
-    delay_amount <- 3
+    # look for delay amount in options; otherwise set to default
+    delay_amount <- getOption("aRxiv_delay")
+    if(is.null(delay_amount)) delay_amount <- 3
 
     if((timesince = time_since_arxiv()) < delay_amount)
         Sys.sleep(delay_amount - timesince)

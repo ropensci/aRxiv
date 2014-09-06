@@ -2,14 +2,18 @@
 is_too_many <-
 function(query=NULL, id_list=NULL, start=0, end=10)
 {
-    toomany <- 15000 # I'll call this too many
+    # look for delay amount in options; otherwise set to default
+    toomany <- getOption("aRxiv_toomany")
+    if(is.null(toomany)) toomany <- 15000
 
     expected_count <- NA
 
     if(is.null(start))
         start <- 0
-    if(is.null(end))
-        end <- expected_number <- arxiv_count(query, id_list)
+    if(is.null(end)) {
+        expected_number <- arxiv_count(query, id_list)
+        end <- expected_number-1 # index of last, and index starts at 0
+    }
 
     stopifnot(start >= 0)
     stopifnot(end >= 0)
