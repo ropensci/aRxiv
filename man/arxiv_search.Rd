@@ -27,8 +27,14 @@ Parse XML result as a list
 Allows for progammatic searching of the arXiv pre-print repository.
 }
 \examples{
+# search for author Broman and category stat.AP (applied statistics)
 z <- arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, end=10)
 z$totalResults
-titles <- sapply(z[names(z)=="entry"], function(a) a$title)
+sapply(z[names(z)=="entry"], function(a) a$title)
+
+# search for a set of documents by arxiv identifiers
+z <- arxiv_search(id_list = "1403.3048,1402.2633,1309.1192")
+# DOI if available
+sapply(z[names(z)=="entry"], function(a) a$doi)
 }
 

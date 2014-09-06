@@ -11,3 +11,10 @@ function(searchresult)
 
     result
 }
+
+# get the entries as a list
+get_entries <-
+function(listresult)
+{
+   listresult[names(listresult)=="entry"]
+}
