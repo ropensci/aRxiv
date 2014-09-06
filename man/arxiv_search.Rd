@@ -5,7 +5,7 @@
 \usage{
 arxiv_search(query = NULL, id_list = NULL, start = 0, end = 10,
   sort_by = c("relevance", "lastUpdatedDate", "submittedDate"),
-  ascending = TRUE, batchsize = 500, delay = 3, force = FALSE)
+  ascending = TRUE, batchsize = 500, force = FALSE)
 }
 \arguments{
 \item{query}{Search pattern as a string}

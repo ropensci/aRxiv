@@ -36,7 +36,7 @@
 arxiv_search <-
 function(query = NULL, id_list=NULL, start = 0, end = 10,
          sort_by=c("relevance", "lastUpdatedDate", "submittedDate"),
-         ascending=TRUE, batchsize=500, delay=3, force=FALSE)
+         ascending=TRUE, batchsize=500, force=FALSE)
 {
     query_url <- "http://export.arxiv.org/api/query"
 
@@ -45,6 +45,10 @@ function(query = NULL, id_list=NULL, start = 0, end = 10,
 
     if(is.null(start)) start <- 0
     if(is.null(end)) end <- archive_count(query, list)
+
+    stopifnot(start >= 0)
+    stopifnot(end >= 0)
+    stopifnot(batchsize >= 1)
 
     # if force=FALSE, check that we aren't asking for too much
     if(!force) {
@@ -56,6 +60,32 @@ function(query = NULL, id_list=NULL, start = 0, end = 10,
                  "Refine your search or reduce batchsize.")
     }
 
+    if(end-start+1 > batchsize) { # use batches
+        nbatch <- ceiling((end-start+1)/batchsize)
+
+        results <- vector("list", nbatch)
+        for(i in seq(start, end, by=batchsize)) {
+
+            # where to end this batch?
+            thisend <- i+batchsize-1
+            if(thisend > end) thisend <- end
+
+
+            results[[i]] <- arxiv_search(query=query, id_list=id_list,
+                                         start=i, end=thisend,
+                                         sort_by=sort_by, ascending=ascending,
+                                         batchsize=batchsize, force=force)
+            message("retrieved batch ", i)
+
+            # if no more results? then return
+            if(count_entries(results[[i]]) == 0) {
+                if(i == 1) return(results[[1]])
+                else return(results[1:(i-1)])
+            }
+        }
+
+        return(results)
+    }
 
     # do search
     delay_if_necessary()
