@@ -3,7 +3,10 @@ context("is_too_many")
 
 test_that("is_too_many gives reasonable info", {
 
-    options(aRxiv_delay=1)
+    # shorter delay to speed tests
+    old_delay <- getOption("aRxiv_delay")
+    on.exit(options(aRxiv_delay=old_delay))
+    options(aRxiv_delay=0.5)
 
     # this search should give a very large number
     expect_true(is_too_many("au:A", start=0, end=NULL) > 170000)
@@ -15,9 +18,11 @@ test_that("is_too_many gives reasonable info", {
 
 test_that("arxiv_search throws error with huge result", {
 
-    options(aRxiv_delay=1)
+    # shorter delay to speed tests
+    old_delay <- getOption("aRxiv_delay")
+    on.exit(options(aRxiv_delay=old_delay))
+    options(aRxiv_delay=0.5)
 
     # should give error, to prevent huge result
     expect_error(arxiv_search("au:A", end=NULL))
-
 })

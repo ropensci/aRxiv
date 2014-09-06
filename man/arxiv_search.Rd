@@ -31,8 +31,9 @@ Parse XML result as a list
 Allows for progammatic searching of the arXiv pre-print repository.
 }
 \examples{
+\dontshow{old_delay <- getOption("aRxiv_delay")
+          options(aRxiv_delay=1)}
 # search for author Broman and category stat.AP (applied statistics)
-\dontshow{options(aRxiv_delay=1)}
 z <- arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, end=10)
 z$totalResults
 sapply(z[names(z)=="entry"], function(a) a$title)
@@ -41,5 +42,6 @@ sapply(z[names(z)=="entry"], function(a) a$title)
 z <- arxiv_search(id_list = "1403.3048,1402.2633,1309.1192")
 # DOI if available
 sapply(z[names(z)=="entry"], function(a) a$doi)
+\dontshow{options(aRxiv_delay=old_delay)}
 }
 

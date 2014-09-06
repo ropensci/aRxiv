@@ -12,10 +12,12 @@
 #' @return Number of results (integer)
 #'
 #' @examples
+#' \dontshow{old_delay <- getOption("aRxiv_delay")
+#'           options(aRxiv_delay=1)}
 #' # count papers in category stat.AP (applied statistics)
-#' \dontshow{options(aRxiv_delay=1)}
 #' arxiv_count(query = "cat:stat.AP")
 #' arxiv_count(query = 'au:"Peter Hall"')
+#' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_count <-
 function(query = NULL, id_list=NULL)
 {
