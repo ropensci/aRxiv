@@ -44,7 +44,7 @@ function(query = NULL, id_list=NULL, start = 0, end = 10,
     sort_order <- ifelse(ascending, "ascending", "descending")
 
     if(is.null(start)) start <- 0
-    if(is.null(end)) end <- archive_count(query, list)
+    if(is.null(end)) end <- archive_count(query, list)-1
 
     stopifnot(start >= 0)
     stopifnot(end >= 0)
@@ -62,26 +62,28 @@ function(query = NULL, id_list=NULL, start = 0, end = 10,
 
     if(end-start+1 > batchsize) { # use batches
         nbatch <- ceiling((end-start+1)/batchsize)
+        results <- NULL
 
-        results <- vector("list", nbatch)
-        for(i in seq(start, end, by=batchsize)) {
+        starts <- seq(start, end, by=batchsize)
+
+        for(i in seq(along=starts)) {
 
             # where to end this batch?
-            thisend <- i+batchsize-1
+            thisend <- starts[i]+batchsize-1
             if(thisend > end) thisend <- end
 
 
-            results[[i]] <- arxiv_search(query=query, id_list=id_list,
-                                         start=i, end=thisend,
-                                         sort_by=sort_by, ascending=ascending,
-                                         batchsize=batchsize, force=force)
+            these_results <- arxiv_search(query=query, id_list=id_list,
+                                          start=starts[i], end=thisend,
+                                          sort_by=sort_by, ascending=ascending,
+                                          batchsize=batchsize, force=force)
             message("retrieved batch ", i)
 
             # if no more results? then return
-            if(count_entries(results[[i]]) == 0) {
-                if(i == 1) return(results[[1]])
-                else return(results[1:(i-1)])
-            }
+            if(count_entries(these_results) == 0)
+                return(results)
+
+            results <- c(results, these_results)
         }
 
         return(results)
