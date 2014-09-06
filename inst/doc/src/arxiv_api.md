@@ -199,21 +199,6 @@ classifications.
 - `Table: Subject Classifications`
 
 
-### Plan for development of the [aRxiv](https://github.com/ropensci/aRxiv) package
-    
-- Study the [httr](https://github.com/hadley/httr) package on how to
-  submit HTTP GET/POST
-- Write some simple functions to get results in plain XML
-- Look at best ways to parse the XML results (the
-  [XML2R](https://github.com/cpsievert/XML2R) package, with
-  [this tutorial](http://cpsievert.github.io/XML2R/), or just the
-  [XML](http://www.omegahat.org/RSXML/) package, with
-  [this tutorial](http://www.omegahat.org/RSXML/shortIntro.pdf).
-- Make it easier for users to refer to the arXiv subject
-  classifications
-- Also, include info on the ACM and MSC classifications
-
-
 
 
 <!-- the following to make it look nicer -->
