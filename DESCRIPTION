@@ -14,7 +14,7 @@ Depends:
 License: CC0
 Imports:
     httr,
-    XML,
+    XML
 Suggests:
     devtools,
     roxygen2,
