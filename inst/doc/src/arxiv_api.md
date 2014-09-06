@@ -20,7 +20,7 @@ The url to use is like
 
 An example using HTTP GET is
 
-    http://export.arxiv.org/api/query?search_query=all:electron&start=0&max_results=0
+    http://export.arxiv.org/api/query?search_query=all:electron&start=0&max_results=10
     
 Results are in [Atom 1.0](http://www.ietf.org/rfc/rfc4287.txt) format:
 XML 1.0 with UTF-8 encoding.
@@ -212,6 +212,24 @@ classifications.
 - Make it easier for users to refer to the arXiv subject
   classifications
 - Also, include info on the ACM and MSC classifications
+
+
+### Example using XML and XML2R packages
+
+    library(httr)
+    libary(XML)
+    library(XML2R)
+    r <- GET("http://export.arxiv.org/api/query",
+             query=list(id_list="1402.2633,1309.1192,1403.3048"))
+    doc <- xmlParse(content(r, "text"), asText=TRUE)
+    nodes <- docsToNodes(list(doc), xpath="/")
+    z <- nodesToList(nodes)[[1]][[1]][[1]]
+
+    z$totalResults
+    entries <- z[names(z)=="entry"]
+
+
+
 
 <!-- the following to make it look nicer -->
 <link href="https://www.biostat.wisc.edu/~kbroman/markdown.css" rel="stylesheet"></link>
