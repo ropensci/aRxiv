@@ -1,14 +1,32 @@
-# R interface to arXiv
+## R interface to arXiv
 
 Package is in early development.
 
-__Installation__  
+### Installation
+
+The package is not currently available on
+[CRAN](http://cran.r-project.org). To install, use
+`devtools::install_github()`, as follows:a
 
 ```coffee
-devtools::install_github("ropensci/aRxiv")
+install.packages("devtools")
+library(devtools)
+install_github("ropensci/aRxiv")
+library(aRxiv)
 ```
 
-__Notes__  
+### Basic usage
+
+The main function is `arxiv_search()`. Here's an example of its use:
+
+```coffee
+arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, end=10)
+```
+
+__
+
+
+### Notes
 
 * [arXiv API](http://arxiv.org/help/api/index)
 
@@ -16,6 +34,3 @@ __Notes__
 ---
 
 [![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
-
-
-
