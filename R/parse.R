@@ -18,3 +18,10 @@ function(listresult)
 {
    listresult[names(listresult)=="entry"]
 }
+
+# just get the number of entries
+count_entries <-
+function(listresult)
+{
+    sum(names(listresult)=="entry")
+}
