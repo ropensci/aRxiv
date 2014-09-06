@@ -13,6 +13,7 @@
 #'
 #' @examples
 #' # count papers in category stat.AP (applied statistics)
+#' \dontshow{options(aRxiv_delay=1)}
 #' arxiv_count(query = "cat:stat.AP")
 #' arxiv_count(query = 'au:"Peter Hall"')
 arxiv_count <-
