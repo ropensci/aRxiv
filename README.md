@@ -23,8 +23,6 @@ The main function is `arxiv_search()`. Here's an example of its use:
 arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, end=10)
 ```
 
-___
-
 
 ### Notes
 
