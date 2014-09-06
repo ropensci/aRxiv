@@ -3,12 +3,12 @@
 \alias{arxiv_search}
 \title{The main search function for aRxiv}
 \usage{
-arxiv_search(query = NULL, id_list = NULL, start = NULL, end = NULL,
+arxiv_search(query = NULL, id_list = NULL, start = 0, end = 10,
   sort_by = c("relevance", "lastUpdatedDate", "submittedDate"),
-  ascending = TRUE)
+  ascending = TRUE, batchsize = 500, force = FALSE)
 }
 \arguments{
-\item{query}{Search pattern; submit multiple terms as a concactenated string.}
+\item{query}{Search pattern as a string}
 
 \item{id_list}{List of arXiv doc IDs, as comma-delimited string}
 
@@ -19,6 +19,10 @@ arxiv_search(query = NULL, id_list = NULL, start = NULL, end = NULL,
 \item{sort_by}{How to sort the results}
 
 \item{ascending}{If TRUE, sort in increasing order; else decreasing}
+
+\item{batchsize}{Maximum number of records to request at one time}
+
+\item{force}{If TRUE, force search request even if it seems extreme}
 }
 \value{
 Parse XML result as a list
@@ -28,6 +32,7 @@ Allows for progammatic searching of the arXiv pre-print repository.
 }
 \examples{
 # search for author Broman and category stat.AP (applied statistics)
+\dontshow{options(aRxiv_delay=1)}
 z <- arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, end=10)
 z$totalResults
 sapply(z[names(z)=="entry"], function(a) a$title)
