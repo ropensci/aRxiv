@@ -24,8 +24,9 @@ arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, end=10)
 ```
 
 
-### Notes
+### Links
 
+* [arXiv](http://arxiv.org)
 * [arXiv API](http://arxiv.org/help/api/index)
 * [arXiv API user manual](http://arxiv.org/help/api/user-manual)
 
