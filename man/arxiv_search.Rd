@@ -5,10 +5,10 @@
 \usage{
 arxiv_search(query = NULL, id_list = NULL, start = NULL, end = NULL,
   sort_by = c("relevance", "lastUpdatedDate", "submittedDate"),
-  ascending = TRUE)
+  ascending = TRUE, batchsize = 500, delay = 3, force = FALSE)
 }
 \arguments{
-\item{query}{Search pattern; submit multiple terms as a concactenated string.}
+\item{query}{Search pattern as a string}
 
 \item{id_list}{List of arXiv doc IDs, as comma-delimited string}
 
@@ -19,6 +19,12 @@ arxiv_search(query = NULL, id_list = NULL, start = NULL, end = NULL,
 \item{sort_by}{How to sort the results}
 
 \item{ascending}{If TRUE, sort in increasing order; else decreasing}
+
+\item{batchsize}{Maximum number of records to request at one time}
+
+\item{delay}{Time between requests, in seconds}
+
+\item{force}{If TRUE, force search request even if it seems extreme}
 }
 \value{
 Parse XML result as a list
