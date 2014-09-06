@@ -3,7 +3,7 @@
 \alias{arxiv_search}
 \title{The main search function for aRxiv}
 \usage{
-arxiv_search(query = NULL, id_list = NULL, start = NULL, end = NULL,
+arxiv_search(query = NULL, id_list = NULL, start = 0, end = 10,
   sort_by = c("relevance", "lastUpdatedDate", "submittedDate"),
   ascending = TRUE, batchsize = 500, delay = 3, force = FALSE)
 }

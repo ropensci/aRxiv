@@ -34,7 +34,7 @@
 #' # DOI if available
 #' sapply(z[names(z)=="entry"], function(a) a$doi)
 arxiv_search <-
-function(query = NULL, id_list=NULL, start = NULL, end = NULL,
+function(query = NULL, id_list=NULL, start = 0, end = 10,
          sort_by=c("relevance", "lastUpdatedDate", "submittedDate"),
          ascending=TRUE, batchsize=500, delay=3, force=FALSE)
 {
@@ -42,6 +42,9 @@ function(query = NULL, id_list=NULL, start = NULL, end = NULL,
 
     sort_by <- match.arg(sort_by)
     sort_order <- ifelse(ascending, "ascending", "descending")
+
+    if(is.null(start)) start <- 0
+    if(is.null(end)) end <- archive_count(query, list)
 
     # if force=FALSE, check that we aren't asking for too much
     if(!force) {
@@ -52,6 +55,7 @@ function(query = NULL, id_list=NULL, start = NULL, end = NULL,
             stop("Expecting ", too_many_res, " and batchsize is ", batchsize, " which looks too large.\n",
                  "Refine your search or reduce batchsize.")
     }
+
 
     # do search
     search_result <- POST(query_url,
