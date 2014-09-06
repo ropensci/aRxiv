@@ -38,5 +38,5 @@ function(query = NULL, id_list=NULL)
     stop_for_status(search_result)
 
     # return totalResults
-    listresult$totalResults
+    as.integer(listresult$totalResults)
 }
