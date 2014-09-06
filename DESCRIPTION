@@ -1,14 +1,22 @@
 Package: aRxiv
 Title: Programmatic interface to full-text search for arXiv
 Version: 0.1
-Authors@R: 'Karthik Ram <karthik.ram@gmail.com> [aut, cre]'
-Description: 
+Authors@R: c(person("Karthik", "Ram", role="aut",
+    email="karthik.ram@gmail.com"),
+    person("Karl", "Broman", rol=c("aut","cre"),
+    email="kbroman@biostat.wisc.edu"))
+Description: A programmatic interface to the API for arXiv, an
+    electronic archive and distribution server for research articles
+    (covered areas include physic, mathematics, computer science,
+    quantitative biology, and statistics).
 Depends:
     R (>= 3.0.0)
 License: CC0
-Imports: 
-	httr,
-	XML,
-	rjson,
-	dplyr
-
+Imports:
+    httr,
+    XML
+Suggests:
+    devtools,
+    roxygen2,
+    testthat,
+    knitr

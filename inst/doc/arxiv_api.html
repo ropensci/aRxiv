@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>The arXiv API</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h2>The arXiv API</h2>
+
+<p>Here I&#39;ll write down my notes as I study the <a href="http://arxiv.org">arXiv</a>
+API, in preparation for developing the R package
+<a href="https://github.com/ropensci/aRxiv">aRxiv</a>.</p>
+
+<p>The key source of information is the
+<a href="http://arxiv.org/help/api/user-manual">arXiv API user manual</a>.</p>
+
+<h3>Basics</h3>
+
+<p>Queries are submitted via HTTP, either with HTTP GET (in which
+parameters are passed in the url) or HTTP POST (in which parameters
+are passed in the HTTP request header).</p>
+
+<p>The url to use is like</p>
+
+<pre><code>http://export.arxiv.org/api/{method_name}?{parameters}
+</code></pre>
+
+<p>An example using HTTP GET is</p>
+
+<pre><code>http://export.arxiv.org/api/query?search_query=all:electron&amp;start=0&amp;max_results=10
+</code></pre>
+
+<p>Results are in <a href="http://www.ietf.org/rfc/rfc4287.txt">Atom 1.0</a> format:
+XML 1.0 with UTF-8 encoding.</p>
+
+<p>Good result will have a <code>200 OK</code> status in HTTP header of response.</p>
+
+<h3>Query</h3>
+
+<p>See the
+<a href="http://arxiv.org/help/api/user-manual#query_details">Details of query construction</a>.</p>
+
+<p>There are six possible parts to the query.</p>
+
+<ul>
+<li><code>search_query</code>, a string with a query to search</li>
+<li><code>id_list</code>, a comma-delimited string with a list of
+<a href="http://arxiv.org/help/arxiv_identifier">arXiv identifiers</a></li>
+<li><code>start</code>, an integer with the index (starting at 0) of first search result
+to return</li>
+<li><code>max_results</code>, an integer with the maximum number of search results
+to return</li>
+<li><code>sortBy</code>, a string indicating how to sort the results, taking values
+<code>relevance</code>, <code>lastUpdatedDate</code>, or <code>submittedDate</code></li>
+<li><code>sortOrder</code>, a string that is either <code>ascending</code> <code>descending</code></li>
+</ul>
+
+<p>If only <code>search_query</code> is provided, all articles matching the query
+will be returned. If only <code>id_list</code> is provided, all articles in that
+list will be returned. If both are provided, all articles in the list
+that match the query are returned.</p>
+
+<p>Use <code>start</code> and <code>max_results</code> to grab results in batches, and <strong>add a
+3 sec delay between calls</strong>.</p>
+
+<p>Also, be careful that search doesn&#39;t return a huge number of results.
+The total results will be shown in the output, <code>&lt;opensearch:totalResults&gt;</code>.</p>
+
+<p>Here&#39;s a list of <code>search_query</code> prefixes (preceding search term and
+separated by a colon).</p>
+
+<table><thead>
+<tr>
+<th align="left">term</th>
+<th align="left">description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left"><code>ti</code></td>
+<td align="left">Title</td>
+</tr>
+<tr>
+<td align="left"><code>au</code></td>
+<td align="left">Author</td>
+</tr>
+<tr>
+<td align="left"><code>abs</code></td>
+<td align="left">Abstract</td>
+</tr>
+<tr>
+<td align="left"><code>co</code></td>
+<td align="left">Comment</td>
+</tr>
+<tr>
+<td align="left"><code>jr</code></td>
+<td align="left">Journal reference</td>
+</tr>
+<tr>
+<td align="left"><code>cat</code></td>
+<td align="left">subject category</td>
+</tr>
+<tr>
+<td align="left"><code>rn</code></td>
+<td align="left">report number</td>
+</tr>
+<tr>
+<td align="left"><code>all</code></td>
+<td align="left">all of above</td>
+</tr>
+</tbody></table>
+
+<p>You can also use the Boolean operators <code>AND</code>, <code>OR</code>, and <code>ANDNOT</code>.</p>
+
+<p>For spaces, use <code>+</code>.</p>
+
+<p>For phrases, surround in double-quotes, using <code>%22</code>.</p>
+
+<p>For parentheses (for grouping in searches), use <code>%28</code> for left-parens
+and <code>%29</code> for right-parents.</p>
+
+<p>Regarding arXiv document identifiers: different versions can be
+obtained by using the main identifier with <code>vn</code> appended, where <code>n</code> is
+the integer version number.  For example, if the main ID is
+<code>cond-mat/0207270</code>, version 2 will have ID <code>cond-mat/0207270v2</code>.
+Also note that the format of the version numbers changed in April,
+2007.</p>
+
+<h3>Returned results</h3>
+
+<p>The returned results will have a single <feed> containing the
+following at the top</p>
+
+<table><thead>
+<tr>
+<th align="left">tag</th>
+<th align="left">description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left"><code>&lt;title&gt;</code></td>
+<td align="left">canonicalized version of the query</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;id&gt;</code></td>
+<td align="left">unique id for the query</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;link&gt;</code></td>
+<td align="left">URL to retrieve feed again</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;update&gt;</code></td>
+<td align="left">time feed was last updated</td>
+</tr>
+</tbody></table>
+
+<p>It will also contain a number of 
+<a href="http://a9.com/-/spec/opensearch/1.1/">OpenSearch Extension Elements</a></p>
+
+<ul>
+<li><code>&lt;opensearch:totalResults&gt;</code>, the total number of results for the search</li>
+<li><code>&lt;opensearch:startIndex&gt;</code>, an integer like <code>start</code></li>
+<li><code>&lt;opensearch:itemsPerPage&gt;</code>, an integer like <code>max_results</code></li>
+</ul>
+
+<p>Following that stuff is a set of <code>&lt;entry&gt;</code> elements containing the
+following.</p>
+
+<table><thead>
+<tr>
+<th align="left">tag</th>
+<th align="left">description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left"><code>&lt;title&gt;</code></td>
+<td align="left">title of article</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;id&gt;</code></td>
+<td align="left">url to abstract page</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;published&gt;</code></td>
+<td align="left">date of first version</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;updated&gt;</code></td>
+<td align="left">date of retrieved article</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;summary&gt;</code></td>
+<td align="left">abstract</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;author&gt;</code></td>
+<td align="left">one such for each author, in order of authorship</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;category&gt;</code></td>
+<td align="left">describes arXiv, ACM, or MSC classification (can be multiple)</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;link&gt;</code></td>
+<td align="left">up to 3, distinguished by <code>rel</code> and <code>title</code> attributes</td>
+</tr>
+</tbody></table>
+
+<p>Each <code>&lt;author&gt;</code> element will contain a <code>&lt;name&gt;</code> with the name of
+author. There may also be <code>&lt;arxiv:affiliation&gt;</code> with the author&#39;s
+affiliation.</p>
+
+<p>The <code>&lt;category&gt;</code> element contains the attribute <code>term</code> with the
+category term.</p>
+
+<p>The <code>&lt;link&gt;</code> elements are links to the abstract, the PDF, and (if
+present) the DOI.</p>
+
+<table><thead>
+<tr>
+<th align="left">link</th>
+<th align="left">features</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left">Abstract</td>
+<td align="left"><code>rel=alternate</code></td>
+</tr>
+<tr>
+<td align="left">PDF</td>
+<td align="left"><code>rel=related</code> and <code>title=pdf</code></td>
+</tr>
+<tr>
+<td align="left">DOI</td>
+<td align="left"><code>rel=doi</code> and <code>title=[the doi]</code></td>
+</tr>
+</tbody></table>
+
+<p>There may also be the following tags</p>
+
+<ul>
+<li><code>&lt;arxiv:primary_category&gt;</code>, with attribute <code>term</code> being the primary
+arxiv category</li>
+<li><code>&lt;arxiv:comment&gt;</code> contains the authors&#39; comment</li>
+<li><code>&lt;arxiv:journal_ref&gt;</code> contains the journal reference, if supplied</li>
+<li><code>&lt;arxiv:doi&gt;</code> contains the DOI for the article, if supplied</li>
+</ul>
+
+<h3>Errors</h3>
+
+<p>For more information about Errors, see
+<a href="http://arxiv.org/help/api/user-manual#errors">this section</a> of the
+arXiv API user manual.</p>
+
+<p>With an error, the <code>&lt;feed&gt;</code> will have a single <code>&lt;entry&gt;</code> representing the
+error, and <code>&lt;id&gt;</code> will contain a link like <code>http://arxiv.org/api/errors#...</code>.</p>
+
+<p>The single <code>&lt;entry&gt;</code> will contain</p>
+
+<table><thead>
+<tr>
+<th align="left">tag</th>
+<th align="left">description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left"><code>&lt;summary&gt;</code></td>
+<td align="left">error message</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;link&gt;</code></td>
+<td align="left">url to detailed explanation</td>
+</tr>
+<tr>
+<td align="left"><code>&lt;title&gt;</code></td>
+<td align="left">just <code>Error</code></td>
+</tr>
+<tr>
+<td align="left"><code>&lt;author&gt;</code></td>
+<td align="left">will contain <code>&lt;name&gt;</code> with <code>arXiv api core</code></td>
+</tr>
+</tbody></table>
+
+<p>Example errors include</p>
+
+<ul>
+<li><code>start</code> must be an integer</li>
+<li><code>start</code> much be &gt;= 0</li>
+<li><code>max_results</code> must be an integer</li>
+<li><code>max_results</code> must be &gt;= 0</li>
+<li>malformed id</li>
+</ul>
+
+<p>Need to detect an error and then print the short message plus a link
+to the detail.</p>
+
+<h3>Tables</h3>
+
+<p>The <a href="http://arxiv.org/help/api/user-manual">arXiv API user manual</a> has
+a bunch of useful tables, particularly the list of subject
+classifications.</p>
+
+<p>5.1 Details of query contruction</p>
+
+<ul>
+<li><code>Table: search_query field prefixes</code></li>
+<li><code>Table: search_query Boolean operators</code></li>
+<li><code>Table: search_query grouping operators</code></li>
+</ul>
+
+<p>5.2 Details of Atom Results Returned</p>
+
+<ul>
+<li><code>Table: Atom elements</code>
+
+<ul>
+<li>section <code>feed elements</code></li>
+<li>section <code>entry elements</code></li>
+</ul></li>
+</ul>
+
+<p>5.3 Subject Classifications</p>
+
+<ul>
+<li><code>Table: Subject Classifications</code></li>
+</ul>
+
+<!-- the following to make it look nicer -->
+
+<p><link href="https://www.biostat.wisc.edu/~kbroman/markdown.css" rel="stylesheet"></link>
+<link href="https://www.biostat.wisc.edu/~kbroman/markdown_modified.css" rel="stylesheet"></link></p>
+
+</body>
+
+</html>
