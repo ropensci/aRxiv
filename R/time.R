@@ -5,7 +5,7 @@ get_arxiv_time <-
 function()
 {
    last <- as.numeric(Sys.getenv("aRxiv_time"))
-   ifelse(last=="", 0, last)
+   ifelse(is.na(last), 0, last)
 }
 
 # set arxiv time to current
