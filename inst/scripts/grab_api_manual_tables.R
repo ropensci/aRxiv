@@ -28,7 +28,8 @@ query_prefixes[query_prefixes[,1] != "id",]
 # "Table: Subject Classifications"
 ####
 arxiv_cats <- tabs[[11]]
-arxiv_cats <- header_as_colnames(arxiv_cats)
+colnames(arxiv_cats) <- c("abbreviation", "description")
+arxiv_cats <- arxiv_cats[-1,] # drop header row
 
 ## save as data sets within package
 save(query_prefixes, file="../../data/query_prefixes.RData")
