@@ -6,18 +6,43 @@
 clean_record <-
 function(record)
 {
+    authors <- clean_authors(record)
+    links <- clean_links(record)
+    categories <- clean_categories(record)
 
-
-
+    c(id=get_key(record, "id"),
+      updated=get_key(record, "updated"),
+      published=get_key(record, "published"),
+      title=get_key(record, "title"),
+      summary=get_key(record, "summary"),
+      authors=authors$names,
+      affiliations=authors$affiliations,
+      link_abstract=links$link_abstract,
+      link_pdf=links$link_pdf,
+      link_doi=links$link_doi,
+      comment=get_key(record, "comment"),
+      journal_ref=get_key(record, "journal_ref"),
+      primary_category=get_key(record$primary_category, "term"),
+      categories=categories)
 }
 
 
 # pull out a certain element (by its name) of each list in a list of lists
 #    if that element doesn't appear, use ""
-get_key <-
+# the purpose of this is to avoid NULLs and get "" instead
+get_key_ll <-
 function(list_of_lists, key)
 {
     vapply(list_of_lists, function(a) ifelse(key %in% names(a), a[[key]], ""), "")
+}
+
+# pull out a certain element (by its name)
+#    if that element doesn't appear, use ""
+# the purpose of this is to avoid NULLs and get "" instead
+get_key <-
+function(a_list, key)
+{
+    ifelse(key %in% names(a_list), a_list[[key]], "")
 }
 
 # take author info and return a string with names and another with
@@ -28,11 +53,11 @@ function(record, separator="|")
     authors <- pull_by_key(record, "author")
 
     # pull out names and paste into one string
-    names <- get_key(authors, "name")
+    names <- get_key_ll(authors, "name")
     names <- paste(names, collapse=separator)
 
     # pull out institutions
-    affiliations <- get_key(authors, "affiliation")
+    affiliations <- get_key_ll(authors, "affiliation")
     affiliations <- paste(affiliations, collapse=separator)
 
     list(names=names, affiliations=affiliations)
@@ -47,9 +72,9 @@ function(record, separator="|")
     if(length(links)==0)
         return(link_abstract=NULL, link_pdf=NULL, link_doi=NULL)
 
-    rel <- get_key(links, "rel")
-    title <- get_key(links, "title")
-    links <- get_key(links, "href")
+    rel <- get_key_ll(links, "rel")
+    title <- get_key_ll(links, "title")
+    links <- get_key_ll(links, "href")
 
     # strip off trailing semi-colons
     links <- gsub("\\s*;\\s*$", "", links)
@@ -78,6 +103,6 @@ clean_categories <-
 function(record, separator="|")
 {
     categories <- pull_by_key(record, "category")
-    terms <- get_key(categories, "term")
+    terms <- get_key_ll(categories, "term")
     paste(terms, collapse=separator)
 }
