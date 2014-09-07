@@ -12,10 +12,10 @@
 #' subject classifications (\code{abbreviation}) and the corresponding
 #' description (\code{description}).
 #'
-#' @source \href{http://arxiv.org/help/api/user-manual}
+#' @source \url{http://arxiv.org/help/api/user-manual}
 #'
 #' @keywords datasets
 #'
 #' @examples
-#' data(geneExpr)
+#' data(arxiv_cats)
 NULL

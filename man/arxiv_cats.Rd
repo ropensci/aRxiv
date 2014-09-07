@@ -7,7 +7,7 @@
 subject classifications (\code{abbreviation}) and the corresponding
 description (\code{description}).}
 \source{
-\href{http://arxiv.org/help/api/user-manual}
+\url{http://arxiv.org/help/api/user-manual}
 }
 \usage{
 data(arxiv_cats)
@@ -17,7 +17,7 @@ arXiv subject classifications: their abbreviations and
 corresponding descriptions.
 }
 \examples{
-data(geneExpr)
+data(arxiv_cats)
 }
 \keyword{datasets}
 

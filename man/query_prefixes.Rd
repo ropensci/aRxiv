@@ -6,7 +6,7 @@
 \format{A data frame with two columns: the \code{prefix} and corresponding
 \code{explanation}.}
 \usage{
-data(geneExpr)
+data(query_prefixes)
 }
 \description{
 Possible prefixes that correspond to different fields in arXiv searches.

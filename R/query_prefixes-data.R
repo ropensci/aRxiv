@@ -5,7 +5,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(geneExpr)
+#' @usage data(query_prefixes)
 #'
 #' @format A data frame with two columns: the \code{prefix} and corresponding
 #' \code{explanation}.

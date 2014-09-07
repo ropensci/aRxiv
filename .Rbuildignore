@@ -1,2 +1,3 @@
 inst/doc/src
 ^Makefile$
+inst/scripts/.RData
