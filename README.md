@@ -6,13 +6,12 @@ Package is in early development.
 
 The package is not currently available on
 [CRAN](http://cran.r-project.org). To install, use
-`devtools::install_github()`, as follows:a
+`devtools::install_github()`, as follows:
 
 ```coffee
 install.packages("devtools")
 library(devtools)
 install_github("ropensci/aRxiv")
-library(aRxiv)
 ```
 
 ### Basic usage
@@ -20,6 +19,7 @@ library(aRxiv)
 The main function is `arxiv_search()`. Here's an example of its use:
 
 ```coffee
+library(aRxiv)
 z <- arxiv_search(query = "au:Broman AND cat:stat.AP")
 str(z)
 ```
