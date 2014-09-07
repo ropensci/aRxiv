@@ -58,6 +58,7 @@ function(query = NULL, id_list=NULL)
 }
 
 # to avoid printing attributes
+#' @export
 print.arxiv_count <-
 function(x, ...)
 {
