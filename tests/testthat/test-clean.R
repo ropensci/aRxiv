@@ -151,6 +151,87 @@ test_that("clean_record works right", {
 
 })
 
+test_that("listresult2df works right", {
+
+    zdf <- listresult2df(z)
+
+    # authors (with a bit of pain over UTF-8)
+    authors <- c("J. Michael Owen|Jens V. Villumsen", "Yu Shi", "Yu Shi", "Stefanie Komossa|Hartmut Schulz",
+                 "Re'em Sari|Tsvi Piran", "C. De Dominicis|I. Kondor|T. Temesvari",
+                 "D. R. Wilson|T. R. Martinez", "S. Wermter|V. Weber", "Motoyuki Saijo|Hisa-aki Shinkai|Kei-ichi Maeda",
+                 "T. P. Singh|Louis Witten", "M. Zyskin", "H. Arfaei|M. M. Sheikh-Jabbari",
+                 "Stefan Mashkevich", "Z. Bajnok",
+                 paste0("J. Balog|L. Feh", intToUtf8(233), "r|L. Palla"),
+                 paste0("G", intToUtf8(225), "bor Etesi"),
+                 "D. Zilbersher|M. Gedalin", "S. Majid",
+                 "S. Majid", "Charles H. Bennett|Ethan Bernstein|Gilles Brassard|Umesh Vazirani")
+    expect_equal(zdf$authors, authors)
+
+    # date updated
+    updated <- c("1997-01-01T17:41:43Z", "1997-01-01T09:57:53Z", "1997-01-01T08:42:38Z",
+                 "1997-01-01T11:21:47Z", "1997-01-01T07:03:28Z", "1997-01-01T07:42:16Z",
+                 "1997-01-01T00:00:00Z", "1997-01-01T00:00:00Z", "1997-01-01T03:07:48Z",
+                 "1997-01-01T10:51:29Z", "1997-01-01T07:19:23Z", "1997-01-01T22:35:54Z",
+                 "1997-01-01T01:11:55Z", "1997-01-01T10:54:15Z", "1997-01-01T12:56:51Z",
+                 "1997-01-01T09:57:00Z", "1997-01-01T07:40:56Z", "1997-01-01T01:21:00Z",
+                 "1997-01-01T01:21:36Z", "1997-01-01T13:55:07Z")
+    expect_equal(zdf$updated, updated)
+
+    # date published
+    published <- c("1996-03-28T21:03:40Z", "1996-12-23T20:16:17Z", "1996-12-23T21:14:51Z",
+                   "1997-01-01T11:21:47Z", "1997-01-01T07:03:28Z", "1997-01-01T07:42:16Z",
+                   "1997-01-01T00:00:00Z", "1997-01-01T00:00:00Z", "1997-01-01T03:07:48Z",
+                   "1997-01-01T10:51:29Z", "1995-11-16T02:57:13Z", "1996-12-05T23:36:46Z",
+                   "1997-01-01T01:11:55Z", "1997-02-26T13:16:12Z", "1997-03-06T12:43:52Z",
+                   "1997-01-01T09:57:00Z", "1997-01-01T07:40:56Z", "1996-10-02T21:25:17Z",
+                   "1997-01-01T01:21:36Z", "1997-01-01T13:55:07Z")
+    expect_equal(zdf$published, published)
+
+    # title
+    title <- c("Baryons, Dark Matter, and the Jeans Mass in Simulations of Cosmological\n  Structure Formation",
+               "Local angular fractal and galaxy distribution", "Conditional calculus on fractal structures and its application to galaxy\n  distribution",
+               "Interpretation of the emission line spectra of Seyfert 2 galaxies by\n  multi-component photoionization models",
+               "Variability in GRBs - A Clue", "Beyond the Sherrington-Kirkpatrick Model",
+               "Improved Heterogeneous Distance Functions", "SCREEN: Learning a Flat Syntactic and Semantic Spoken Language Analysis\n  Using Artificial Neural Networks",
+               "Gravitational Waves in Brans-Dicke Theory : Analysis by Test Particles\n  around a Kerr Black Hole",
+               "Cosmic censorship and spherical gravitational collapse with tangential\n  pressure",
+               "Light-Ray Radon Transform for Abelianin and Nonabelian Connection in 3\n  and 4 Dimensional Space with Minkowsky Metric",
+               "D-brane Interactions, World-sheet Parity and Anti-Symmetric Tensor",
+               paste0("Comment on ``Additional analytically exact solutions for three-anyons''\n  and ``Fermion Ground State of Three ",
+                      "Particles in a Harmonic Potential Well\n  and Its Anyon Interpolation''"),
+               "On the free field realization of $WBC_n$ algebras", "Coadjoint orbits of the Virasoro algebra and the global Liouville\n  equation",
+               "Spontaneous Symmetry Breaking in SO(3) Gauge Theory to Discrete Subgroups",
+               "Pick-up ion dynamics at the structured quasi-perpendicular shock",
+               "Advances in Quantum and Braided Geometry", "Quantum Geometry and the Planck Scale",
+               "Strengths and Weaknesses of Quantum Computing")
+    expect_equal(zdf$title, title)
+
+    # affiliations
+    affil <- c("Dept. of Astronomy, Ohio State Univ.|Max Planck Institut fur Astrophysik, Garching",
+               "", "", "MPE Garching, Ruhr-Univ. Bochum|Ruhr-Univ. Bochum",
+               "Hebrew University, Jerusalem, Israel|Hebrew University, Jerusalem, Israel",
+               "||", "|", "|", "||", "|", "", "|", "ITP, Kiev", "", "||", "",
+               "|", "", "", "|||")
+    expect_equal(zdf$affiliations, affil)
+
+    # primary_category
+    primecat <- c("astro-ph", "astro-ph", "astro-ph", "astro-ph", "astro-ph",
+                  "cond-mat.stat-mech", "cs.AI", "cs.AI", "gr-qc", "gr-qc", "hep-th",
+                  "hep-th", "hep-th", "hep-th", "hep-th", "hep-th", "physics.space-ph",
+                  "q-alg", "q-alg", "quant-ph")
+    expect_equal(zdf$primary_category, primecat)
+
+    # categories
+    cats <- c("astro-ph", "astro-ph|cond-mat", "astro-ph|cond-mat", "astro-ph",
+              "astro-ph", "cond-mat.stat-mech|cond-mat.dis-nn", "cs.AI", "cs.AI",
+              "gr-qc", "gr-qc", "hep-th", "hep-th", "hep-th", "hep-th", "hep-th",
+              "hep-th", "physics.space-ph", "q-alg|math.QA", "q-alg|math.QA",
+              "quant-ph")
+    expect_equal(zdf$categories, cats)
+
+})
+
+
 
 # reset delay
 options(aRxiv_delay=old_delay)

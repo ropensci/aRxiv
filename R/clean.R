@@ -4,11 +4,11 @@
 #   - multiple links -> link_abstract, link_pdf, link_doi
 #   - category -> single string
 clean_record <-
-function(record)
+function(record, separator="|")
 {
-    authors <- clean_authors(record)
-    links <- clean_links(record)
-    categories <- clean_categories(record)
+    authors <- clean_authors(record, separator=separator)
+    links <- clean_links(record, separator=separator)
+    categories <- clean_categories(record, separator=separator)
 
     c(id=get_key(record, "id"),
       updated=get_key(record, "updated"),

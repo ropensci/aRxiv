@@ -32,3 +32,16 @@ function(listresult)
 {
     sum(names(listresult)=="entry")
 }
+
+# convert list of results (from result2list) into data.frame
+#   test for this in tests/testthat/test-clean.R
+listresult2df <-
+function(listresult, separator="|")
+{
+
+    mat <- vapply(listresult, clean_record, separator=separator,
+                  clean_record(listresult[[1]], separator=separator))
+
+    as.data.frame(t(mat), stringsAsFactors=FALSE)
+
+}
