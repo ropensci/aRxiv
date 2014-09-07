@@ -17,6 +17,9 @@
 #' # count papers in category stat.AP (applied statistics)
 #' arxiv_count(query = "cat:stat.AP")
 #' arxiv_count(query = 'au:"Peter Hall"')
+
+#' # count papers for a range of dates
+#' arxiv_count("lastUpdatedDate:[199701010000 TO 199712312359]")
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_count <-
 function(query = NULL, id_list=NULL)

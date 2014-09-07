@@ -34,6 +34,9 @@
 #' z <- arxiv_search(id_list = "1403.3048,1402.2633,1309.1192")
 #' # DOI if available
 #' sapply(z[names(z)=="entry"], function(a) a$doi)
+#'
+#' # search for a range of dates (in this case, one day)
+#' z <- arxiv_search("lastUpdatedDate:[199701010000 TO 199701012359]")
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_search <-
 function(query = NULL, id_list=NULL, start = 0, end = 10,
