@@ -26,6 +26,11 @@ test_that("arxiv_error_message gives right info", {
 
 test_that("arxiv_search throws error", {
 
+    # shorter delay to speed tests
+    old_delay <- getOption("aRxiv_delay")
+    on.exit(options(aRxiv_delay=old_delay))
+    options(aRxiv_delay=0.5)
+
     expect_error(arxiv_search(id_list="1403.3048,1402.2633,1309.119"))
 
 })
