@@ -21,7 +21,7 @@ function(tab)
 query_prefixes <- tabs[[6]]
 query_prefixes <- header_as_colnames(query_prefixes)
 # drop the ID row
-query_prefixes[query_prefixes[,1] != "id",]
+query_prefixes <- query_prefixes[query_prefixes[,1] != "id",]
 
 ####
 # table of subject classifications
