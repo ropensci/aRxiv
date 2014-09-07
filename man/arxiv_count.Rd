@@ -11,7 +11,9 @@ arxiv_count(query = NULL, id_list = NULL)
 \item{id_list}{List of arXiv doc IDs, as comma-delimited string}
 }
 \value{
-Number of results (integer)
+Number of results (integer). An attribute
+\code{"search_info"} contains information about the search
+parameters and the time at which it was performed.
 }
 \description{
 Count the number of results for a given search. Useful to check

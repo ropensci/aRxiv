@@ -9,7 +9,9 @@
 #' @import httr
 #' @export
 #'
-#' @return Number of results (integer)
+#' @return Number of results (integer). An attribute
+#' \code{"search_info"} contains information about the search
+#' parameters and the time at which it was performed.
 #'
 #' @examples
 #' \dontshow{old_delay <- getOption("aRxiv_delay")
@@ -45,5 +47,10 @@ function(query = NULL, id_list=NULL)
     stop_for_status(search_result)
 
     # return totalResults
-    as.integer(listresult$totalResults)
+    result <- as.integer(listresult$totalResults)
+
+    attr(result, "search_info") <-
+        search_attributes(query, id_list, NULL, NULL, NULL, NULL)
+
+    result
 }
