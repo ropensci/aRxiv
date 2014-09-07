@@ -52,5 +52,14 @@ function(query = NULL, id_list=NULL)
     attr(result, "search_info") <-
         search_attributes(query, id_list, NULL, NULL, NULL, NULL)
 
+    # assign class to avoid printing attributes
+    class(result) <- c("arxiv_count", "integer")
     result
+}
+
+# to avoid printing attributes
+print.arxiv_count <-
+function(x, ...)
+{
+    print(as.vector(x), ...)
 }
