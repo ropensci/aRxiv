@@ -42,6 +42,9 @@ function(listresult, sep="|")
     mat <- vapply(listresult, clean_record, sep=sep,
                   clean_record(listresult[[1]], sep=sep))
 
+    # strip off a bunch of "entry" values
+    colnames(mat) <- 1:ncol(mat)
+
     as.data.frame(t(mat), stringsAsFactors=FALSE)
 
 }
