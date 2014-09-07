@@ -4,9 +4,9 @@
 arxiv_error_message <-
 function(listresult)
 {
-    entries <- get_entries(listresult)
-    if(length(entries)==1) {
-        entry <- entries[[1]]
+    nentries <- sum(names(listresult)=="entry")
+    if(nentries == 1) { # one entry
+        entry <- listresult[["entry"]]
 
         # single entry with Error as title and "arXiv api core" as author?
         if(all(c("title", "author", "summary") %in% names(entry)) &&
