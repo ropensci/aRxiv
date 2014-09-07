@@ -16,11 +16,48 @@
 #' @param ascending If TRUE, sort in increasing order; else decreasing
 #' @param batchsize Maximum number of records to request at one time
 #' @param force If TRUE, force search request even if it seems extreme
+#' @param output_format Indicates whether output should be a data frame or a list.
+#' @param sep String to use to separate multiple authors,
+#' affiliations, DOI links, and categories, in the case that
+#' \code{output_format="data.frame"}.
 #'
 #' @import httr
 #' @export
 #'
-#' @return Parse XML result as a list
+#' @return If \code{output_format="data.frame"}, the result is a data
+#' frame with each row being a manuscript and columns being the
+#' various fields.
+#'
+#' If \code{output_format="list"}, the result is a list parsed from
+#' the XML output of the search, closer to the raw output from arXiv.
+#'
+#' The data frame format has the following columns.
+#' \tabular{rll}{
+#'  [,1] \tab id               \tab arXiv ID \cr
+#'  [,2] \tab updated          \tab last date updated \cr
+#'  [,3] \tab published        \tab date first published \cr
+#'  [,4] \tab title            \tab manuscript title \cr
+#'  [,5] \tab summary          \tab abstract \cr
+#'  [,6] \tab authors          \tab author names \cr
+#'  [,7] \tab affiliations     \tab author affiliations \cr
+#'  [,8] \tab link_abstract    \tab hyperlink to abstract \cr
+#'  [,9] \tab link_pdf         \tab hyperlink to pdf \cr
+#' [,10] \tab link_doi         \tab hyperlink to DOI \cr
+#' [,11] \tab comment          \tab authors' comment \cr
+#' [,12] \tab journal_ref      \tab journal reference \cr
+#' [,13] \tab primary_category \tab primary category \cr
+#' [,14] \tab categories       \tab all categories \cr
+#' }
+#'
+#' The contents are all strings; missing values are empty strings (\code{""}).
+#'
+#' The columns \code{authors}, \code{affiliations}, \code{link_doi},
+#' and \code{categories} may have multiple entries separated by
+#' \code{sep} (by default, \code{"|"}).
+#'
+#' The result includes an attribute \code{"search_info"} that includes
+#' information about the details of the search parameters, including
+#' the time at which it was completed.
 #'
 #' @examples
 #' \dontshow{old_delay <- getOption("aRxiv_delay")
@@ -41,12 +78,14 @@
 arxiv_search <-
 function(query = NULL, id_list=NULL, start = 0, end = 10,
          sort_by=c("relevance", "lastUpdatedDate", "submittedDate"),
-         ascending=TRUE, batchsize=500, force=FALSE)
+         ascending=TRUE, batchsize=500, force=FALSE,
+         output_format=c("data.frame", "list"), sep="|")
 {
     query_url <- "http://export.arxiv.org/api/query"
 
     sort_by <- match.arg(sort_by)
     sort_order <- ifelse(ascending, "ascending", "descending")
+    output_format <- match.arg(output_format)
 
     if(is.null(start)) start <- 0
     if(is.null(end)) end <- arxiv_count(query, list)-1
@@ -81,7 +120,8 @@ function(query = NULL, id_list=NULL, start = 0, end = 10,
             these_results <- arxiv_search(query=query, id_list=id_list,
                                           start=starts[i], end=thisend,
                                           sort_by=sort_by, ascending=ascending,
-                                          batchsize=batchsize, force=force)
+                                          batchsize=batchsize, force=force,
+                                          output_format="list")
             message("retrieved batch ", i)
 
             # if no more results? then return
@@ -90,6 +130,13 @@ function(query = NULL, id_list=NULL, start = 0, end = 10,
 
             results <- c(results, these_results)
         }
+
+        if(output_format=="data.frame")
+            results <- listresult2df(results, sep=sep)
+
+        attr(results, "search_info") <-
+            search_attributes(query, id_list, start, end,
+                              sort_by, sort_order)
 
         return(results)
     }
@@ -113,6 +160,28 @@ function(query = NULL, id_list=NULL, start = 0, end = 10,
     # check for general http error
     stop_for_status(search_result)
 
-    # return the entries
-    get_entries(listresult)
+    # pull out just the entries
+    results <- get_entries(listresult)
+
+    # convert to data frame
+    if(output_format=="data.frame")
+        results <- listresult2df(results, sep=sep)
+
+    attr(results, "search_info") <-
+        search_attributes(query, id_list, start, end,
+                          sort_by, sort_order)
+
+    results
+}
+
+
+# an attribute to add to the result
+search_attributes <-
+function(query, id_list, start, end, sort_by,
+         sort_order)
+{
+    c(query=ifelse(is.null(query), "", query),
+      id_list=ifelse(is.null(id_list), "", id_list),
+      start=start, end=end, sort_by=sort_by,
+      sort_order=sort_order, time=Sys.time())
 }
