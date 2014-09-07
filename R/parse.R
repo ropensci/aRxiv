@@ -59,7 +59,7 @@ function(list_of_lists, key)
 clean_authors <-
 function(record, separator="|")
 {
-    authors <- pull_by_key(record, "authors")
+    authors <- pull_by_key(record, "author")
 
     # pull out names and paste into one string
     names <- get_key(authors, "name")
