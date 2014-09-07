@@ -183,5 +183,5 @@ function(query, id_list, start, end, sort_by,
     c(query=ifelse(is.null(query), "", query),
       id_list=ifelse(is.null(id_list), "", id_list),
       start=start, end=end, sort_by=sort_by,
-      sort_order=sort_order, time=Sys.time())
+      sort_order=sort_order, time=paste(Sys.time(), Sys.timezone()))
 }
