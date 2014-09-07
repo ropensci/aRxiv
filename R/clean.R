@@ -51,20 +51,23 @@ function(record, separator="|")
     title <- get_key(links, "title")
     links <- get_key(links, "href")
 
+    # strip off trailing semi-colons
+    links <- gsub("\\s*;\\s*$", "", links)
+
     # abstract: rel=alternate
     wh <- (rel=="alternate")
     if(any(wh)) abstract <- paste(links[wh], collapse=separator)
-    else abstract <- NULL
+    else abstract <- ""
 
     # pdf: rel=related and title=pdf
     wh <- (rel=="related" & title=="pdf")
     if(any(wh)) pdf <- paste(links[wh], collapse=separator)
-    else pdf <- NULL
+    else pdf <- ""
 
     # doi: rel=related and title=doi
     wh <- (rel=="related" & title=="doi")
     if(any(wh)) doi <- paste(links[wh], collapse=separator)
-    else doi <- NULL
+    else doi <- ""
 
     list(link_abstract=abstract, link_pdf=pdf, link_doi=doi)
 }
