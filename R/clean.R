@@ -4,11 +4,11 @@
 #   - multiple links -> link_abstract, link_pdf, link_doi
 #   - category -> single string
 clean_record <-
-function(record, separator="|")
+function(record, sep="|")
 {
-    authors <- clean_authors(record, separator=separator)
-    links <- clean_links(record, separator=separator)
-    categories <- clean_categories(record, separator=separator)
+    authors <- clean_authors(record, sep=sep)
+    links <- clean_links(record, sep=sep)
+    categories <- clean_categories(record, sep=sep)
 
     c(id=get_key(record, "id"),
       updated=get_key(record, "updated"),
@@ -48,17 +48,17 @@ function(a_list, key)
 # take author info and return a string with names and another with
 # institutions
 clean_authors <-
-function(record, separator="|")
+function(record, sep="|")
 {
     authors <- pull_by_key(record, "author")
 
     # pull out names and paste into one string
     names <- get_key_ll(authors, "name")
-    names <- paste(names, collapse=separator)
+    names <- paste(names, collapse=sep)
 
     # pull out institutions
     affiliations <- get_key_ll(authors, "affiliation")
-    affiliations <- paste(affiliations, collapse=separator)
+    affiliations <- paste(affiliations, collapse=sep)
 
     list(names=names, affiliations=affiliations)
 }
@@ -66,7 +66,7 @@ function(record, separator="|")
 # pull out all "link" fields from a record and converts to list with
 # (link_abstrat, link_pdf, link_abstract)
 clean_links <-
-function(record, separator="|")
+function(record, sep="|")
 {
     links <- pull_by_key(record, "link")
     if(length(links)==0)
@@ -81,17 +81,17 @@ function(record, separator="|")
 
     # abstract: rel=alternate
     wh <- (rel=="alternate")
-    if(any(wh)) abstract <- paste(links[wh], collapse=separator)
+    if(any(wh)) abstract <- paste(links[wh], collapse=sep)
     else abstract <- ""
 
     # pdf: rel=related and title=pdf
     wh <- (rel=="related" & title=="pdf")
-    if(any(wh)) pdf <- paste(links[wh], collapse=separator)
+    if(any(wh)) pdf <- paste(links[wh], collapse=sep)
     else pdf <- ""
 
     # doi: rel=related and title=doi
     wh <- (rel=="related" & title=="doi")
-    if(any(wh)) doi <- paste(links[wh], collapse=separator)
+    if(any(wh)) doi <- paste(links[wh], collapse=sep)
     else doi <- ""
 
     list(link_abstract=abstract, link_pdf=pdf, link_doi=doi)
@@ -100,9 +100,9 @@ function(record, separator="|")
 
 # pull out categories and paste together
 clean_categories <-
-function(record, separator="|")
+function(record, sep="|")
 {
     categories <- pull_by_key(record, "category")
     terms <- get_key_ll(categories, "term")
-    paste(terms, collapse=separator)
+    paste(terms, collapse=sep)
 }
