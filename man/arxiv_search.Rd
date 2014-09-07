@@ -5,7 +5,8 @@
 \usage{
 arxiv_search(query = NULL, id_list = NULL, start = 0, end = 10,
   sort_by = c("relevance", "lastUpdatedDate", "submittedDate"),
-  ascending = TRUE, batchsize = 500, force = FALSE)
+  ascending = TRUE, batchsize = 500, force = FALSE,
+  output_format = c("data.frame", "list"), sep = "|")
 }
 \arguments{
 \item{query}{Search pattern as a string}
@@ -23,9 +24,48 @@ arxiv_search(query = NULL, id_list = NULL, start = 0, end = 10,
 \item{batchsize}{Maximum number of records to request at one time}
 
 \item{force}{If TRUE, force search request even if it seems extreme}
+
+\item{output_format}{Indicates whether output should be a data frame or a list.}
+
+\item{sep}{String to use to separate multiple authors,
+affiliations, DOI links, and categories, in the case that
+\code{output_format="data.frame"}.}
 }
 \value{
-Parse XML result as a list
+If \code{output_format="data.frame"}, the result is a data
+frame with each row being a manuscript and columns being the
+various fields.
+
+If \code{output_format="list"}, the result is a list parsed from
+the XML output of the search, closer to the raw output from arXiv.
+
+The data frame format has the following columns.
+\tabular{rll}{
+ [,1] \tab id               \tab arXiv ID \cr
+ [,2] \tab updated          \tab last date updated \cr
+ [,3] \tab published        \tab date first published \cr
+ [,4] \tab title            \tab manuscript title \cr
+ [,5] \tab summary          \tab abstract \cr
+ [,6] \tab authors          \tab author names \cr
+ [,7] \tab affiliations     \tab author affiliations \cr
+ [,8] \tab link_abstract    \tab hyperlink to abstract \cr
+ [,9] \tab link_pdf         \tab hyperlink to pdf \cr
+[,10] \tab link_doi         \tab hyperlink to DOI \cr
+[,11] \tab comment          \tab authors' comment \cr
+[,12] \tab journal_ref      \tab journal reference \cr
+[,13] \tab primary_category \tab primary category \cr
+[,14] \tab categories       \tab all categories \cr
+}
+
+The contents are all strings; missing values are empty strings (\code{""}).
+
+The columns \code{authors}, \code{affiliations}, \code{link_doi},
+and \code{categories} may have multiple entries separated by
+\code{sep} (by default, \code{"|"}).
+
+The result includes an attribute \code{"search_info"} that includes
+information about the details of the search parameters, including
+the time at which it was completed.
 }
 \description{
 Allows for progammatic searching of the arXiv pre-print repository.
@@ -42,6 +82,9 @@ sapply(z[names(z)=="entry"], function(a) a$title)
 z <- arxiv_search(id_list = "1403.3048,1402.2633,1309.1192")
 # DOI if available
 sapply(z[names(z)=="entry"], function(a) a$doi)
+
+# search for a range of dates (in this case, one day)
+z <- arxiv_search("lastUpdatedDate:[199701010000 TO 199701012359]")
 \dontshow{options(aRxiv_delay=old_delay)}
 }
 

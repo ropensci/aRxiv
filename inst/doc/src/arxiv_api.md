@@ -70,6 +70,12 @@ term  | description
 `rn`  | report number
 `all` | all of above
 
+It looks like there are others not on this list. For example
+[this post](https://groups.google.com/forum/#!topic/arxiv-api/I95YLIPesSE)
+suggests searching for a range of dates:
+
+    lastUpdatedDate:[201112021159 TO 201112051159]    
+
 You can also use the Boolean operators `AND`, `OR`, and `ANDNOT`.
 
 For spaces, use `+`.

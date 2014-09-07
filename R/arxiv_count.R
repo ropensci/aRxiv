@@ -9,7 +9,9 @@
 #' @import httr
 #' @export
 #'
-#' @return Number of results (integer)
+#' @return Number of results (integer). An attribute
+#' \code{"search_info"} contains information about the search
+#' parameters and the time at which it was performed.
 #'
 #' @examples
 #' \dontshow{old_delay <- getOption("aRxiv_delay")
@@ -17,6 +19,9 @@
 #' # count papers in category stat.AP (applied statistics)
 #' arxiv_count(query = "cat:stat.AP")
 #' arxiv_count(query = 'au:"Peter Hall"')
+#'
+#' # count papers for a range of dates
+#' arxiv_count("lastUpdatedDate:[199701010000 TO 199712312359]")
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_count <-
 function(query = NULL, id_list=NULL)
@@ -42,5 +47,10 @@ function(query = NULL, id_list=NULL)
     stop_for_status(search_result)
 
     # return totalResults
-    as.integer(listresult$totalResults)
+    result <- as.integer(listresult$totalResults)
+
+    attr(result, "search_info") <-
+        search_attributes(query, id_list, NULL, NULL, NULL, NULL)
+
+    result
 }

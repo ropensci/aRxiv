@@ -11,7 +11,9 @@ arxiv_count(query = NULL, id_list = NULL)
 \item{id_list}{List of arXiv doc IDs, as comma-delimited string}
 }
 \value{
-Number of results (integer)
+Number of results (integer). An attribute
+\code{"search_info"} contains information about the search
+parameters and the time at which it was performed.
 }
 \description{
 Count the number of results for a given search. Useful to check
@@ -23,6 +25,9 @@ before attempting to pull down a very large number of records.
 # count papers in category stat.AP (applied statistics)
 arxiv_count(query = "cat:stat.AP")
 arxiv_count(query = 'au:"Peter Hall"')
+
+# count papers for a range of dates
+arxiv_count("lastUpdatedDate:[199701010000 TO 199712312359]")
 \dontshow{options(aRxiv_delay=old_delay)}
 }
 
