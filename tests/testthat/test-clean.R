@@ -31,7 +31,7 @@ test_that("clean_authors works right", {
 
     cleaned_auth <- clean_authors(z[[20]])
     expected_result <- list(names="Charles H. Bennett|Ethan Bernstein|Gilles Brassard|Umesh Vazirani",
-                            affiliations="|||")
+                            affiliations="")
     expect_equal(cleaned_auth, expected_result)
 
 })
@@ -137,7 +137,7 @@ test_that("clean_record works right", {
                          title="Beyond the Sherrington-Kirkpatrick Model",
                          summary="  The state of art in spin glass field theory is reviewed.\n",
                          authors="C. De Dominicis|I. Kondor|T. Temesvari",
-                         affiliations="||",
+                         affiliations="",
                          link_abstract="http://arxiv.org/abs/cond-mat/9705215v1",
                          link_pdf="http://arxiv.org/pdf/cond-mat/9705215v1",
                          link_doi="",
@@ -210,8 +210,8 @@ test_that("listresult2df works right", {
     affil <- c("Dept. of Astronomy, Ohio State Univ.|Max Planck Institut fur Astrophysik, Garching",
                "", "", "MPE Garching, Ruhr-Univ. Bochum|Ruhr-Univ. Bochum",
                "Hebrew University, Jerusalem, Israel|Hebrew University, Jerusalem, Israel",
-               "||", "|", "|", "||", "|", "", "|", "ITP, Kiev", "", "||", "",
-               "|", "", "", "|||")
+               "", "", "", "", "", "", "", "ITP, Kiev", "", "", "",
+               "", "", "", "")
     expect_equal(zdf$affiliations, affil)
 
     # primary_category

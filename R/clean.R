@@ -59,6 +59,8 @@ function(record, sep="|")
     # pull out institutions
     affiliations <- get_key_ll(authors, "affiliation")
     affiliations <- paste(affiliations, collapse=sep)
+    if(length(grep("^\\|+$", affiliations)))
+        affiliations <- "" # just use "" if all missing
 
     list(names=names, affiliations=affiliations)
 }
