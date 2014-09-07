@@ -53,7 +53,7 @@ test_that("clean_links works right", {
 
     # manuscript with multiple DOI links
     delay_if_necessary()
-    zz <- POST(query_url, body=list(id_list="1206.1585",
+    zz <- POST(query_url, body=list(id_list="1206.1585v3",
                                     start=0, max_results=1))
     zz <- get_entries(result2list(zz))
 
@@ -68,7 +68,23 @@ test_that("clean_links works right", {
 
 test_that("clean_categories works right", {
 
+    cleaned_categories <- clean_categories(z[[1]])
+    expected_result <- "astro-ph"
+    expect_equal(cleaned_categories, expected_result)
 
+    cleaned_categories <- clean_categories(z[[2]])
+    expected_result <- "astro-ph|cond-mat"
+    expect_equal(cleaned_categories, expected_result)
+
+    # manuscript with 6 categories
+    delay_if_necessary()
+    zz <- POST(query_url, body=list(id_list="1303.5613v1",
+                                    start=0, max_results=1))
+    zz <- get_entries(result2list(zz))
+
+    cleaned_categories <- clean_categories(zz[[1]])
+    expected_result <- "cs.SI|cs.LG|math.ST|physics.soc-ph|stat.ML|stat.TH"
+    expect_equal(cleaned_categories, expected_result)
 
 })
 
