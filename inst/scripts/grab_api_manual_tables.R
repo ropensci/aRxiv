@@ -24,19 +24,6 @@ query_prefixes <- header_as_colnames(query_prefixes)
 query_prefixes[query_prefixes[,1] != "id",]
 
 ####
-# table of result elements
-# "Table: Atom elements"
-####
-result_elements <- tabs[[10]]
-result_elements <- header_as_colnames(result_elements)
-
-# split into two
-feedindex <- which(result_elements[,1]=="feed elements")
-entryindex <- which(result_elements[,1]=="entry elements")
-result_elements <- list(feed=result_elements[(feedindex+1):(entryindex-1),],
-                        entry=result_elements[-(1:entryindex),])
-
-####
 # table of subject classifications
 # "Table: Subject Classifications"
 ####
@@ -45,5 +32,4 @@ arxiv_cats <- header_as_colnames(arxiv_cats)
 
 ## save as data sets within package
 save(query_prefixes, file="../../data/query_prefixes.RData")
-save(result_elements, file="../../data/result_elements.RData")
 save(arxiv_cats, file="../../data/arxiv_cats.RData")
