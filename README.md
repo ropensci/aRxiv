@@ -7,7 +7,9 @@ finance, and statistics.
 The [aRxiv](http://github.com/ropensci/aRxiv) package is an R
 interface to the [arXiv API](http://arxiv.org/help/api/index).
 
-The package is in early development.
+Note that the arXiv API _does not_ require an API key.
+
+The [aRxiv](http://github.com/ropensci/aRxiv) package is in early development.
 
 
 ### Installation
