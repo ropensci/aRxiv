@@ -21,3 +21,4 @@ Suggests:
     roxygen2,
     testthat,
     knitr
+VignetteBuilder: knitr

@@ -1,0 +1,96 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{R/simcross User Guide}
+-->
+
+# aRxiv tutorial
+
+[arXiv](http://arxiv.org) is an archive of manuscripts for computer
+science, mathematics, physics, quantiative biology, quantitative
+finance, and statistics. The
+[aRxiv package](https://github.com/ropensci/aRxiv) provides an
+[R](http://www.r-project.org) interface to the
+[arXiv API](http://arxiv.org/help/api/index).
+
+Note that the arXiv API _does not_ require an API key.
+
+```{r change_aRxiv_delay_option, include=FALSE}
+options(aRxiv_delay=0.5)
+```
+
+## Installation
+
+The [aRxiv package](https://github.com/ropensci/aRxiv) is not
+currently available on [CRAN](http://cran.r-project.org). To install the
+package from [GitHub](http://github.com), use
+`devtools::install_github()`, as follows:
+
+```coffee
+install.packages("devtools")
+library(devtools)
+install_github("ropensci/aRxiv")
+```
+
+## Basic use
+
+The aRxiv package currently includes two functions: `arxiv_search` for
+general search, and `arxiv_count` for a simple count of the number
+of manuscripts matching a given search query.
+
+The two basic arguments are `query`, a
+character string representing the search, and `id_list`, a list of
+[arXiv manuscript identifiers](http://arxiv.org/help/arxiv_identifier). 
+
+- If only `query` is provided, manuscripts matching that query are
+  returned
+- If only `id_list` is provided, manuscripts in the list are
+  returned
+- If both are provided, manuscripts in `id_list` that match `query`
+  will be returned.
+
+`query` may be a single character string or a vector of character
+strings. If it is a vector, the elements are pasted together with
+`AND`.
+
+`id_list` may be a vector of strings or a single
+comma-separated character string.
+
+Here's a simple example, search for manuscripts with the phrase
+`"Peter Hall"` in one of the author fields.
+
+```{r first_search}
+library(aRxiv)
+arxiv_count('au:"Peter Hall"')
+z <- arxiv_search('au:"Peter Hall"', start=0, end=49)
+nrow(z)
+```
+
+
+## Counting papers
+
+## Forming queries
+
+## Subject classification
+
+
+## Technical details
+
+### Metadata limitations
+
+### Limit time between search requests
+
+### Limit number of items returned
+
+### Requests in batches
+
+## License and bugs
+
+- License:
+  [MIT](https://github.com/ropensci/aRxiv/blob/master/LICENSE)
+- Report bugs or suggestions improvements by [submitting an issue](https://github.com/ropensci/aRxiv/issues) to
+  [our GitHub repository for aRxiv](https://github.com/ropensci/aRxiv).
+
+
+
+<!-- the following to make it look nicer -->
+<link href="http://kbroman.org/qtlcharts/assets/vignettes/vignette.css" rel="stylesheet"></link>
