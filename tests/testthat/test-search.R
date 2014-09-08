@@ -22,3 +22,20 @@ test_that("empty results don't give an error", {
     expect_equal(omit_attr(arxiv_search(query)), empty_result())
 
 })
+
+
+test_that("weird results for IDs not found", {
+
+    # if id_list is syntactically correct but no manuscript, get weird results
+    empty <- empty_result()
+    blank <- rbind(empty,
+                   as.data.frame(matrix(rep("", ncol(empty)), nrow=1),
+                                 stringsAsFactors=FALSE))
+    dimnames(blank) <- list(1, colnames(empty))
+
+    z <- omit_attr(arxiv_search(id_list="0041.0148"))
+    expect_equal(z, blank)
+
+    z <- omit_attr(arxiv_search(id_list="0041.0148v1"))
+
+})
