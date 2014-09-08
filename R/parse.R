@@ -38,6 +38,8 @@ function(listresult)
 listresult2df <-
 function(listresult, sep="|")
 {
+    if(length(listresult)==0)
+        return(empty_result())
 
     mat <- vapply(listresult, clean_record, sep=sep,
                   clean_record(listresult[[1]], sep=sep))

@@ -26,6 +26,26 @@ function(record, sep="|")
       categories=categories)
 }
 
+empty_result <-
+function()
+{
+   data.frame(id=character(0),
+              updated=character(0),
+              published=character(0),
+              title=character(0),
+              summary=character(0),
+              authors=character(0),
+              affiliations=character(0),
+              link_abstract=character(0),
+              link_pdf=character(0),
+              link_doi=character(0),
+              comment=character(0),
+              journal_ref=character(0),
+              primary_category=character(0),
+              categories=character(0),
+              stringsAsFactors=FALSE)
+}
+
 
 # pull out a certain element (by its name) of each list in a list of lists
 #    if that element doesn't appear, use ""
