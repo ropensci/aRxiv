@@ -1,5 +1,6 @@
 ## To Do list for [aRxiv](https://github.com/ropensci/aRxiv) package
     
+- Weird results with arXiv IDs syntactically correct but not found
 - Make it easier for users to refer to the arXiv subject
   classifications
 - Also, include info on the ACM and MSC classifications
