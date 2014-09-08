@@ -2,6 +2,7 @@
 
 Package is in early development.
 
+
 ### Installation
 
 The package is not currently available on
@@ -13,6 +14,7 @@ install.packages("devtools")
 library(devtools)
 install_github("ropensci/aRxiv")
 ```
+
 
 ### Basic usage
 
@@ -33,6 +35,11 @@ str(z)
 * [Bulk data access to arXiv](http://arxiv.org/help/bulk_data)
 * [Bulk data access to arXiv metadata via OAI-PMH](http://arxiv.org/help/oa/index)
 * [Bulk data access to arXiv PDFs and source docs](http://arxiv.org/help/bulk_data_s3)
+
+
+### License
+
+Licensed under the [MIT license](LICENSE). ([More information here](http://en.wikipedia.org/wiki/MIT_License).)
 
 ---
 
