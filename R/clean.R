@@ -92,7 +92,7 @@ function(record, sep="|")
 {
     links <- pull_by_key(record, "link")
     if(length(links)==0)
-        return(link_abstract=NULL, link_pdf=NULL, link_doi=NULL)
+        return(c(link_abstract=NULL, link_pdf=NULL, link_doi=NULL))
 
     rel <- get_key_ll(links, "rel")
     title <- get_key_ll(links, "title")
