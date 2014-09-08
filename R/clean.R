@@ -6,11 +6,12 @@
 clean_record <-
 function(record, sep="|")
 {
+    id <- clean_id(record)
     authors <- clean_authors(record, sep=sep)
     links <- clean_links(record, sep=sep)
     categories <- clean_categories(record, sep=sep)
 
-    c(id=get_key(record, "id"),
+    c(id=id,
       updated=get_key(record, "updated"),
       published=get_key(record, "published"),
       title=get_key(record, "title"),
@@ -63,6 +64,14 @@ get_key <-
 function(a_list, key)
 {
     ifelse(key %in% names(a_list), a_list[[key]], "")
+}
+
+# id comes back as an URL; strip off the initial "http://arxiv.org/abs/"
+clean_id <-
+function(record)
+{
+    if(is.null(record$id)) return("")
+    sub("^http://arxiv.org/abs/", "", record$id)
 }
 
 # take author info and return a string with names and another with

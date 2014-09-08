@@ -92,7 +92,7 @@ test_that("clean_categories works right", {
 test_that("clean_record works right", {
 
     clean_record <- clean_record(z[[1]])
-    expected_result <- c(id="http://arxiv.org/abs/astro-ph/9603156v3",
+    expected_result <- c(id="astro-ph/9603156v3",
                          updated="1997-01-01T17:41:43Z",
                          published="1996-03-28T21:03:40Z",
                          title="Baryons, Dark Matter, and the Jeans Mass in Simulations of Cosmological\n  Structure Formation",
@@ -132,7 +132,7 @@ test_that("clean_record works right", {
     expect_equal(clean_record, expected_result)
 
     clean_record <- clean_record(z[[6]])
-    expected_result <- c(id="http://arxiv.org/abs/cond-mat/9705215v1",
+    expected_result <- c(id="cond-mat/9705215v1",
                          updated="1997-01-01T07:42:16Z",
                          published="1997-01-01T07:42:16Z",
                          title="Beyond the Sherrington-Kirkpatrick Model",
