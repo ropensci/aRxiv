@@ -3,19 +3,22 @@
 \alias{arxiv_search}
 \title{The main search function for aRxiv}
 \usage{
-arxiv_search(query = NULL, id_list = NULL, start = 0, end = 10,
+arxiv_search(query = NULL, id_list = NULL, start = 0, end = 9,
   sort_by = c("relevance", "lastUpdatedDate", "submittedDate"),
   ascending = TRUE, batchsize = 500, force = FALSE,
   output_format = c("data.frame", "list"), sep = "|")
 }
 \arguments{
-\item{query}{Search pattern as a string}
+\item{query}{Search pattern as a string; a vector of such strings
+are combined with \code{AND}}
 
-\item{id_list}{List of arXiv doc IDs, as comma-delimited string}
+\item{id_list}{arXiv doc IDs, as comma-delimited string or a vector
+of such strings}
 
 \item{start}{An offset for the start of search}
 
-\item{end}{Where to end search results}
+\item{end}{Index to end search results. \code{start=0} and
+\code{end=1} will return at most one result.}
 
 \item{sort_by}{How to sort the results}
 

@@ -3,8 +3,10 @@
 #' Count the number of results for a given search. Useful to check
 #' before attempting to pull down a very large number of records.
 #'
-#' @param query  Search pattern as a string
-#' @param id_list List of arXiv doc IDs, as comma-delimited string
+#' @param query Search pattern as a string; a vector of such strings
+#' are combined with \code{AND}
+#' @param id_list arXiv doc IDs, as comma-delimited string or a vector
+#' of such strings
 #'
 #' @import httr
 #' @export
@@ -24,9 +26,12 @@
 #' arxiv_count("lastUpdatedDate:[199701010000 TO 199712312359]")
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_count <-
-function(query = NULL, id_list=NULL)
+function(query=NULL, id_list=NULL)
 {
     query_url <- "http://export.arxiv.org/api/query"
+
+    query <- paste_query(query)
+    id_list <- paste_id_list(id_list)
 
     # do search
     delay_if_necessary()

@@ -6,9 +6,11 @@
 arxiv_count(query = NULL, id_list = NULL)
 }
 \arguments{
-\item{query}{Search pattern as a string}
+\item{query}{Search pattern as a string; a vector of such strings
+are combined with \code{AND}}
 
-\item{id_list}{List of arXiv doc IDs, as comma-delimited string}
+\item{id_list}{arXiv doc IDs, as comma-delimited string or a vector
+of such strings}
 }
 \value{
 Number of results (integer). An attribute

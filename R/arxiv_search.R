@@ -8,10 +8,13 @@
 #'
 #' Allows for progammatic searching of the arXiv pre-print repository.
 #'
-#' @param query  Search pattern as a string
-#' @param id_list List of arXiv doc IDs, as comma-delimited string
+#' @param query Search pattern as a string; a vector of such strings
+#' are combined with \code{AND}
+#' @param id_list arXiv doc IDs, as comma-delimited string or a vector
+#' of such strings
 #' @param start An offset for the start of search
-#' @param end Where to end search results
+#' @param end Index to end search results. \code{start=0} and
+#' \code{end=1} will return at most one result.
 #' @param sort_by How to sort the results
 #' @param ascending If TRUE, sort in increasing order; else decreasing
 #' @param batchsize Maximum number of records to request at one time
@@ -76,12 +79,15 @@
 #' z <- arxiv_search("lastUpdatedDate:[199701010000 TO 199701012359]")
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_search <-
-function(query = NULL, id_list=NULL, start = 0, end = 10,
+function(query=NULL, id_list=NULL, start=0, end=9,
          sort_by=c("relevance", "lastUpdatedDate", "submittedDate"),
          ascending=TRUE, batchsize=500, force=FALSE,
          output_format=c("data.frame", "list"), sep="|")
 {
     query_url <- "http://export.arxiv.org/api/query"
+
+    query <- paste_query(query)
+    id_list <- paste_id_list(id_list)
 
     sort_by <- match.arg(sort_by)
     sort_order <- ifelse(ascending, "ascending", "descending")
@@ -91,7 +97,7 @@ function(query = NULL, id_list=NULL, start = 0, end = 10,
     if(is.null(end)) end <- arxiv_count(query, list)-1
 
     stopifnot(start >= 0)
-    stopifnot(end >= 0)
+    stopifnot(end >= start)
     stopifnot(batchsize >= 1)
 
     # if force=FALSE, check that we aren't asking for too much
