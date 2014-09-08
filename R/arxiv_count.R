@@ -69,3 +69,16 @@ function(x, ...)
 {
     print(as.vector(x), ...)
 }
+
+# omit search_info attribute
+#    also, if arxiv_count, unclass
+omit_attr <-
+function(x)
+{
+    attr(x, "search_info") <- NULL
+
+    if("arxiv_count" %in% class(x))
+        x <- unclass(x)
+
+    x
+}

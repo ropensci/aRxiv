@@ -7,7 +7,8 @@ options(aRxiv_delay=0.5)
 
 # count papers on 1997-01-01
 query <- "lastUpdatedDate:[199701010000 TO 199701012359]"
-expect_equal(as.vector(arxiv_count(query)), 20) # ignore search_info attribute
+# ignore search_info attribute and class
+expect_equal(omit_attr(arxiv_count(query)), 20)
 
 # do raw search to test parsing
 library(httr)
