@@ -43,6 +43,7 @@ function()
               link_doi=character(0),
               comment=character(0),
               journal_ref=character(0),
+              doi=character(0),
               primary_category=character(0),
               categories=character(0),
               stringsAsFactors=FALSE)

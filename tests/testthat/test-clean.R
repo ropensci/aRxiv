@@ -6,7 +6,7 @@ old_delay <- getOption("aRxiv_delay")
 options(aRxiv_delay=0.5)
 
 # count papers on 1997-01-01
-query <- "lastUpdatedDate:[199701010000 TO 199701012359]"
+query <- "lastUpdatedDate:[199701010000 TO 199701012400]"
 # ignore search_info attribute and class
 expect_equal(omit_attr(arxiv_count(query)), 20)
 
@@ -127,6 +127,7 @@ test_that("clean_record works right", {
                                         " revised in\n  accordance with referee report, to appear in ApJ ",
                                         "(volume 481, May-20-1997)"),
                          journal_ref="Astrophys.J. 481 (1996) 1-21",
+                         doi="10.1086/304018",
                          primary_category="astro-ph",
                          categories="astro-ph")
     expect_equal(clean_record, expected_result)
@@ -145,6 +146,7 @@ test_that("clean_record works right", {
                          comment=paste0("contribution to the volume \"Spin Glasses and Random Fields\", ed. P.\n  Young, ",
                                         "World Scientific. Latex file and lprocl.sty (style-file). 41 pages, no\n  figures"),
                          journal_ref="",
+                         doi="",
                          primary_category="cond-mat.stat-mech",
                          categories="cond-mat.stat-mech|cond-mat.dis-nn")
     expect_equal(clean_record, expected_result)
