@@ -2,10 +2,9 @@
 
 [arXiv](http://arxiv.org) is an archive of manuscripts for computer
 science, mathematics, physics, quantiative biology, quantitative
-finance, and statistics.
-
-The [aRxiv](http://github.com/ropensci/aRxiv) package is an R
-interface to the [arXiv API](http://arxiv.org/help/api/index).
+finance, and statistics. The [aRxiv](http://github.com/ropensci/aRxiv)
+package is an R interface to the
+[arXiv API](http://arxiv.org/help/api/index).
 
 Note that the arXiv API _does not_ require an API key.
 
@@ -31,7 +30,7 @@ The main function is `arxiv_search()`. Here's an example of its use:
 
 ```coffee
 library(aRxiv)
-z <- arxiv_search(query = "au:Broman AND cat:stat.AP")
+z <- arxiv_search(query = 'au:"Peter Hall" AND cat:stat*', limit=50)
 str(z)
 ```
 
