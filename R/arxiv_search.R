@@ -112,44 +112,17 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
         if(too_many_res)
             stop("Expecting ", too_many_res, " results; refine your search")
         if(too_many_res > batchsize && batchsize > 1000)
-            stop("Expecting ", too_many_res, " and batchsize is ", batchsize, " which looks too large.\n",
+            stop("Expecting ", too_many_res, " and batchsize is ",
+                 batchsize, " which looks too large.\n",
                  "Refine your search or reduce batchsize.")
     }
 
     if(limit > batchsize) { # use batches
-        nbatch <- (limit %/% batchsize) + ifelse(limit %% batchsize, 1, 0) # integer arithmetic, to be safe
-        results <- NULL
-
-        starts <- seq(start, start+limit-1, by=batchsize)
-
-        for(i in seq(along=starts)) {
-
-            these_results <- arxiv_search(query=query, id_list=id_list,
-                                          start=starts[i], limit=batchsize,
-                                          sort_by=sort_by, ascending=ascending,
-                                          batchsize=batchsize, force=force,
-                                          output_format="list")
-            message("retrieved batch ", i)
-
-            # grab total_results attribute (total no. records matching query)
-            total_results <- attr(these_results, "total_results")
-
-            # if no more results? then return
-            if(count_entries(these_results) == 0) break
-
-            results <- c(results, these_results)
-        }
-
-        if(output_format=="data.frame")
-            results <- listresult2df(results, sep=sep)
-
-        attr(results, "search_info") <-
-            search_attributes(query, id_list, start, limit,
-                              sort_by, sort_order)
-
-        attr(results, "total_results") <- total_results
-
-        return(results)
+        return(arxiv_search_inbatches(query=query, id_list=id_list,
+                                      start=start, limit=limit,
+                                      sort_by=sort_by, ascending=ascending,
+                                      batchsize=batchsize, force=force,
+                                      output_format=output_format, sep=sep))
     }
 
     # do search
@@ -189,6 +162,55 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
 
     results
 }
+
+
+# search in batches
+arxiv_search_inbatches <-
+function(query=NULL, id_list=NULL, start=0, limit=10,
+         sort_by=c("submittedDate", "lastUpdatedDate", "relevance"),
+         ascending=TRUE, batchsize=500, force=FALSE,
+         output_format=c("data.frame", "list"), sep="|")
+{
+    sort_by <- match.arg(sort_by)
+    sort_order <- ifelse(ascending, "ascending", "descending")
+    output_format <- match.arg(output_format)
+
+    nbatch <- (limit %/% batchsize) + ifelse(limit %% batchsize, 1, 0) # integer arithmetic, to be safe
+    results <- NULL
+
+    starts <- seq(start, start+limit-1, by=batchsize)
+
+    for(i in seq(along=starts)) {
+
+        these_results <- arxiv_search(query=query, id_list=id_list,
+                                      start=starts[i], limit=batchsize,
+                                      sort_by=sort_by, ascending=ascending,
+                                      batchsize=batchsize, force=force,
+                                      output_format="list", sep=sep)
+
+        message("retrieved batch ", i)
+
+        # grab total_results attribute (total no. records matching query)
+        total_results <- attr(these_results, "total_results")
+
+        # if no more results? then return
+        if(count_entries(these_results) == 0) break
+
+        results <- c(results, these_results)
+    }
+
+    if(output_format=="data.frame")
+        results <- listresult2df(results, sep=sep)
+
+    attr(results, "search_info") <-
+        search_attributes(query, id_list, start, limit,
+                          sort_by, sort_order)
+
+    attr(results, "total_results") <- total_results
+
+    results
+}
+
 
 
 # an attribute to add to the result
