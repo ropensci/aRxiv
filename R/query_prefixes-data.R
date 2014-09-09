@@ -12,6 +12,8 @@
 #'
 #' @author Karl W Broman
 #'
+#' @source \url{http://arxiv.org/help/api/user-manual}
+#'
 #' @keywords datasets
 #'
 #' @examples

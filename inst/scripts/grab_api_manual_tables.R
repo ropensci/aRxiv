@@ -23,6 +23,15 @@ query_prefixes <- header_as_colnames(query_prefixes)
 # drop the ID row
 query_prefixes <- query_prefixes[query_prefixes[,1] != "id",]
 
+# add to that table
+query_prefixes <- rbind(query_prefixes,
+                        c("submittedDate",
+                          "Date/time of initial submission, as YYYYMMDDHHMM"),
+                        c("lastUpdatedDate",
+                          "Date/time of last update, as YYYYMMDDHHMM"))
+rownames(query_prefixes) <- 1:nrow(query_prefixes)
+
+
 ####
 # table of subject classifications
 # "Table: Subject Classifications"

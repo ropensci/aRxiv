@@ -5,6 +5,9 @@
 \title{arXiv query field prefixes}
 \format{A data frame with two columns: the \code{prefix} and corresponding
 \code{explanation}.}
+\source{
+\url{http://arxiv.org/help/api/user-manual}
+}
 \usage{
 data(query_prefixes)
 }
