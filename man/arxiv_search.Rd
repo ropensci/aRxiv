@@ -70,7 +70,9 @@ and \code{categories} may have multiple entries separated by
 
 The result includes an attribute \code{"search_info"} that includes
 information about the details of the search parameters, including
-the time at which it was completed.
+the time at which it was completed. Another attribute
+\code{"total_results"} is the total number of records that match
+the query.
 }
 \description{
 Allows for progammatic searching of the arXiv pre-print repository.
@@ -79,8 +81,8 @@ Allows for progammatic searching of the arXiv pre-print repository.
 \dontshow{old_delay <- getOption("aRxiv_delay")
           options(aRxiv_delay=1)}
 # search for author Peter Hall with deconvolution in title
-z <- arxiv_search(query = 'au:"Peter Hall" AND ti:deconvolution', limit=4)
-attr(z, "totalResults")
+z <- arxiv_search(query = 'au:"Peter Hall" AND ti:deconvolution', limit=2)
+attr(z, "total_results") # total no. records matching query
 z$title
 
 # search for a set of documents by arxiv identifiers

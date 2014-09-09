@@ -79,6 +79,7 @@ omit_attr <-
 function(x)
 {
     attr(x, "search_info") <- NULL
+    attr(x, "total_results") <- NULL
 
     if("arxiv_count" %in% class(x))
         x <- unclass(x)

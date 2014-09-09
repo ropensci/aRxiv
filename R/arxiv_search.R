@@ -62,14 +62,16 @@
 #'
 #' The result includes an attribute \code{"search_info"} that includes
 #' information about the details of the search parameters, including
-#' the time at which it was completed.
+#' the time at which it was completed. Another attribute
+#' \code{"total_results"} is the total number of records that match
+#' the query.
 #'
 #' @examples
 #' \dontshow{old_delay <- getOption("aRxiv_delay")
 #'           options(aRxiv_delay=1)}
 #' # search for author Peter Hall with deconvolution in title
-#' z <- arxiv_search(query = 'au:"Peter Hall" AND ti:deconvolution', limit=4)
-#' attr(z, "totalResults")
+#' z <- arxiv_search(query = 'au:"Peter Hall" AND ti:deconvolution', limit=2)
+#' attr(z, "total_results") # total no. records matching query
 #' z$title
 #'
 #' # search for a set of documents by arxiv identifiers
@@ -129,6 +131,9 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
                                           output_format="list")
             message("retrieved batch ", i)
 
+            # grab total_results attribute (total no. records matching query)
+            total_results <- attr(these_results, "total_results")
+
             # if no more results? then return
             if(count_entries(these_results) == 0) break
 
@@ -141,6 +146,8 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
         attr(results, "search_info") <-
             search_attributes(query, id_list, start, limit,
                               sort_by, sort_order)
+
+        attr(results, "total_results") <- total_results
 
         return(results)
     }
@@ -164,6 +171,9 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     # check for general http error
     stop_for_status(search_result)
 
+    # total no. records matching query
+    total_results <- listresult$totalResults
+
     # pull out just the entries
     results <- get_entries(listresult)
 
@@ -174,6 +184,8 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     attr(results, "search_info") <-
         search_attributes(query, id_list, start, limit,
                           sort_by, sort_order)
+
+    attr(results, "total_results") <- total_results
 
     results
 }
