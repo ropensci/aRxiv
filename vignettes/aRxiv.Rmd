@@ -61,7 +61,7 @@ Here's a simple example, search for manuscripts with the phrase
 ```{r first_search}
 library(aRxiv)
 arxiv_count('au:"Peter Hall"')
-z <- arxiv_search('au:"Peter Hall"', start=0, end=49)
+z <- arxiv_search('au:"Peter Hall"', limit=50)
 nrow(z)
 ```
 
