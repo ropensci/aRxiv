@@ -3,7 +3,7 @@
 \alias{arxiv_search}
 \title{The main search function for aRxiv}
 \usage{
-arxiv_search(query = NULL, id_list = NULL, start = 0, end = 9,
+arxiv_search(query = NULL, id_list = NULL, start = 0, limit = 10,
   sort_by = c("relevance", "lastUpdatedDate", "submittedDate"),
   ascending = TRUE, batchsize = 500, force = FALSE,
   output_format = c("data.frame", "list"), sep = "|")
@@ -17,8 +17,7 @@ of such strings}
 
 \item{start}{An offset for the start of search}
 
-\item{end}{Index to end search results. \code{start=0} and
-\code{end=1} will return at most one result.}
+\item{limit}{Maximum number of records to return.}
 
 \item{sort_by}{How to sort the results}
 
@@ -77,7 +76,7 @@ Allows for progammatic searching of the arXiv pre-print repository.
 \dontshow{old_delay <- getOption("aRxiv_delay")
           options(aRxiv_delay=1)}
 # search for author Broman and category stat.AP (applied statistics)
-z <- arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, end=10)
+z <- arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, limit=10)
 z$totalResults
 sapply(z[names(z)=="entry"], function(a) a$title)
 

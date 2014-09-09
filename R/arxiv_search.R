@@ -13,8 +13,7 @@
 #' @param id_list arXiv doc IDs, as comma-delimited string or a vector
 #' of such strings
 #' @param start An offset for the start of search
-#' @param end Index to end search results. \code{start=0} and
-#' \code{end=1} will return at most one result.
+#' @param limit Maximum number of records to return.
 #' @param sort_by How to sort the results
 #' @param ascending If TRUE, sort in increasing order; else decreasing
 #' @param batchsize Maximum number of records to request at one time
@@ -66,7 +65,7 @@
 #' \dontshow{old_delay <- getOption("aRxiv_delay")
 #'           options(aRxiv_delay=1)}
 #' # search for author Broman and category stat.AP (applied statistics)
-#' z <- arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, end=10)
+#' z <- arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, limit=10)
 #' z$totalResults
 #' sapply(z[names(z)=="entry"], function(a) a$title)
 #'
@@ -79,7 +78,7 @@
 #' z <- arxiv_search("lastUpdatedDate:[199701010000 TO 199701012359]")
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_search <-
-function(query=NULL, id_list=NULL, start=0, end=9,
+function(query=NULL, id_list=NULL, start=0, limit=10,
          sort_by=c("relevance", "lastUpdatedDate", "submittedDate"),
          ascending=TRUE, batchsize=500, force=FALSE,
          output_format=c("data.frame", "list"), sep="|")
@@ -94,15 +93,15 @@ function(query=NULL, id_list=NULL, start=0, end=9,
     output_format <- match.arg(output_format)
 
     if(is.null(start)) start <- 0
-    if(is.null(end)) end <- arxiv_count(query, list)-1
+    if(is.null(limit)) limit <- arxiv_count(query, list)
 
     stopifnot(start >= 0)
-    stopifnot(end >= start)
+    stopifnot(limit >= 0)
     stopifnot(batchsize >= 1)
 
     # if force=FALSE, check that we aren't asking for too much
     if(!force) {
-        too_many_res <- is_too_many(query, id_list, start, end)
+        too_many_res <- is_too_many(query, id_list, start, limit)
         if(too_many_res)
             stop("Expecting ", too_many_res, " results; refine your search")
         if(too_many_res > batchsize && batchsize > 1000)
@@ -110,29 +109,23 @@ function(query=NULL, id_list=NULL, start=0, end=9,
                  "Refine your search or reduce batchsize.")
     }
 
-    if(end-start+1 > batchsize) { # use batches
-        nbatch <- ceiling((end-start+1)/batchsize)
+    if(limit > batchsize) { # use batches
+        nbatch <- (limit %/% batchsize) + ifelse(limit %% batchsize, 1, 0) # integer arithmetic, to be safe
         results <- NULL
 
-        starts <- seq(start, end, by=batchsize)
+        starts <- seq(start, start+limit-1, by=batchsize)
 
         for(i in seq(along=starts)) {
 
-            # where to end this batch?
-            thisend <- starts[i]+batchsize-1
-            if(thisend > end) thisend <- end
-
-
             these_results <- arxiv_search(query=query, id_list=id_list,
-                                          start=starts[i], end=thisend,
+                                          start=starts[i], limit=batchsize,
                                           sort_by=sort_by, ascending=ascending,
                                           batchsize=batchsize, force=force,
                                           output_format="list")
             message("retrieved batch ", i)
 
             # if no more results? then return
-            if(count_entries(these_results) == 0)
-                return(results)
+            if(count_entries(these_results) == 0) break
 
             results <- c(results, these_results)
         }
@@ -141,7 +134,7 @@ function(query=NULL, id_list=NULL, start=0, end=9,
             results <- listresult2df(results, sep=sep)
 
         attr(results, "search_info") <-
-            search_attributes(query, id_list, start, end,
+            search_attributes(query, id_list, start, limit,
                               sort_by, sort_order)
 
         return(results)
@@ -151,7 +144,7 @@ function(query=NULL, id_list=NULL, start=0, end=9,
     delay_if_necessary()
     search_result <- POST(query_url,
                           body=list(search_query=query, id_list=id_list,
-                                    start=start, max_results=end-start+1,
+                                    start=start, max_results=limit,
                                     sort_by=sort_by, sort_order=sort_order))
 
     # convert XML results to a list
@@ -174,7 +167,7 @@ function(query=NULL, id_list=NULL, start=0, end=9,
         results <- listresult2df(results, sep=sep)
 
     attr(results, "search_info") <-
-        search_attributes(query, id_list, start, end,
+        search_attributes(query, id_list, start, limit,
                           sort_by, sort_order)
 
     results
@@ -183,11 +176,11 @@ function(query=NULL, id_list=NULL, start=0, end=9,
 
 # an attribute to add to the result
 search_attributes <-
-function(query, id_list, start, end, sort_by,
+function(query, id_list, start, limit, sort_by,
          sort_order)
 {
     c(query=ifelse(is.null(query), "", query),
       id_list=ifelse(is.null(id_list), "", id_list),
-      start=start, end=end, sort_by=sort_by,
+      start=start, limit=limit, sort_by=sort_by,
       sort_order=sort_order, time=paste(Sys.time(), Sys.timezone()))
 }
