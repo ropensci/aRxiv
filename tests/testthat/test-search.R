@@ -26,6 +26,11 @@ test_that("empty results don't give an error", {
 
 test_that("weird results for IDs not found", {
 
+    # shorter delay to speed tests
+    old_delay <- getOption("aRxiv_delay")
+    on.exit(options(aRxiv_delay=old_delay))
+    options(aRxiv_delay=0.5)
+
     # if id_list is syntactically correct but no manuscript, get weird results
     empty <- empty_result()
     blank <- rbind(empty,
