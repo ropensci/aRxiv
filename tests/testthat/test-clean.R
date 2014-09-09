@@ -93,8 +93,8 @@ test_that("clean_record works right", {
 
     clean_record <- clean_record(z[[1]])
     expected_result <- c(id="astro-ph/9603156v3",
+                         submitted="1996-03-28T21:03:40Z",
                          updated="1997-01-01T17:41:43Z",
-                         published="1996-03-28T21:03:40Z",
                          title="Baryons, Dark Matter, and the Jeans Mass in Simulations of Cosmological\n  Structure Formation",
                          summary=paste0("  We investigate the properties of hybrid gravitational/hydrodynamical\nsimulations, ",
                                         "examining both the numerics and the general physical properties of\ngravitationally ",
@@ -134,8 +134,8 @@ test_that("clean_record works right", {
 
     clean_record <- clean_record(z[[6]])
     expected_result <- c(id="cond-mat/9705215v1",
+                         submitted="1997-01-01T07:42:16Z",
                          updated="1997-01-01T07:42:16Z",
-                         published="1997-01-01T07:42:16Z",
                          title="Beyond the Sherrington-Kirkpatrick Model",
                          summary="  The state of art in spin glass field theory is reviewed.\n",
                          authors="C. De Dominicis|I. Kondor|T. Temesvari",
@@ -180,15 +180,15 @@ test_that("listresult2df works right", {
                  "1997-01-01T01:21:36Z", "1997-01-01T13:55:07Z")
     expect_equal(zdf$updated, updated)
 
-    # date published
-    published <- c("1996-03-28T21:03:40Z", "1996-12-23T20:16:17Z", "1996-12-23T21:14:51Z",
+    # date submitted
+    submitted <- c("1996-03-28T21:03:40Z", "1996-12-23T20:16:17Z", "1996-12-23T21:14:51Z",
                    "1997-01-01T11:21:47Z", "1997-01-01T07:03:28Z", "1997-01-01T07:42:16Z",
                    "1997-01-01T00:00:00Z", "1997-01-01T00:00:00Z", "1997-01-01T03:07:48Z",
                    "1997-01-01T10:51:29Z", "1995-11-16T02:57:13Z", "1996-12-05T23:36:46Z",
                    "1997-01-01T01:11:55Z", "1997-02-26T13:16:12Z", "1997-03-06T12:43:52Z",
                    "1997-01-01T09:57:00Z", "1997-01-01T07:40:56Z", "1996-10-02T21:25:17Z",
                    "1997-01-01T01:21:36Z", "1997-01-01T13:55:07Z")
-    expect_equal(zdf$published, published)
+    expect_equal(zdf$submitted, submitted)
 
     # title
     title <- c("Baryons, Dark Matter, and the Jeans Mass in Simulations of Cosmological\n  Structure Formation",

@@ -36,8 +36,8 @@
 #' The data frame format has the following columns.
 #' \tabular{rll}{
 #'  [,1] \tab id               \tab arXiv ID \cr
-#'  [,2] \tab updated          \tab last date updated \cr
-#'  [,3] \tab published        \tab date first published \cr
+#'  [,3] \tab submitted        \tab date first submitted \cr
+#'  [,2] \tab updated          \tab date last updated \cr
 #'  [,4] \tab title            \tab manuscript title \cr
 #'  [,5] \tab summary          \tab abstract \cr
 #'  [,6] \tab authors          \tab author names \cr
@@ -47,7 +47,8 @@
 #' [,10] \tab link_doi         \tab hyperlink to DOI \cr
 #' [,11] \tab comment          \tab authors' comment \cr
 #' [,12] \tab journal_ref      \tab journal reference \cr
-#' [,13] \tab primary_category \tab primary category \cr
+#' [,13] \tab doi              \tab published DOI \cr
+#' [,14] \tab primary_category \tab primary category \cr
 #' [,14] \tab categories       \tab all categories \cr
 #' }
 #'

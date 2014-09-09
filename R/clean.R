@@ -12,8 +12,8 @@ function(record, sep="|")
     categories <- clean_categories(record, sep=sep)
 
     c(id=id,
+      submitted=get_key(record, "published"),
       updated=get_key(record, "updated"),
-      published=get_key(record, "published"),
       title=get_key(record, "title"),
       summary=get_key(record, "summary"),
       authors=authors$names,
@@ -32,8 +32,8 @@ empty_result <-
 function()
 {
    data.frame(id=character(0),
+              submitted=character(0),
               updated=character(0),
-              published=character(0),
               title=character(0),
               summary=character(0),
               authors=character(0),
