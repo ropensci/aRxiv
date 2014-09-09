@@ -23,6 +23,7 @@ function(record, sep="|")
       link_doi=links$link_doi,
       comment=get_key(record, "comment"),
       journal_ref=get_key(record, "journal_ref"),
+      doi=get_key(record, "doi"),
       primary_category=get_key(record$primary_category, "term"),
       categories=categories)
 }
