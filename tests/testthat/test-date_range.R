@@ -8,14 +8,15 @@ test_that("search date ranges is quirky", {
     on.exit(options(aRxiv_delay=old_delay))
     options(aRxiv_delay=0.5)
 
+
+    # single date doesn't work
     expect_equal( omit_attr( arxiv_count("submittedDate:2013*") ), 0)
-    expect_equal( omit_attr( arxiv_count("submittedDate:[20130101* TO 20131231*]") ),       92677)
-    expect_equal( omit_attr( arxiv_count("submittedDate:[201301010000 TO 201312312359]") ), 92860)
-    expect_equal( omit_attr( arxiv_count("submittedDate:[201301010000 TO 201312312400]") ), 92861)
-    expect_equal( omit_attr( arxiv_count("submittedDate:[201301010000 TO 201312319999]") ), 92861)
-    expect_equal( omit_attr( arxiv_count("submittedDate:[20130101* TO 20131231*]") ),       92677)
-    expect_equal( omit_attr( arxiv_count("submittedDate:[201301010000 TO 20131231*]") ),    92677)
-    expect_equal( omit_attr( arxiv_count("submittedDate:[20130101* TO 201312319999]") ),    92861)
-    expect_equal( omit_attr( arxiv_count("submittedDate:[20130101 TO 201312319999]") ),     92861)
+
+    # * is the same as truncating; completed to earliest time with that stem
+    expect_equal( omit_attr( arxiv_count("submittedDate:[20130101* TO 20131231*]") ), 92677)
+    expect_equal( omit_attr( arxiv_count("submittedDate:[20130101 TO 20131231]") ),   92677)
+
+    # to search a single year, use that year to the next one
+    expect_equal( omit_attr( arxiv_count("submittedDate:[2013 TO 2014]") ),           92861)
 
 })
