@@ -25,7 +25,7 @@ currently available on [CRAN](http://cran.r-project.org). To install the
 package from [GitHub](http://github.com), use
 `devtools::install_github()`, as follows:
 
-```coffee
+```{r, eval=FALSE}
 install.packages("devtools")
 library(devtools)
 install_github("ropensci/aRxiv")

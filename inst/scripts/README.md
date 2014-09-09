@@ -11,7 +11,7 @@ The script creates datasets for the package that contain the body of the tables.
 
 To access the resulting datasets, do the following:
 
-```coffee
+```r
 library(aRxiv)
 data(query_prefixes)
 data(arxiv_cats)

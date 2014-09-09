@@ -17,7 +17,7 @@ The package is not currently available on
 [CRAN](http://cran.r-project.org). To install, use
 `devtools::install_github()`, as follows:
 
-```coffee
+```r
 install.packages("devtools")
 library(devtools)
 install_github("ropensci/aRxiv")
@@ -28,7 +28,7 @@ install_github("ropensci/aRxiv")
 
 The main function is `arxiv_search()`. Here's an example of its use:
 
-```coffee
+```r
 library(aRxiv)
 z <- arxiv_search(query = 'au:"Peter Hall" AND cat:stat*', limit=50)
 str(z)
