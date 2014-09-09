@@ -16,9 +16,9 @@ Open, in web browser, the abstract pages for each of set of arXiv search results
 }
 \details{
 The R option \code{"arxiv_max2open"} defines the maximum
-number of pages to open; if missing, the default is 5.
+number of pages to open; if missing, the default is 20.
 
-There is also a short delay between calls to
+There is also a delay between calls to
 \code{\link[utils]{browseURL}}, with the amount taken from the R
 option \code{"arxiv_delay"} (in seconds); if missing, the default
 is 3 sec.

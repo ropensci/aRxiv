@@ -7,9 +7,9 @@
 #' @param search_results Data frame of search results, as returned from \code{\link{arxiv_search}}
 #'
 #' @details The R option \code{"arxiv_max2open"} defines the maximum
-#' number of pages to open; if missing, the default is 5.
+#' number of pages to open; if missing, the default is 20.
 #'
-#' There is also a short delay between calls to
+#' There is also a delay between calls to
 #' \code{\link[utils]{browseURL}}, with the amount taken from the R
 #' option \code{"arxiv_delay"} (in seconds); if missing, the default
 #' is 3 sec.
@@ -30,7 +30,7 @@ function(search_results)
         return(invisible(NULL))
 
     max2open <- getOption("arxiv_max2open")
-    max2open <- ifelse(is.null(max2open), 5, max2open)
+    max2open <- ifelse(is.null(max2open), 20, max2open)
 
     links <- search_results$link_abstract
     links <- links[links != ""]
