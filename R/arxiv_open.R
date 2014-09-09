@@ -8,7 +8,11 @@
 #'
 #' @details The R option \code{"arxiv_max2open"} defines the maximum
 #' number of pages to open; if missing, the default is 5.
-#' \bold{Don't try to open too many at once!}
+#'
+#' There is also a short delay between calls to
+#' \code{\link[utils]{browseURL}}, with the amount taken from the R
+#' option \code{"arxiv_delay"} (in seconds); if missing, the default
+#' is 3 sec.
 #'
 #' @return (Invisibly) Vector strings with URLs of abstracts opened.
 #'
@@ -36,9 +40,9 @@ function(search_results)
     }
 
     for(link in links) {
-        cat(link, "\n")
+        delay_if_necessary()
         browseURL(link)
     }
 
-    return(invisible(links))
+    invisible(links)
 }
