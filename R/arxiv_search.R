@@ -14,8 +14,10 @@
 #' of such strings
 #' @param start An offset for the start of search
 #' @param limit Maximum number of records to return.
-#' @param sort_by How to sort the results
-#' @param ascending If TRUE, sort in increasing order; else decreasing
+#' @param sort_by How to sort the results (only if \code{id_list} is
+#' not provided)
+#' @param ascending If TRUE, sort in ascending order; else descending
+#' (only if \code{id_list} is not provided)
 #' @param batchsize Maximum number of records to request at one time
 #' @param force If TRUE, force search request even if it seems extreme
 #' @param output_format Indicates whether output should be a data frame or a list.
@@ -82,7 +84,7 @@
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_search <-
 function(query=NULL, id_list=NULL, start=0, limit=10,
-         sort_by=c("relevance", "lastUpdatedDate", "submittedDate"),
+         sort_by=c("submittedDate", "lastUpdatedDate", "relevance"),
          ascending=TRUE, batchsize=500, force=FALSE,
          output_format=c("data.frame", "list"), sep="|")
 {

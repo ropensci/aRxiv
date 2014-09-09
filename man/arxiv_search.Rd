@@ -4,7 +4,7 @@
 \title{The main search function for aRxiv}
 \usage{
 arxiv_search(query = NULL, id_list = NULL, start = 0, limit = 10,
-  sort_by = c("relevance", "lastUpdatedDate", "submittedDate"),
+  sort_by = c("submittedDate", "lastUpdatedDate", "relevance"),
   ascending = TRUE, batchsize = 500, force = FALSE,
   output_format = c("data.frame", "list"), sep = "|")
 }
@@ -19,9 +19,11 @@ of such strings}
 
 \item{limit}{Maximum number of records to return.}
 
-\item{sort_by}{How to sort the results}
+\item{sort_by}{How to sort the results (only if \code{id_list} is
+not provided)}
 
-\item{ascending}{If TRUE, sort in increasing order; else decreasing}
+\item{ascending}{If TRUE, sort in ascending order; else descending
+(only if \code{id_list} is not provided)}
 
 \item{batchsize}{Maximum number of records to request at one time}
 
@@ -44,8 +46,8 @@ the XML output of the search, closer to the raw output from arXiv.
 The data frame format has the following columns.
 \tabular{rll}{
  [,1] \tab id               \tab arXiv ID \cr
- [,2] \tab updated          \tab last date updated \cr
- [,3] \tab published        \tab date first published \cr
+ [,3] \tab submitted        \tab date first submitted \cr
+ [,2] \tab updated          \tab date last updated \cr
  [,4] \tab title            \tab manuscript title \cr
  [,5] \tab summary          \tab abstract \cr
  [,6] \tab authors          \tab author names \cr
@@ -55,7 +57,8 @@ The data frame format has the following columns.
 [,10] \tab link_doi         \tab hyperlink to DOI \cr
 [,11] \tab comment          \tab authors' comment \cr
 [,12] \tab journal_ref      \tab journal reference \cr
-[,13] \tab primary_category \tab primary category \cr
+[,13] \tab doi              \tab published DOI \cr
+[,14] \tab primary_category \tab primary category \cr
 [,14] \tab categories       \tab all categories \cr
 }
 
