@@ -145,7 +145,7 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     search_result <- POST(query_url,
                           body=list(search_query=query, id_list=id_list,
                                     start=start, max_results=limit,
-                                    sort_by=sort_by, sort_order=sort_order))
+                                    sortBy=sort_by, sortOrder=sort_order))
 
     # convert XML results to a list
     listresult <- result2list(search_result)
