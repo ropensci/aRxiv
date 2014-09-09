@@ -41,6 +41,14 @@ test_that("weird results for IDs not found", {
     z <- omit_attr(arxiv_search(id_list="0041.0148"))
     expect_equal(z, blank)
 
-    z <- omit_attr(arxiv_search(id_list="0041.0148v1"))
+    # if you add a version number, the result includes the id and the
+    #     links to the abstract and PDF
+    id <- "0041.0148v1"
+    z <- omit_attr(arxiv_search(id_list=id))
+    expected <- blank
+    expected$id <- id
+    expected$link_abstract <- paste0("http://arxiv.org/abs/", id)
+    expected$link_pdf <- paste0("http://arxiv.org/pdf/", id)
+    expect_equal(z, expected)
 
 })
