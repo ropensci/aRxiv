@@ -26,10 +26,13 @@ before attempting to pull down a very large number of records.
           options(aRxiv_delay=1)}
 # count papers in category stat.AP (applied statistics)
 arxiv_count(query = "cat:stat.AP")
-arxiv_count(query = 'au:"Peter Hall"')
+
+# count papers by Peter Hall in any stat category
+arxiv_count(query = 'au:"Peter Hall" AND cat:stat*')
 
 # count papers for a range of dates
-arxiv_count("lastUpdatedDate:[199701010000 TO 199712312359]")
+#    here, everything in 2013
+arxiv_count("submittedDate:[2013 TO 2014]")
 \dontshow{options(aRxiv_delay=old_delay)}
 }
 

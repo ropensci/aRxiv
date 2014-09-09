@@ -24,7 +24,7 @@ option \code{"arxiv_delay"} (in seconds); if missing, the default
 is 3 sec.
 }
 \examples{
-z <- arxiv_search("au:Broman AND cat:stat.AP")
+z <- arxiv_search('au:"Peter Hall" AND ti:deconvolution')
 \donttest{arxiv_open(z)}
 }
 

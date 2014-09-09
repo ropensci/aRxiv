@@ -64,18 +64,20 @@
 #' @examples
 #' \dontshow{old_delay <- getOption("aRxiv_delay")
 #'           options(aRxiv_delay=1)}
-#' # search for author Broman and category stat.AP (applied statistics)
-#' z <- arxiv_search(query = "au:Broman AND cat:stat.AP", start=0, limit=10)
-#' z$totalResults
-#' sapply(z[names(z)=="entry"], function(a) a$title)
+#' # search for author Peter Hall with deconvolution in title
+#' z <- arxiv_search(query = 'au:"Peter Hall" AND ti:deconvolution', limit=4)
+#' attr(z, "totalResults")
+#' z$title
 #'
 #' # search for a set of documents by arxiv identifiers
-#' z <- arxiv_search(id_list = "1403.3048,1402.2633,1309.1192")
-#' # DOI if available
-#' sapply(z[names(z)=="entry"], function(a) a$doi)
+#' z <- arxiv_search(id_list = c("0710.3491v1", "0804.0713v1", "1003.0315v1"))
+#' # can also use a comma-separated string
+#' z <- arxiv_search(id_list = "0710.3491v1,0804.0713v1,1003.0315v1")
+#' # Journal references, if available
+#' z$journal_ref
 #'
 #' # search for a range of dates (in this case, one day)
-#' z <- arxiv_search("lastUpdatedDate:[199701010000 TO 199701012359]")
+#' z <- arxiv_search("submittedDate:[199701010000 TO 199701012400]", limit=2)
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_search <-
 function(query=NULL, id_list=NULL, start=0, limit=10,

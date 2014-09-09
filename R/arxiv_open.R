@@ -20,7 +20,7 @@
 #' @export
 #'
 #' @examples
-#' z <- arxiv_search("au:Broman AND cat:stat.AP")
+#' z <- arxiv_search('au:"Peter Hall" AND ti:deconvolution')
 #' \donttest{arxiv_open(z)}
 
 arxiv_open <-
