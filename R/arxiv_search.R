@@ -172,7 +172,7 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     stop_for_status(search_result)
 
     # total no. records matching query
-    total_results <- listresult$totalResults
+    total_results <- as.integer(listresult$totalResults)
 
     # pull out just the entries
     results <- get_entries(listresult)
