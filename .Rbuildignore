@@ -1,3 +1,4 @@
 inst/doc/src
 ^Makefile$
 inst/scripts/.RData
+^\.travis\.yml$
