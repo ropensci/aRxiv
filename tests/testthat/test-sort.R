@@ -8,15 +8,16 @@ test_that("sort by publishedDate", {
     on.exit(options(aRxiv_delay=old_delay))
     options(aRxiv_delay=0.5)
 
-    query <- "ti:deconvolution AND submittedDate:[199001010000 TO 201409062400]"
+    query <- "ti:deconvolution"
 
     z <- arxiv_search(query=query, sort_by="submittedDate", limit=2)
     expected <- c("1994-09-29T22:34:46Z", "1997-04-07T14:24:24Z")
     expect_equal(z$submitted, expected)
 
+    total <- attr(z, "total_results")
     zr <- arxiv_search(query=query, sort_by="submittedDate",
-                       ascending=FALSE, limit=2)
-    expected <- c("2014-08-16T00:18:50Z", "2014-08-13T09:27:05Z")
+                       ascending=FALSE, limit=2, start=total-12)
+    expected <- c("2002-08-12T23:38:39Z", "2001-12-04T13:20:28Z")
     expect_equal(zr$submitted, expected)
 
 })
@@ -29,16 +30,17 @@ test_that("sort by lastUpdatedDate", {
     on.exit(options(aRxiv_delay=old_delay))
     options(aRxiv_delay=0.5)
 
-    query <- "ti:deconvolution AND submittedDate:[199001010000 TO 201409062400]"
+    query <- 'ti:"EM algorithm"'
 
     z <- arxiv_search(query=query, sort_by="lastUpdatedDate",
                       start=12, limit=2)
-    expected <- c("2002-09-01T21:56:01Z", "2003-01-31T20:34:03Z")
+    expected <- c("2011-07-13T01:34:59Z", "2011-10-02T19:07:38Z")
     expect_equal(z$updated, expected)
 
+    total <- attr(z, "total_results")
     zr <- arxiv_search(query=query, sort_by="lastUpdatedDate",
-                       ascending=FALSE, start=4, limit=2)
-    expected <- c("2014-07-16T21:37:43Z", "2014-07-13T17:35:22Z")
+                       ascending=FALSE, start=total-11, limit=2)
+    expected <- c("2011-04-11T12:07:03Z", "2011-03-18T12:56:04Z")
     expect_equal(zr$updated, expected)
 
 })
