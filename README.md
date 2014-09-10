@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ropensci/aRxiv.png?branch=master)](https://travis-ci.org/ropensci/aRxiv)
+
 ## R interface to arXiv
 
 [arXiv](http://arxiv.org) is an archive of manuscripts for computer
