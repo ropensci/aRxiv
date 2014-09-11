@@ -1,4 +1,5 @@
-all: doc notes data
+all: doc notes data vignettes
+.PHONY: notes doc data vignettes
 
 notes: inst/doc/arxiv_api.html inst/ToDo.html
 
@@ -10,6 +11,11 @@ inst/ToDo.html: inst/ToDo.md
 
 doc:
 	R -e 'library(devtools);document()'
+
+vignettes: inst/doc/aRxiv.html
+
+inst/doc/aRxiv.html: vignettes/aRxiv.Rmd
+	cd $(@D);R -e 'library(knitr);knit2html("../../$<")'
 
 data: data/arxiv_cats.RData
 
