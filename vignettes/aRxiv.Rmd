@@ -25,7 +25,7 @@ currently available on [CRAN](http://cran.r-project.org). To install the
 package from [GitHub](http://github.com), use
 `devtools::install_github()`, as follows:
 
-```{r, eval=FALSE}
+```{r install_pkgs, eval=FALSE}
 install.packages("devtools")
 library(devtools)
 install_github("ropensci/aRxiv")
@@ -33,9 +33,57 @@ install_github("ropensci/aRxiv")
 
 ## Basic use
 
-The aRxiv package currently includes two functions: `arxiv_search` for
-general search, and `arxiv_count` for a simple count of the number
-of manuscripts matching a given search query.
+Use `arxiv_search()` to search [aRxiv](http://arxiv.org),
+`arxiv_count()` to get a simple count of manuscripts matching a
+query, and `arxiv_open()` to open the abstract pages for a set of
+results from `arxiv_search()`.
+
+We'll get to the details in a moment. For now, let's look at a few
+examples.
+
+Suppose we wanted to identify all aRxiv manuscripts with `"Peter
+Hall"` as an author. It is best to first get a count, so that we have
+a sense of how many records a search will return. (Peter Hall is
+&ldquo;[among the world's most prolific and highly cited authors in both probability and statistics](http://en.wikipedia.org/wiki/Peter_Gavin_Hall).&rdquo;)
+We first use `library()` to load the aRxiv package and then
+`arxiv_count()` to get the count.
+
+```{r arxiv_count}
+library(aRxiv)
+arxiv_count('au:"Peter Hall"')
+```
+
+`au:` indicates to search the author fields; we use double quotes to
+search for a _phrase_.
+
+To obtain the actual records matching the query, use `arxiv_search()`.
+
+```{r arxiv_search}
+rec <- arxiv_search('au:"Peter Hall"')
+nrow(rec)
+```
+
+\[Discuss the contents\]
+
+We might be interested in a more restrictive search, such as for Peter
+Hall's arXiv manuscripts that have `"deconvolution"` in the title. We
+use `ti:` to search the title field, and combine the two with `AND`.
+
+```{r arxiv_search}
+decon <- arxiv_search('au:"Peter Hall" AND ti:deconvolution')
+nrow(decon)
+```
+
+We can open the abstract pages for these `r nrow(decon)` manuscripts
+using `arxiv_open()`. It takes, as input, the output of
+`arxiv_search()`.
+
+```{r arxiv_open, eval=FALSE}
+arxiv_open(decon)
+```
+
+
+---
 
 The two basic arguments are `query`, a
 character string representing the search, and `id_list`, a list of
@@ -55,15 +103,6 @@ strings. If it is a vector, the elements are pasted together with
 `id_list` may be a vector of strings or a single
 comma-separated character string.
 
-Here's a simple example, search for manuscripts with the phrase
-`"Peter Hall"` in one of the author fields.
-
-```{r first_search}
-library(aRxiv)
-arxiv_count('au:"Peter Hall"')
-z <- arxiv_search('au:"Peter Hall"', limit=50)
-nrow(z)
-```
 
 
 ## Counting papers
