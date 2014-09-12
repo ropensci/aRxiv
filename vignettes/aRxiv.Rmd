@@ -63,23 +63,31 @@ rec <- arxiv_search('au:"Peter Hall"')
 nrow(rec)
 ```
 
-\[Discuss the contents\]
+The default is to grab no more than 10 records; this limit can be
+changed with the `limit` argument.
+
+```{r arxiv_search_limit50}
+rec <- arxiv_search('au:"Peter Hall"', limit=50)
+nrow(rec)
+```
+
+(**Discuss the contents.**)
 
 We might be interested in a more restrictive search, such as for Peter
 Hall's arXiv manuscripts that have `"deconvolution"` in the title. We
 use `ti:` to search the title field, and combine the two with `AND`.
 
-```{r arxiv_search}
-decon <- arxiv_search('au:"Peter Hall" AND ti:deconvolution')
-nrow(decon)
+```{r arxiv_search_deconvolution}
+deconv <- arxiv_search('au:"Peter Hall" AND ti:deconvolution')
+nrow(deconv)
 ```
 
-We can open the abstract pages for these `r nrow(decon)` manuscripts
+We can open the abstract pages for these `r nrow(deconv)` manuscripts
 using `arxiv_open()`. It takes, as input, the output of
 `arxiv_search()`.
 
 ```{r arxiv_open, eval=FALSE}
-arxiv_open(decon)
+arxiv_open(deconv)
 ```
 
 
