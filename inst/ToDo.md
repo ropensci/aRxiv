@@ -1,5 +1,7 @@
 ## To Do list for [aRxiv](https://github.com/ropensci/aRxiv) package
     
+- submitted and updated: replace the `"T"` with a space and remove the
+  `"Z"`.  For example, `"2007-10-18T12:25:34Z"` to `"2007-10-18 12:25:34"`
 - Weird results with arXiv IDs syntactically correct but not found
 - Make it easier for users to refer to the arXiv subject
   classifications
