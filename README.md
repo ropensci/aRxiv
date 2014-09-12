@@ -2,11 +2,11 @@
 
 ## R interface to arXiv
 
-[arXiv](http://arxiv.org) is an archive of manuscripts for computer
-science, mathematics, physics, quantiative biology, quantitative
-finance, and statistics. The [aRxiv](http://github.com/ropensci/aRxiv)
-package is an R interface to the
-[arXiv API](http://arxiv.org/help/api/index).
+[arXiv](http://arxiv.org) is a repository of electronic preprints for
+computer science, mathematics, physics, quantiative biology,
+quantitative finance, and statistics. The
+[aRxiv](http://github.com/ropensci/aRxiv) package is an R interface to
+the [arXiv API](http://arxiv.org/help/api/index).
 
 Note that the arXiv API _does not_ require an API key.
 

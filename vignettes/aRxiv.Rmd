@@ -5,9 +5,9 @@
 
 # aRxiv tutorial
 
-[arXiv](http://arxiv.org) is an archive of manuscripts for computer
-science, mathematics, physics, quantiative biology, quantitative
-finance, and statistics. The
+[arXiv](http://arxiv.org) is a repository of electronic prints for
+computer science, mathematics, physics, quantiative biology,
+quantitative finance, and statistics. The
 [aRxiv package](https://github.com/ropensci/aRxiv) provides an
 [R](http://www.r-project.org) interface to the
 [arXiv API](http://arxiv.org/help/api/index).
