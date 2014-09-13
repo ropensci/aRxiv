@@ -12,10 +12,10 @@ function(record, sep="|")
     categories <- clean_categories(record, sep=sep)
 
     c(id=id,
-      submitted=get_key(record, "published"),
-      updated=get_key(record, "updated"),
+      submitted=clean_datetime(get_key(record, "published")),
+      updated=clean_datetime(get_key(record, "updated")),
       title=get_key(record, "title"),
-      summary=get_key(record, "summary"),
+      abstract=get_key(record, "summary"),
       authors=authors$names,
       affiliations=authors$affiliations,
       link_abstract=links$link_abstract,
@@ -35,7 +35,7 @@ function()
               submitted=character(0),
               updated=character(0),
               title=character(0),
-              summary=character(0),
+              abstract=character(0),
               authors=character(0),
               affiliations=character(0),
               link_abstract=character(0),
@@ -75,6 +75,15 @@ function(record)
     if(is.null(record$id)) return("")
     sub("^http://arxiv.org/abs/", "", record$id)
 }
+
+# date/time comes back as
+clean_datetime <-
+function(string)
+{
+    # "Z" -> ""; "T" -> " "
+    gsub("Z", "", gsub("T", " ", string))
+}
+
 
 # take author info and return a string with names and another with
 # institutions

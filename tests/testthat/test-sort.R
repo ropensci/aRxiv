@@ -11,13 +11,13 @@ test_that("sort by publishedDate", {
     query <- "ti:deconvolution"
 
     z <- arxiv_search(query=query, sort_by="submittedDate", limit=2)
-    expected <- c("1994-09-29T22:34:46Z", "1997-04-07T14:24:24Z")
+    expected <- c("1994-09-29 22:34:46", "1997-04-07 14:24:24")
     expect_equal(z$submitted, expected)
 
     total <- attr(z, "total_results")
     zr <- arxiv_search(query=query, sort_by="submittedDate",
                        ascending=FALSE, limit=2, start=total-12)
-    expected <- c("2002-08-12T23:38:39Z", "2001-12-04T13:20:28Z")
+    expected <- c("2002-08-12 23:38:39", "2001-12-04 13:20:28")
     expect_equal(zr$submitted, expected)
 
 })
@@ -34,13 +34,13 @@ test_that("sort by lastUpdatedDate", {
 
     z <- arxiv_search(query=query, sort_by="lastUpdatedDate",
                       start=12, limit=2)
-    expected <- c("2011-07-13T01:34:59Z", "2011-10-02T19:07:38Z")
+    expected <- c("2011-07-13 01:34:59", "2011-10-02 19:07:38")
     expect_equal(z$updated, expected)
 
     total <- attr(z, "total_results")
     zr <- arxiv_search(query=query, sort_by="lastUpdatedDate",
                        ascending=FALSE, start=total-11, limit=2)
-    expected <- c("2011-04-11T12:07:03Z", "2011-03-18T12:56:04Z")
+    expected <- c("2011-04-11 12:07:03", "2011-03-18 12:56:04")
     expect_equal(zr$updated, expected)
 
 })
