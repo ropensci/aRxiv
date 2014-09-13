@@ -78,7 +78,7 @@ nrow(rec)
 
 `arxiv_search()` returns a data frame with each row being a single
 manuscript. The columns are the different fields (e.g., `authors`, `title`,
-`summary` (i.e., the abstract), etc.). Fields like `authors` that
+`abstract`, etc.). Fields like `authors` that
 contain multiple items will be a single character string with the
 multiple items separated by a vertical bar (`|`).
 
