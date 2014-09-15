@@ -41,9 +41,9 @@ results from `arxiv_search()`.
 We'll get to the details in a moment. For now, let's look at a few
 examples.
 
-Suppose we wanted to identify all arXiv manuscripts with `"Peter
-Hall"` as an author. It is best to first get a count, so that we have
-a sense of how many records a search will return. (Peter Hall is
+Suppose we wanted to identify all arXiv manuscripts with &ldquo;`Peter
+Hall`&rdquo; as an author. It is best to first get a count, so that we have
+a sense of how many records the search will return. (Peter Hall is
 &ldquo;[among the world's most prolific and highly cited authors in both probability and statistics](http://en.wikipedia.org/wiki/Peter_Gavin_Hall).&rdquo;)
 We first use `library()` to load the aRxiv package and then
 `arxiv_count()` to get the count.
@@ -53,7 +53,7 @@ library(aRxiv)
 arxiv_count('au:"Peter Hall"')
 ```
 
-The `au:` part indicates to search the author fields; we use double
+The `au:` part indicates to search the author field; we use double
 quotes to search for a _phrase_.
 
 To obtain the actual records matching the query, use `arxiv_search()`.
@@ -106,16 +106,17 @@ arxiv_open(deconv)
 ```
 
 
----
+## Forming queries
 
-The two basic arguments are `query`, a
+The two basic arguments to `arxiv_count` and `arxiv_search` are 
+`query`, a
 character string representing the search, and `id_list`, a list of
 [arXiv manuscript identifiers](http://arxiv.org/help/arxiv_identifier). 
 
 - If only `query` is provided, manuscripts matching that query are
-  returned
+  returned.
 - If only `id_list` is provided, manuscripts in the list are
-  returned
+  returned.
 - If both are provided, manuscripts in `id_list` that match `query`
   will be returned.
 
@@ -126,13 +127,7 @@ strings. If it is a vector, the elements are pasted together with
 `id_list` may be a vector of strings or a single
 comma-separated character string.
 
-
-
-## Counting papers
-
-## Forming queries
-
-## Subject classification
+Generally, one would focus on forming the `query` argument.  
 
 
 ## Technical details
