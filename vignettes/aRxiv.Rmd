@@ -83,7 +83,7 @@ contain multiple items will be a single character string with the
 multiple items separated by a vertical bar (`|`).
 
 We might be interested in a more restrictive search, such as for Peter
-Hall's arXiv manuscripts that have `"deconvolution"` in the title. We
+Hall's arXiv manuscripts that have `deconvolution` in the title. We
 use `ti:` to search the title field, and combine the two with `AND`.
 
 ```{r arxiv_search_deconvolution}
@@ -94,7 +94,7 @@ nrow(deconv)
 Let's display just the authors and title for the results.
 
 ```{r authors_title}
-deconv[, c("title", "authors")]
+deconv[, c('title', 'authors')]
 ```
 
 We can open the abstract pages for these `r nrow(deconv)` manuscripts
@@ -127,8 +127,86 @@ strings. If it is a vector, the elements are pasted together with
 `id_list` may be a vector of strings or a single
 comma-separated character string.
 
-Generally, one would focus on forming the `query` argument.  
+### Search terms
 
+Generally, one would focus on forming the `query` argument. The aRxiv
+package includes a dataset `query_terms` that lists the terms (like
+`au:`) that you can use.
+
+```{r query_terms}
+query_terms
+```
+
+Multiple queries can be combined with `AND`, `OR`, and `ANDNOT`. The
+default is `OR`.
+
+```{r illustrate_AND}
+arxiv_count('au:Peter au:Hall')
+arxiv_count('au:Peter OR au:Hall')
+arxiv_count('au:Peter AND au:Hall')
+arxiv_count('au:Hall ANDNOT au:Peter')
+```
+
+It appears that in the author field (and many other fields) you must
+search full words, and that wild cards are ignored.
+
+```{r illustrate_wildcard}
+arxiv_count('au:P* AND au:Hall')
+arxiv_count('au:P AND au:Hall')
+arxiv_count('au:"P Hall"')
+```
+
+### Subject classifications
+
+arXiv has a set of `r nrow(arxiv_cats)` subject classifications,
+searchable with the prefix `cat:`. The aRxiv package contains a
+dataset `arxiv_cats` containing the abbreviations and descriptions.
+Here are the statistics categories.
+
+```{r arxiv_cats}
+arxiv_cats[grep('^stat', arxiv_cats$abbreviation),]
+```
+
+To search these categories, you need to include either the full term
+or use the `*` wildcard.
+
+```{r search_cats}
+arxiv_count('cat:stat')
+arxiv_count('cat:stat.AP')
+arxiv_count('cat:stat*')
+```
+
+### Dates and ranges of dates
+
+The terms `submittedDate` (date/time of first submission) and
+`lastUpdatedDate` (date/time of last revision) are particularly
+useful for limiting a search with _many_ results, so that you may
+combine multiple searches together, each within some window of time,
+to get the full results.
+
+The date/time information is of the form `YYYYMMDDHHMMSS`, for
+example `20071018122534` for `2007-10-18 12:25:34`. You can use `*`
+for a wildcard for the times. For example, to get all manuscripts
+with initial submission on 2007-10-18:
+
+```{r wildcard_times}
+arxiv_count('submittedDate:20071018*')
+```
+
+But you can't use the wildcard _within_ the dates.
+
+```{r wildcard_date}
+arxiv_count('submittedDate:2007*')
+```
+
+To get a count of all manuscripts with original submission in 2007,
+use a date range, like `[from_date TO to_date]`. (If you give a partial
+date, it's treated as the earliest date/time that matches, and the
+range appears to be up to but not including the second date/time.)
+
+```{r daterange}
+arxiv_count('submittedDate:[2007 TO 2008]')
+```
 
 ## Technical details
 
