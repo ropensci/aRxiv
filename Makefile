@@ -20,5 +20,5 @@ inst/doc/aRxiv.html: vignettes/aRxiv.Rmd
 data: data/arxiv_cats.RData
 
 data/arxiv_cats.RData: inst/scripts/grab_api_manual_tables.R
-# also data/query_prefixes.RData (built together)
+# also data/query_terms.RData (built together)
 	cd $(<D);R CMD BATCH $(<F)

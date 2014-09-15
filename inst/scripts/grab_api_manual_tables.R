@@ -15,21 +15,21 @@ function(tab)
 }
 
 ####
-# table of query prefixes
-# "Table: search_query field prefixes"
+# table of query terms
+# "Table: search_query field terms"
 ####
-query_prefixes <- tabs[[6]]
-query_prefixes <- header_as_colnames(query_prefixes)
+query_terms <- tabs[[6]]
+query_terms <- header_as_colnames(query_terms)
 # drop the ID row
-query_prefixes <- query_prefixes[query_prefixes[,1] != "id",]
+query_terms <- query_terms[query_terms[,1] != "id",]
 
 # add to that table
-query_prefixes <- rbind(query_prefixes,
+query_terms <- rbind(query_terms,
                         c("submittedDate",
                           "Date/time of initial submission, as YYYYMMDDHHMM"),
                         c("lastUpdatedDate",
                           "Date/time of last update, as YYYYMMDDHHMM"))
-rownames(query_prefixes) <- 1:nrow(query_prefixes)
+dimnames(query_terms) <- list(1:nrow(query_terms), c("term", "description"))
 
 
 ####
@@ -41,5 +41,5 @@ colnames(arxiv_cats) <- c("abbreviation", "description")
 arxiv_cats <- arxiv_cats[-1,] # drop header row
 
 ## save as data sets within package
-save(query_prefixes, file="../../data/query_prefixes.RData")
+save(query_terms, file="../../data/query_terms.RData")
 save(arxiv_cats, file="../../data/arxiv_cats.RData")
