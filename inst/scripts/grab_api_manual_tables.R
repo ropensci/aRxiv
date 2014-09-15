@@ -39,6 +39,7 @@ dimnames(query_terms) <- list(1:nrow(query_terms), c("term", "description"))
 arxiv_cats <- tabs[[11]]
 colnames(arxiv_cats) <- c("abbreviation", "description")
 arxiv_cats <- arxiv_cats[-1,] # drop header row
+rownames(arxiv_cats) <- 1:nrow(arxiv_cats)
 
 ## save as data sets within package
 save(query_terms, file="../../data/query_terms.RData")
