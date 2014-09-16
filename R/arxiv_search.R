@@ -86,7 +86,7 @@
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_search <-
 function(query=NULL, id_list=NULL, start=0, limit=10,
-         sort_by=c("submittedDate", "lastUpdatedDate", "relevance"),
+         sort_by=c("submitted", "updated", "relevance"),
          ascending=TRUE, batchsize=500, force=FALSE,
          output_format=c("data.frame", "list"), sep="|")
 {
@@ -130,7 +130,7 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     search_result <- POST(query_url,
                           body=list(search_query=query, id_list=id_list,
                                     start=start, max_results=limit,
-                                    sortBy=sort_by, sortOrder=sort_order))
+                                    sortBy=recode_sortby(sort_by), sortOrder=sort_order))
 
     # convert XML results to a list
     listresult <- result2list(search_result)
@@ -167,7 +167,7 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
 # search in batches
 arxiv_search_inbatches <-
 function(query=NULL, id_list=NULL, start=0, limit=10,
-         sort_by=c("submittedDate", "lastUpdatedDate", "relevance"),
+         sort_by=c("submitted", "updated", "relevance"),
          ascending=TRUE, batchsize=500, force=FALSE,
          output_format=c("data.frame", "list"), sep="|")
 {
@@ -211,6 +211,16 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     results
 }
 
+
+recode_sortby <-
+function(sort_by=c("submitted", "updated", "relevance"))
+{
+    sort_by <- match.arg(sort_by)
+    switch(sort_by,
+           submitted="submittedDate",
+           updated="lastUpdatedDate",
+           relevance="relevance")
+}
 
 
 # an attribute to add to the result

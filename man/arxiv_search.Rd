@@ -4,9 +4,9 @@
 \title{The main search function for aRxiv}
 \usage{
 arxiv_search(query = NULL, id_list = NULL, start = 0, limit = 10,
-  sort_by = c("submittedDate", "lastUpdatedDate", "relevance"),
-  ascending = TRUE, batchsize = 500, force = FALSE,
-  output_format = c("data.frame", "list"), sep = "|")
+  sort_by = c("submitted", "updated", "relevance"), ascending = TRUE,
+  batchsize = 500, force = FALSE, output_format = c("data.frame", "list"),
+  sep = "|")
 }
 \arguments{
 \item{query}{Search pattern as a string; a vector of such strings

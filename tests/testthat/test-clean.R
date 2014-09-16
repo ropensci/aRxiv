@@ -16,7 +16,7 @@ query_url <- "http://export.arxiv.org/api/query"
 delay_if_necessary()
 z <- POST(query_url, body=list(search_query=query,
                                start=0, max_results=20,
-                               sort_by="submittedDate"))
+                               sort_by="submitted"))
 z <- get_entries(result2list(z))
 
 test_that("clean_authors works right", {
