@@ -124,14 +124,14 @@ character string representing the search, and `id_list`, a list of
 strings. If it is a vector, the elements are pasted together with
 `AND`.
 
-`id_list` may be a vector of strings or a single
+`id_list` may be a vector of character strings or a single
 comma-separated character string.
 
 ### Search terms
 
-Generally, one would focus on forming the `query` argument. The aRxiv
-package includes a dataset `query_terms` that lists the terms (like
-`au`) that you can use.
+Generally, one would ignore `id_list` and focus on forming the `query`
+argument. The aRxiv package includes a dataset `query_terms` that
+lists the terms (like `au`) that you can use.
 
 ```{r query_terms}
 query_terms
@@ -227,7 +227,7 @@ A few short notes:
 - Each field is a single character string. `authors`, `link_doi`, and
   `categories` may contain multiple items, separated by a vertical bar
   (`|`).
-- Missing entries are simply an empty character string (`""`).
+- Missing entries will have an empty character string (`""`).
 - The `categories` column may contain not just the aRxiv categories
   (e.g., `stat.AP`) but also codes for the
   [Mathematical Subject Classification (MSC)](http://www.ams.org/mathscinet/msc/msc2010.html) (e.g., 14J60)
@@ -245,7 +245,7 @@ arxiv_count("14J60")
 ## Sorting results
 
 The `arxiv_search` function has two arguments for sorting the results,
-`sort_by` (taking values `"submitted"`, `"updated`, or
+`sort_by` (taking values `"submitted"`, `"updated"`, or
 `"relevance"`) and `ascending` (`TRUE` or `FALSE`). If `id_list` is
 provided, these sorting arguments are ignored and the results are
 presented according to the order in `id_list`.
@@ -269,14 +269,14 @@ limitations, the key issue being that it is author-supplied and so not
 necessarily consistent between records.
 
 Authors' names may vary between records (e.g., T. P. Speed vs. Terry
-Speed vs Terence P. Speed). Further, arXiv has no ability to
-distinguish multiple individuals with the same name (cf
+Speed vs. Terence P. Speed). Further, arXiv provides no ability to
+distinguish multiple individuals with the same name (c.f.,
 [ORCID](http://orcid.org)).
 
-Authors' institutional affiliations are mostly missing.
-The arXiv submission form does not include an affiliation field;
-affiliations are entered within the author field, in parentheses.
-The [instructions](http://arxiv.org/help/prep#author)) may not be
+Authors' institutional affiliations are mostly missing.  The arXiv
+submission form does not include an affiliation field; affiliations
+are entered within the author field, in parentheses.  The
+[metadata instructions](http://arxiv.org/help/prep#author) may not be
 widely read.
 
 There are no key words; you are stuck with searching the free text in
@@ -294,8 +294,7 @@ short period of time. The
 
 > In cases where the API needs to be called multiple times in a row,
 > we encourage you to play nice and incorporate a 3 second delay in
-> your code. The detailed examples below illustrate how to do this in
-> a variety of languages.
+> your code.
 
 The aRxiv package institutes a delay between requests, with the time
 period for the delay configurable with the R option
@@ -318,16 +317,14 @@ abstracts); searches returning large numbers of records can be very
 slow.
 
 It's best to use `arxiv_count` before `arxiv_search`, so that you have
-a sense of how many records you will receive. If the count is quite
-large, you may wish to refine your query.
+a sense of how many records you will receive. If the count is large,
+you may wish to refine your query.
 
-[arXiv](http://arxiv.org) has a hard limit of around 50,000 records;
-for a query that matches more than 50,000 manuscripts, there is no way
-to receive the full results.
-
-The simplest solution to this problem is to break the query into
-smaller pieces, for example using slices of time, with a range of
-dates for `submittedDate` or `lastUpdatedDate`.
+arXiv has a hard limit of around 50,000 records; for a query that
+matches more than 50,000 manuscripts, there is no way to receive the
+full results. The simplest solution to this problem is to break the
+query into smaller pieces, for example using slices of time, with a
+range of dates for `submittedDate` or `lastUpdatedDate`.
 
 The `limit` argument to `arxiv_search` (with default `limit=10`)
 limits the number of records to be returned. If you wish to receive
