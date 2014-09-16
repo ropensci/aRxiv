@@ -15,7 +15,6 @@
 #' @return (Invisibly) Vector of character strings with URLs of
 #' abstracts opened.
 #'
-#' @importFrom utils browseURL
 #' @export
 #'
 #' @examples
@@ -39,7 +38,7 @@ function(search_results, limit=20)
 
     for(link in links) {
         delay_if_necessary()
-        browseURL(link)
+        utils::browseURL(link)
     }
 
     invisible(links)

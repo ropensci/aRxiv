@@ -25,7 +25,6 @@
 #' affiliations, DOI links, and categories, in the case that
 #' \code{output_format="data.frame"}.
 #'
-#' @import httr
 #' @export
 #'
 #' @return If \code{output_format="data.frame"}, the result is a data
@@ -127,10 +126,10 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
 
     # do search
     delay_if_necessary()
-    search_result <- POST(query_url,
-                          body=list(search_query=query, id_list=id_list,
-                                    start=start, max_results=limit,
-                                    sortBy=recode_sortby(sort_by), sortOrder=sort_order))
+    search_result <- httr::POST(query_url,
+                                body=list(search_query=query, id_list=id_list,
+                                          start=start, max_results=limit,
+                                          sortBy=recode_sortby(sort_by), sortOrder=sort_order))
     set_arxiv_time() # set time for last call to arXiv
 
     # convert XML results to a list
@@ -143,7 +142,7 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     }
 
     # check for general http error
-    stop_for_status(search_result)
+    httr::stop_for_status(search_result)
 
     # total no. records matching query
     total_results <- as.integer(listresult$totalResults)

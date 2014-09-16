@@ -17,11 +17,12 @@ Depends:
 License: MIT + file LICENSE
 Imports:
     httr,
+    utils,
     XML
 Suggests:
     devtools,
+    knitr,
     roxygen2,
-    testthat,
-    knitr
+    testthat
 VignetteBuilder: knitr
 LazyData: true
