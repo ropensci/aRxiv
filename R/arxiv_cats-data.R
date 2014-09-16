@@ -1,9 +1,9 @@
-#' @name arxiv_cats
-#' @title arXiv subject classifications
+#' arXiv subject classifications
 #'
-#' @description arXiv subject classifications: their abbreviations and
+#' arXiv subject classifications: their abbreviations and
 #' corresponding descriptions.
 #'
+#' @name arxiv_cats
 #' @docType data
 #'
 #' @usage data(arxiv_cats)

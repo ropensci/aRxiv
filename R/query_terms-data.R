@@ -1,8 +1,8 @@
+#' arXiv query field terms
+#'
+#' Possible terms that correspond to different fields in arXiv searches.
+#'
 #' @name query_terms
-#' @title arXiv query field terms
-#'
-#' @description Possible terms that correspond to different fields in arXiv searches.
-#'
 #' @docType data
 #'
 #' @usage data(query_terms)
