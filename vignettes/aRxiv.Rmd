@@ -1,6 +1,6 @@
 <!--
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{R/simcross User Guide}
+%\VignetteIndexEntry{aRxiv tutorial}
 -->
 
 # aRxiv tutorial
