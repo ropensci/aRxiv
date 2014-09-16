@@ -9,7 +9,8 @@ arxiv_open(search_results)
 \item{search_results}{Data frame of search results, as returned from \code{\link{arxiv_search}}}
 }
 \value{
-(Invisibly) Vector strings with URLs of abstracts opened.
+(Invisibly) Vector of character strings with URLs of
+abstracts opened.
 }
 \description{
 Open, in web browser, the abstract pages for each of set of arXiv search results.

@@ -19,11 +19,11 @@ of such strings}
 
 \item{limit}{Maximum number of records to return.}
 
-\item{sort_by}{How to sort the results (only if \code{id_list} is
-not provided)}
+\item{sort_by}{How to sort the results (ignored if \code{id_list} is
+provided)}
 
 \item{ascending}{If TRUE, sort in ascending order; else descending
-(only if \code{id_list} is not provided)}
+(ignored if \code{id_list} is provided)}
 
 \item{batchsize}{Maximum number of records to request at one time}
 

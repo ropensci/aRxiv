@@ -14,7 +14,8 @@
 #' option \code{"arxiv_delay"} (in seconds); if missing, the default
 #' is 3 sec.
 #'
-#' @return (Invisibly) Vector strings with URLs of abstracts opened.
+#' @return (Invisibly) Vector of character strings with URLs of
+#' abstracts opened.
 #'
 #' @importFrom utils browseURL
 #' @export

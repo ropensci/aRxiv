@@ -14,10 +14,10 @@
 #' of such strings
 #' @param start An offset for the start of search
 #' @param limit Maximum number of records to return.
-#' @param sort_by How to sort the results (only if \code{id_list} is
-#' not provided)
+#' @param sort_by How to sort the results (ignored if \code{id_list} is
+#' provided)
 #' @param ascending If TRUE, sort in ascending order; else descending
-#' (only if \code{id_list} is not provided)
+#' (ignored if \code{id_list} is provided)
 #' @param batchsize Maximum number of records to request at one time
 #' @param force If TRUE, force search request even if it seems extreme
 #' @param output_format Indicates whether output should be a data frame or a list.
