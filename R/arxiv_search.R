@@ -87,7 +87,7 @@
 arxiv_search <-
 function(query=NULL, id_list=NULL, start=0, limit=10,
          sort_by=c("submitted", "updated", "relevance"),
-         ascending=TRUE, batchsize=500, force=FALSE,
+         ascending=TRUE, batchsize=100, force=FALSE,
          output_format=c("data.frame", "list"), sep="|")
 {
     query_url <- "http://export.arxiv.org/api/query"
