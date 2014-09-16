@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/ropensci/aRxiv.png?branch=master)](https://travis-ci.org/ropensci/aRxiv)
+[![Build Status](https://travis-ci.org/ropensci/aRxiv.png?branch=master)](https://travis-ci.org/ropensci/aRxiv)  
+[![Build status](https://ci.appveyor.com/api/projects/status/kkqyqak224a98jlh)](https://ci.appveyor.com/project/karthik/arxiv)
 
 ## R interface to arXiv
 
