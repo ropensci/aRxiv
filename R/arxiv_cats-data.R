@@ -3,7 +3,6 @@
 #' arXiv subject classifications: their abbreviations and
 #' corresponding descriptions.
 #'
-#' @name arxiv_cats
 #' @docType data
 #'
 #' @usage data(arxiv_cats)
@@ -17,5 +16,5 @@
 #' @keywords datasets
 #'
 #' @examples
-#' data(arxiv_cats)
-NULL
+#' arxiv_cats
+"arxiv_cats"

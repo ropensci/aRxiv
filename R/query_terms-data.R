@@ -2,7 +2,6 @@
 #'
 #' Possible terms that correspond to different fields in arXiv searches.
 #'
-#' @name query_terms
 #' @docType data
 #'
 #' @usage data(query_terms)
@@ -18,4 +17,4 @@
 #'
 #' @examples
 #' query_terms
-NULL
+"query_terms"

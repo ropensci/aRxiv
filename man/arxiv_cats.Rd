@@ -17,7 +17,7 @@ arXiv subject classifications: their abbreviations and
 corresponding descriptions.
 }
 \examples{
-data(arxiv_cats)
+arxiv_cats
 }
 \keyword{datasets}
 
