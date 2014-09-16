@@ -1,10 +1,7 @@
 all: doc notes data vignettes
 .PHONY: notes doc data vignettes
 
-notes: inst/doc/arxiv_api.html inst/ToDo.html
-
-inst/doc/arxiv_api.html: inst/doc/src/arxiv_api.md
-	R -e 'library(markdown);markdownToHTML("$<", "$@")'
+notes: inst/ToDo.html
 
 inst/ToDo.html: inst/ToDo.md
 	R -e 'library(markdown);markdownToHTML("$<", "$@")'
