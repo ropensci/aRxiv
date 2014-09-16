@@ -6,7 +6,7 @@
 # aRxiv tutorial
 
 [arXiv](http://arxiv.org) is a repository of electronic preprints for
-computer science, mathematics, physics, quantiative biology,
+computer science, mathematics, physics, quantitative biology,
 quantitative finance, and statistics. The
 [aRxiv package](https://github.com/ropensci/aRxiv) provides an
 [R](http://www.r-project.org) interface to the
@@ -108,10 +108,10 @@ arxiv_open(deconv)
 
 ## Forming queries
 
-The two basic arguments to `arxiv_count` and `arxiv_search` are 
+The two basic arguments to `arxiv_count` and `arxiv_search` are
 `query`, a
 character string representing the search, and `id_list`, a list of
-[arXiv manuscript identifiers](http://arxiv.org/help/arxiv_identifier). 
+[arXiv manuscript identifiers](http://arxiv.org/help/arxiv_identifier).
 
 - If only `query` is provided, manuscripts matching that query are
   returned.
@@ -211,41 +211,145 @@ arxiv_count('submittedDate:[2007 TO 2008]')
 
 ## Search results
 
+The output of `arxiv_search` is a data frame with the following
+columns.
+
+```{r arxiv_search_result}
+res <- arxiv_search('au:"Terry Speed"')
+names(res)
+```
+
+The columns are described in the help file for `arxiv_search`. Try
+`?arxiv_search`.
+
+A few short notes:
+
+- Each field is a single character string. `authors`, `link_doi`, and
+  `categories` may contain multiple items, separated by a vertical bar
+  (`|`).
+- Missing entries are simply an empty character string (`""`).
+- The `categories` column may contain not just the aRxiv categories
+  (e.g., `stat.AP`) but also codes for the
+  [Mathematical Subject Classification (MSC)](http://www.ams.org/mathscinet/msc/msc2010.html) (e.g., 14J60)
+  and the
+  [ACM Computing Classification System](http://www.acm.org/about/class/1998/)
+  (e.g., F.2.2). These are not searchable with `cat:` but are
+  searchable with a general search.
+
+```{r search_msc}
+arxiv_count("cat:14J60")
+arxiv_count("14J60")
+```
 
 
 ## Sorting results
 
+The `arxiv_search` function has two arguments for sorting the results,
+`sort_by` (taking values `"submitted"`, `"updated`, or
+`"relevance"`) and `ascending` (`TRUE` or `FALSE`). If `id_list` is
+provided, these sorting arguments are ignored and the results are
+presented according to the order in `id_list`.
+
+Here's an example, to sort the results by the date the manuscripts
+were last updated, in descending order.
+
+```{r sortby_example}
+res <- arxiv_search('au:"Terry Speed"', sort_by="updated",
+                    ascending=FALSE)
+res$updated
+```
 
 
 ## Technical details
 
 ### Metadata limitations
 
-Author fields; for example, T. P. Speed vs Terry Speed vs Terence
-P. Speed
+The [arXiv metadata](http://arxiv.org/help/prep) has a number of
+limitations, the key issue being that it is author-supplied and so not
+necessarily consistent between records.
+
+Authors' names may vary between records (e.g., T. P. Speed vs. Terry
+Speed vs Terence P. Speed). Further, arXiv has no ability to
+distinguish multiple individuals with the same name (cf
+[ORCID](http://orcid.org)).
+
+Authors' institutional affiliations are mostly missing.
+The arXiv submission form does not include an affiliation field;
+affiliations are entered within the author field, in parentheses.
+The [instructions](http://arxiv.org/help/prep#author)) may not be
+widely read.
+
+There are no key words; you are stuck with searching the free text in
+the titles and abstracts.
+
+Subject classifications are provided by the authors and may be
+incomplete or inappropriate.
+
 
 ### Limit time between search requests
 
-The [arXiv API user manual](http://arxiv.org/help/api/user-manual) states:
+Care should be taken to avoid multiple requests to the arXiv API in a
+short period of time. The
+[arXiv API user manual](http://arxiv.org/help/api/user-manual) states:
 
 > In cases where the API needs to be called multiple times in a row,
 > we encourage you to play nice and incorporate a 3 second delay in
 > your code. The detailed examples below illustrate how to do this in
 > a variety of languages.
 
-R option `"aRxiv_delay"`; how to set 
+The aRxiv package institutes a delay between requests, with the time
+period for the delay configurable with the R option
+`"aRxiv_delay"` (in seconds). The default is 3 seconds.
 
-Don't do searches in parallel
+To reduce the delay to 1 second, use:
+
+```{r aRxiv_delay, eval=FALSE}
+options(aRxiv_delay=1)
+```
+
+**Don't** do searches in parallel (e.g., via the parallel
+package). You may be locked out from the arXiv API.
+
 
 ### Limit number of items returned
 
-use `arxiv_count` before `arxiv_search`; `limit` arg; using slices of time 
+The arXiv API will returns only complete records (including the entire
+abstracts); searches returning large numbers of records can be very
+slow.
 
-option `"aRxiv_toomany"`
+It's best to use `arxiv_count` before `arxiv_search`, so that you have
+a sense of how many records you will receive. If the count is quite
+large, you may wish to refine your query.
 
-### Requests in batches
+[arXiv](http://arxiv.org) has a hard limit of around 50,000 records;
+for a query that matches more than 50,000 manuscripts, there is no way
+to receive the full results.
 
-`batchsize` arg to `arxiv_search`, but still have a larger limit
+The simplest solution to this problem is to break the query into
+smaller pieces, for example using slices of time, with a range of
+dates for `submittedDate` or `lastUpdatedDate`.
+
+The `limit` argument to `arxiv_search` (with default `limit=10`)
+limits the number of records to be returned. If you wish to receive
+more than 10 records, you must specify a larger limit (e.g., `limit=100`).
+
+To avoid accidental searches that may return a very large number of
+records, `arxiv_search` uses an R option, `aRxiv_toomany` (with a
+default of 15,000), and refuses to attempt a search that will return
+results above that limit.
+
+### Make requests in batches
+
+Even for searches that return a moderate number of records (say
+2,000), it may be best to make the requests in batches: Use a smaller
+value for the `limit` argument (say 100), and make multiple requests
+with different offsets, indicated with the `start` argument, for the
+initial record to return.
+
+This is done automatically with the `batchsize` argument to
+`arxiv_search`.  A search is split into multiple calls, with no more
+than `batchsize` records to be returned by each, and then the results
+are combined.
 
 
 ## License and bugs
