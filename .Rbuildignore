@@ -1,3 +1,4 @@
 ^Makefile$
 inst/scripts/.RData
 ^\.travis\.yml$
+appveyor.yml
