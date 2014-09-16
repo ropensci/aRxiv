@@ -75,14 +75,14 @@
 #' z$title
 #'
 #' # search for a set of documents by arxiv identifiers
-#' z <- arxiv_search(id_list = c("0710.3491v1", "0804.0713v1", "1003.0315v1"))
+#' \donttest{z <- arxiv_search(id_list = c("0710.3491v1", "0804.0713v1", "1003.0315v1"))}
 #' # can also use a comma-separated string
-#' z <- arxiv_search(id_list = "0710.3491v1,0804.0713v1,1003.0315v1")
+#' \donttest{z <- arxiv_search(id_list = "0710.3491v1,0804.0713v1,1003.0315v1")}
 #' # Journal references, if available
 #' z$journal_ref
 #'
 #' # search for a range of dates (in this case, one day)
-#' z <- arxiv_search("submittedDate:[199701010000 TO 199701012400]", limit=2)
+#' \donttest{z <- arxiv_search("submittedDate:[199701010000 TO 199701012400]", limit=2)}
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_search <-
 function(query=NULL, id_list=NULL, start=0, limit=10,

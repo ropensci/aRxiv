@@ -28,11 +28,11 @@ before attempting to pull down a very large number of records.
 arxiv_count(query = "cat:stat.AP")
 
 # count papers by Peter Hall in any stat category
-arxiv_count(query = 'au:"Peter Hall" AND cat:stat*')
+\donttest{arxiv_count(query = 'au:"Peter Hall" AND cat:stat*')}
 
 # count papers for a range of dates
 #    here, everything in 2013
-arxiv_count("submittedDate:[2013 TO 2014]")
+\donttest{arxiv_count("submittedDate:[2013 TO 2014]")}
 \dontshow{options(aRxiv_delay=old_delay)}
 }
 
