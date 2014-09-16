@@ -4,14 +4,12 @@
 #'
 #' Open, in web browser, the abstract pages for each of set of arXiv search results.
 #'
-#' @param search_results Data frame of search results, as returned from \code{\link{arxiv_search}}
+#' @param search_results Data frame of search results, as returned from \code{\link{arxiv_search}}.
+#' @param limit Maximum number of abstracts to open in one call.
 #'
-#' @details The R option \code{"arxiv_max2open"} defines the maximum
-#' number of pages to open; if missing, the default is 20.
-#'
-#' There is also a delay between calls to
+#' @details There is a delay between calls to
 #' \code{\link[utils]{browseURL}}, with the amount taken from the R
-#' option \code{"arxiv_delay"} (in seconds); if missing, the default
+#' option \code{"aRxiv_delay"} (in seconds); if missing, the default
 #' is 3 sec.
 #'
 #' @return (Invisibly) Vector of character strings with URLs of
@@ -25,19 +23,18 @@
 #' \donttest{arxiv_open(z)}
 
 arxiv_open <-
-function(search_results)
+function(search_results, limit=20)
 {
+    stopifnot(limit >= 1)
+
     if(nrow(search_results) == 0)
         return(invisible(NULL))
 
-    max2open <- getOption("arxiv_max2open")
-    max2open <- ifelse(is.null(max2open), 20, max2open)
-
     links <- search_results$link_abstract
     links <- links[links != ""]
-    if(length(links) > max2open) {
-        warning("More abstracts (", length(links), ") than maximum allowed to be opened (", max2open, ").")
-        links <- links[1:max2open]
+    if(length(links) > limit) {
+        warning("More abstracts (", length(links), ") than maximum to be opened (", limit, ").")
+        links <- links[1:limit]
     }
 
     for(link in links) {

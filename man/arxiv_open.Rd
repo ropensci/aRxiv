@@ -3,10 +3,12 @@
 \alias{arxiv_open}
 \title{Open abstract for results of arXiv search}
 \usage{
-arxiv_open(search_results)
+arxiv_open(search_results, limit = 20)
 }
 \arguments{
-\item{search_results}{Data frame of search results, as returned from \code{\link{arxiv_search}}}
+\item{search_results}{Data frame of search results, as returned from \code{\link{arxiv_search}}.}
+
+\item{limit}{Maximum number of abstracts to open in one call.}
 }
 \value{
 (Invisibly) Vector of character strings with URLs of
@@ -16,12 +18,9 @@ abstracts opened.
 Open, in web browser, the abstract pages for each of set of arXiv search results.
 }
 \details{
-The R option \code{"arxiv_max2open"} defines the maximum
-number of pages to open; if missing, the default is 20.
-
-There is also a delay between calls to
+There is a delay between calls to
 \code{\link[utils]{browseURL}}, with the amount taken from the R
-option \code{"arxiv_delay"} (in seconds); if missing, the default
+option \code{"aRxiv_delay"} (in seconds); if missing, the default
 is 3 sec.
 }
 \examples{
