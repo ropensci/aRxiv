@@ -68,6 +68,14 @@ changed with the `limit` argument. But note that the arXiv API will
 not let you download more than 50,000 or so records, and even in that
 case it's best to do so in batches; more on this below.
 
+Also note that the result of `arxiv_search()` has an attribute
+`"total_results"` containing the total count of search results; this
+is the same as what `arxiv_count()` provides.
+
+```{r arxiv_search_attr}
+attr(rec, "total_results")
+```
+
 The following will get us all `r arxiv_count('au:"Peter Hall"')`
 records.
 
@@ -108,7 +116,7 @@ arxiv_open(deconv)
 
 ## Forming queries
 
-The two basic arguments to `arxiv_count` and `arxiv_search` are
+The two basic arguments to `arxiv_count()` and `arxiv_search()` are
 `query`, a
 character string representing the search, and `id_list`, a list of
 [arXiv manuscript identifiers](http://arxiv.org/help/arxiv_identifier).
@@ -211,7 +219,7 @@ arxiv_count('submittedDate:[2007 TO 2008]')
 
 ## Search results
 
-The output of `arxiv_search` is a data frame with the following
+The output of `arxiv_search()` is a data frame with the following
 columns.
 
 ```{r arxiv_search_result}
@@ -219,7 +227,7 @@ res <- arxiv_search('au:"Terry Speed"')
 names(res)
 ```
 
-The columns are described in the help file for `arxiv_search`. Try
+The columns are described in the help file for `arxiv_search()`. Try
 `?arxiv_search`.
 
 A few short notes:
@@ -244,7 +252,7 @@ arxiv_count("14J60")
 
 ## Sorting results
 
-The `arxiv_search` function has two arguments for sorting the results,
+The `arxiv_search()` function has two arguments for sorting the results,
 `sort_by` (taking values `"submitted"`, `"updated"`, or
 `"relevance"`) and `ascending` (`TRUE` or `FALSE`). If `id_list` is
 provided, these sorting arguments are ignored and the results are
@@ -316,7 +324,7 @@ The arXiv API will returns only complete records (including the entire
 abstracts); searches returning large numbers of records can be very
 slow.
 
-It's best to use `arxiv_count` before `arxiv_search`, so that you have
+It's best to use `arxiv_count()` before `arxiv_search()`, so that you have
 a sense of how many records you will receive. If the count is large,
 you may wish to refine your query.
 
@@ -326,12 +334,12 @@ full results. The simplest solution to this problem is to break the
 query into smaller pieces, for example using slices of time, with a
 range of dates for `submittedDate` or `lastUpdatedDate`.
 
-The `limit` argument to `arxiv_search` (with default `limit=10`)
+The `limit` argument to `arxiv_search()` (with default `limit=10`)
 limits the number of records to be returned. If you wish to receive
 more than 10 records, you must specify a larger limit (e.g., `limit=100`).
 
 To avoid accidental searches that may return a very large number of
-records, `arxiv_search` uses an R option, `aRxiv_toomany` (with a
+records, `arxiv_search()` uses an R option, `aRxiv_toomany` (with a
 default of 15,000), and refuses to attempt a search that will return
 results above that limit.
 
@@ -344,7 +352,7 @@ with different offsets, indicated with the `start` argument, for the
 initial record to return.
 
 This is done automatically with the `batchsize` argument to
-`arxiv_search`.  A search is split into multiple calls, with no more
+`arxiv_search()`.  A search is split into multiple calls, with no more
 than `batchsize` records to be returned by each, and then the results
 are combined.
 
