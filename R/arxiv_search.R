@@ -131,6 +131,7 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
                           body=list(search_query=query, id_list=id_list,
                                     start=start, max_results=limit,
                                     sortBy=recode_sortby(sort_by), sortOrder=sort_order))
+    set_arxiv_time() # set time for last call to arXiv
 
     # convert XML results to a list
     listresult <- result2list(search_result)

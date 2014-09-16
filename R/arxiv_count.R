@@ -41,6 +41,7 @@ function(query=NULL, id_list=NULL)
     search_result <- POST(query_url,
                           body=list(search_query=query, id_list=id_list,
                                     start=0, max_results=0))
+    set_arxiv_time() # set time for last call to arXiv
 
     # convert XML results to a list
     listresult <- result2list(search_result)
