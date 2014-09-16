@@ -37,6 +37,15 @@ str(z)
 ```
 
 
+### Tutorial
+
+To view the tutorial for the aRxiv package:
+
+```r
+vignette("aRxiv", "aRxiv")
+```
+
+
 ### Links
 
 * [arXiv](http://arxiv.org)
