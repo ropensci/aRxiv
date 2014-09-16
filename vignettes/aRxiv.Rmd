@@ -131,12 +131,13 @@ comma-separated character string.
 
 Generally, one would focus on forming the `query` argument. The aRxiv
 package includes a dataset `query_terms` that lists the terms (like
-`au:`) that you can use.
+`au`) that you can use.
 
 ```{r query_terms}
 query_terms
 ```
 
+Use a colon (`:`) to separate the query term from the actual query.
 Multiple queries can be combined with `AND`, `OR`, and `ANDNOT`. The
 default is `OR`.
 
@@ -148,7 +149,7 @@ arxiv_count('au:Hall ANDNOT au:Peter')
 ```
 
 It appears that in the author field (and many other fields) you must
-search full words, and that wild cards are ignored.
+search full words, and that wild cards not allowed.
 
 ```{r illustrate_wildcard}
 arxiv_count('au:P* AND au:Hall')
@@ -193,7 +194,7 @@ with initial submission on 2007-10-18:
 arxiv_count('submittedDate:20071018*')
 ```
 
-But you can't use the wildcard _within_ the dates.
+But you can't use the wildcard within the _dates_.
 
 ```{r wildcard_date}
 arxiv_count('submittedDate:2007*')
@@ -208,15 +209,44 @@ range appears to be up to but not including the second date/time.)
 arxiv_count('submittedDate:[2007 TO 2008]')
 ```
 
+## Search results
+
+
+
+## Sorting results
+
+
+
 ## Technical details
 
 ### Metadata limitations
 
+Author fields; for example, T. P. Speed vs Terry Speed vs Terence
+P. Speed
+
 ### Limit time between search requests
+
+The [arXiv API user manual](http://arxiv.org/help/api/user-manual) states:
+
+> In cases where the API needs to be called multiple times in a row,
+> we encourage you to play nice and incorporate a 3 second delay in
+> your code. The detailed examples below illustrate how to do this in
+> a variety of languages.
+
+R option `"aRxiv_delay"`; how to set 
+
+Don't do searches in parallel
 
 ### Limit number of items returned
 
+use `arxiv_count` before `arxiv_search`; `limit` arg; using slices of time 
+
+option `"aRxiv_toomany"`
+
 ### Requests in batches
+
+`batchsize` arg to `arxiv_search`, but still have a larger limit
+
 
 ## License and bugs
 
