@@ -5,7 +5,7 @@
 \usage{
 arxiv_search(query = NULL, id_list = NULL, start = 0, limit = 10,
   sort_by = c("submitted", "updated", "relevance"), ascending = TRUE,
-  batchsize = 500, force = FALSE, output_format = c("data.frame", "list"),
+  batchsize = 100, force = FALSE, output_format = c("data.frame", "list"),
   sep = "|")
 }
 \arguments{
