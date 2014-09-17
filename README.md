@@ -59,7 +59,7 @@ vignette("aRxiv", "aRxiv")
 
 ### License
 
-Licensed under the [MIT license](LICENSE). ([More information here](http://en.wikipedia.org/wiki/MIT_License).)
+Licensed under the [MIT license](http://cran.r-project.org/web/licenses/MIT). ([More information here](http://en.wikipedia.org/wiki/MIT_License).)
 
 ---
 
