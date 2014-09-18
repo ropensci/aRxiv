@@ -320,7 +320,7 @@ package). You may be locked out from the arXiv API.
 
 ### Limit number of items returned
 
-The arXiv API will returns only complete records (including the entire
+The arXiv API returns only complete records (including the entire
 abstracts); searches returning large numbers of records can be very
 slow.
 
