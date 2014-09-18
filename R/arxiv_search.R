@@ -180,10 +180,19 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
 
     starts <- seq(start, start+limit-1, by=batchsize)
 
+    # maximum record to return
+    max_record <- start + limit - 1
+
     for(i in seq(along=starts)) {
 
+        # avoid returning more than a total of limit records
+        this_limit <- ifelse(max_record - starts[i] + 1 < batchsize,
+                             max_record - starts[i] + 1,
+                             batchsize)
+        if(this_limit == 0) break
+
         these_results <- arxiv_search(query=query, id_list=id_list,
-                                      start=starts[i], limit=batchsize,
+                                      start=starts[i], limit=this_limit,
                                       sort_by=sort_by, ascending=ascending,
                                       batchsize=batchsize, force=force,
                                       output_format="list", sep=sep)
