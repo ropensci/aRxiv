@@ -46,8 +46,8 @@ the XML output of the search, closer to the raw output from arXiv.
 The data frame format has the following columns.
 \tabular{rll}{
  [,1] \tab id               \tab arXiv ID \cr
- [,3] \tab submitted        \tab date first submitted \cr
- [,2] \tab updated          \tab date last updated \cr
+ [,2] \tab submitted        \tab date first submitted \cr
+ [,3] \tab updated          \tab date last updated \cr
  [,4] \tab title            \tab manuscript title \cr
  [,5] \tab summary          \tab abstract \cr
  [,6] \tab authors          \tab author names \cr
@@ -59,7 +59,7 @@ The data frame format has the following columns.
 [,12] \tab journal_ref      \tab journal reference \cr
 [,13] \tab doi              \tab published DOI \cr
 [,14] \tab primary_category \tab primary category \cr
-[,14] \tab categories       \tab all categories \cr
+[,15] \tab categories       \tab all categories \cr
 }
 
 The contents are all strings; missing values are empty strings (\code{""}).
