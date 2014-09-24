@@ -40,7 +40,9 @@ str(z)
 
 ### Tutorial
 
-To view the tutorial for the aRxiv package:
+An aRxiv tutorial is available at the rOpenSci website, [here](http://ropensci.org/tutorials/arxiv_tutorial.html).
+
+To view the tutorial from R, use:
 
 ```r
 vignette("aRxiv", "aRxiv")
