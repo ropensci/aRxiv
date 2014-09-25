@@ -16,16 +16,20 @@ The [aRxiv](http://github.com/ropensci/aRxiv) package is in early development.
 
 ### Installation
 
-The package is not currently available on
-[CRAN](http://cran.r-project.org). To install, use
-`devtools::install_github()`, as follows:
+You can install the package via [CRAN](http://cran.r-project.org):
+
+```r
+install.packages("aRxiv")
+```
+
+Or use `devtools::install_github()` to get the (more recent) version
+at [GitHub](https://github.com/rOpenSci/aRxiv):
 
 ```r
 install.packages("devtools")
 library(devtools)
 install_github("ropensci/aRxiv")
 ```
-
 
 ### Basic usage
 

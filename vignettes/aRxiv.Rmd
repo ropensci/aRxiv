@@ -20,10 +20,15 @@ options(aRxiv_delay=0.5)
 
 ## Installation
 
-The [aRxiv package](https://github.com/ropensci/aRxiv) is not
-currently available on [CRAN](http://cran.r-project.org). To install the
-package from [GitHub](http://github.com), use
-`devtools::install_github()`, as follows:
+You can install the [aRxiv package](https://github.com/rOpenSci/aRxiv)
+via [CRAN](http://cran.r-project.org):
+
+```{r install_from_cran, eval=FALSE}
+install.packages("aRxiv")
+```
+
+Or use `devtools::install_github()` to get the (more recent) version
+at [GitHub](https://github.com/rOpenSci/aRxiv):
 
 ```{r install_pkgs, eval=FALSE}
 install.packages("devtools")
