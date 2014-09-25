@@ -9,7 +9,7 @@ test_that("is_too_many gives reasonable info", {
     options(aRxiv_delay=0.5)
 
     # this search should give a very large number
-    expect_true(is_too_many("au:A", start=0, limit=NULL) > 170000)
+    suppressMessages(expect_true(is_too_many("au:A", start=0, limit=NULL) > 170000))
 
     # this search should give 0 (not too many results)
     expect_equal(is_too_many("au:A", start=0, limit=10), 0)

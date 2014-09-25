@@ -13,7 +13,7 @@ test_that("batch search gives same result as all together", {
     z_time <- attr(z, "search_info")["time"]
 
     # in batches of 1
-    zBatch <- arxiv_search("au:Speed AND cat:stat.AP", start=0, limit=3, batchsize=1)
+    suppressMessages(zBatch <- arxiv_search("au:Speed AND cat:stat.AP", start=0, limit=3, batchsize=1))
 
     # fix time
     at <- attr(zBatch, "search_info")
@@ -23,7 +23,7 @@ test_that("batch search gives same result as all together", {
     expect_equal(z, zBatch)
 
     # in batches of 2
-    zBatch <- arxiv_search("au:Speed AND cat:stat.AP", start=0, limit=3, batchsize=2)
+    suppressMessages(zBatch <- arxiv_search("au:Speed AND cat:stat.AP", start=0, limit=3, batchsize=2))
 
     # fix time
     at <- attr(zBatch, "search_info")
