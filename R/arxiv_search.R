@@ -1,4 +1,3 @@
-
 # This is the template for the search API methods for arXiv
 # User manual: http://arxiv.org/help/api/user-manual
 # A simple search: http://arxiv.org/help/api/user-manual
@@ -9,7 +8,7 @@
 #' Allows for progammatic searching of the arXiv pre-print repository.
 #'
 #' @param query Search pattern as a string; a vector of such strings
-#' are combined with \code{AND}
+#' also allowed, in which case the elements are combined with \code{AND}.
 #' @param id_list arXiv doc IDs, as comma-delimited string or a vector
 #' of such strings
 #' @param start An offset for the start of search
@@ -64,6 +63,9 @@
 #' the time at which it was completed. Another attribute
 #' \code{"total_results"} is the total number of records that match
 #' the query.
+#'
+#' @seealso \code{\link{arxiv_count}}, \code{\link{arxiv_open}},
+#' \code{\link{query_terms}}, \code{\link{arxiv_cats}}
 #'
 #' @examples
 #' \dontshow{old_delay <- getOption("aRxiv_delay")

@@ -15,6 +15,8 @@
 #' @return (Invisibly) Vector of character strings with URLs of
 #' abstracts opened.
 #'
+#' @seealso \code{\link{arxiv_search}}
+#'
 #' @export
 #'
 #' @examples
