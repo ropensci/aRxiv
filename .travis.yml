@@ -6,7 +6,7 @@ before_install:
 install:
 - "./travis-tool.sh install_deps"
 script: "./travis-tool.sh run_tests"
-on_failure:
+after_failure:
 - "./travis-tool.sh dump_logs"
 notifications:
   email:
