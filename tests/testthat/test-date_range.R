@@ -1,4 +1,3 @@
-
 context("search range of dates")
 
 test_that("search date ranges is quirky", {
@@ -13,10 +12,10 @@ test_that("search date ranges is quirky", {
     expect_equal( omit_attr( arxiv_count("submittedDate:2013*") ), 0)
 
     # * is the same as truncating; completed to earliest time with that stem
-    expect_equal( omit_attr( arxiv_count("submittedDate:[20130101* TO 20131231*]") ), 92677)
-    expect_equal( omit_attr( arxiv_count("submittedDate:[20130101 TO 20131231]") ),   92677)
+    expect_equal( omit_attr( arxiv_count("submittedDate:[19920101* TO 19921231*]") ), 3182)
+    expect_equal( omit_attr( arxiv_count("submittedDate:[19920101 TO 19921231]") ),   3182)
 
     # to search a single year, use that year to the next one
-    expect_equal( omit_attr( arxiv_count("submittedDate:[2013 TO 2014]") ),           92861)
+    expect_equal( omit_attr( arxiv_count("submittedDate:[1992 TO 1993]") ),           3190)
 
 })
