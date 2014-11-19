@@ -69,4 +69,8 @@ Licensed under the [MIT license](http://cran.r-project.org/web/licenses/MIT). ([
 
 ---
 
+This package is part of a richer suite called [fulltext](https://github.com/ropensci/fulltext), along with several other packages, that provides the ability to search for and retrieve full text of open access scholarly articles. We recommend using `fulltext` as the primary R interface to `arXiv` unless your needs are limited to this single source.
+
+---
+
 [![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
