@@ -20,15 +20,17 @@
 #' @examples
 #' \dontshow{old_delay <- getOption("aRxiv_delay")
 #'           options(aRxiv_delay=1)}
+#' \donttest{
 #' # count papers in category stat.AP (applied statistics)
 #' arxiv_count(query = "cat:stat.AP")
 #'
 #' # count papers by Peter Hall in any stat category
-#' \donttest{arxiv_count(query = 'au:"Peter Hall" AND cat:stat*')}
+#' arxiv_count(query = 'au:"Peter Hall" AND cat:stat*')
 #'
 #' # count papers for a range of dates
 #' #    here, everything in 2013
-#' \donttest{arxiv_count("submittedDate:[2013 TO 2014]")}
+#' arxiv_count("submittedDate:[2013 TO 2014]")
+#' }
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_count <-
 function(query=NULL, id_list=NULL)

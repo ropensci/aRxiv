@@ -70,20 +70,22 @@
 #' @examples
 #' \dontshow{old_delay <- getOption("aRxiv_delay")
 #'           options(aRxiv_delay=1)}
+#' \donttest{
 #' # search for author Peter Hall with deconvolution in title
 #' z <- arxiv_search(query = 'au:"Peter Hall" AND ti:deconvolution', limit=2)
 #' attr(z, "total_results") # total no. records matching query
 #' z$title
 #'
 #' # search for a set of documents by arxiv identifiers
-#' \donttest{z <- arxiv_search(id_list = c("0710.3491v1", "0804.0713v1", "1003.0315v1"))}
+#' z <- arxiv_search(id_list = c("0710.3491v1", "0804.0713v1", "1003.0315v1"))
 #' # can also use a comma-separated string
-#' \donttest{z <- arxiv_search(id_list = "0710.3491v1,0804.0713v1,1003.0315v1")}
+#' z <- arxiv_search(id_list = "0710.3491v1,0804.0713v1,1003.0315v1")
 #' # Journal references, if available
 #' z$journal_ref
 #'
 #' # search for a range of dates (in this case, one day)
-#' \donttest{z <- arxiv_search("submittedDate:[199701010000 TO 199701012400]", limit=2)}
+#' z <- arxiv_search("submittedDate:[199701010000 TO 199701012400]", limit=2)
+#' }
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_search <-
 function(query=NULL, id_list=NULL, start=0, limit=10,
