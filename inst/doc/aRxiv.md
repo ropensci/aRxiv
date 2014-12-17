@@ -14,33 +14,25 @@ quantitative finance, and statistics. The
 
 Note that the arXiv API _does not_ require an API key.
 
-```{r check_arxiv_connection, include=FALSE}
-# check connection to arXiv; abort if no connection
-library(knitr)
-library(aRxiv)
-if(!can_arxiv_connect()) {
-    opts_knit$set(stop_on_error = 2L)
-    stop("Cannot connect to arXiv")
-}
-```
 
-```{r change_aRxiv_delay_option, include=FALSE}
-options(aRxiv_delay=0.5)
-```
+
+
 
 ## Installation
 
 You can install the [aRxiv package](https://github.com/rOpenSci/aRxiv)
 via [CRAN](http://cran.r-project.org):
 
-```{r install_from_cran, eval=FALSE}
+
+```r
 install.packages("aRxiv")
 ```
 
 Or use `devtools::install_github()` to get the (more recent) version
 at [GitHub](https://github.com/rOpenSci/aRxiv):
 
-```{r install_pkgs, eval=FALSE}
+
+```r
 install.packages("devtools")
 library(devtools)
 install_github("ropensci/aRxiv")
@@ -63,9 +55,14 @@ a sense of how many records the search will return. (Peter Hall is
 We first use `library()` to load the aRxiv package and then
 `arxiv_count()` to get the count.
 
-```{r arxiv_count}
+
+```r
 library(aRxiv)
 arxiv_count('au:"Peter Hall"')
+```
+
+```
+## [1] 51
 ```
 
 The `au:` part indicates to search the author field; we use double
@@ -73,9 +70,14 @@ quotes to search for a _phrase_.
 
 To obtain the actual records matching the query, use `arxiv_search()`.
 
-```{r arxiv_search}
+
+```r
 rec <- arxiv_search('au:"Peter Hall"')
 nrow(rec)
+```
+
+```
+## [1] 10
 ```
 
 The default is to grab no more than 10 records; this limit can be
@@ -87,16 +89,26 @@ Also note that the result of `arxiv_search()` has an attribute
 `"total_results"` containing the total count of search results; this
 is the same as what `arxiv_count()` provides.
 
-```{r arxiv_search_attr}
+
+```r
 attr(rec, "total_results")
 ```
 
-The following will get us all `r arxiv_count('au:"Peter Hall"')`
+```
+## [1] 51
+```
+
+The following will get us all 51
 records.
 
-```{r arxiv_search_limit50}
+
+```r
 rec <- arxiv_search('au:"Peter Hall"', limit=50)
 nrow(rec)
+```
+
+```
+## [1] 50
 ```
 
 `arxiv_search()` returns a data frame with each row being a single
@@ -109,22 +121,42 @@ We might be interested in a more restrictive search, such as for Peter
 Hall's arXiv manuscripts that have `deconvolution` in the title. We
 use `ti:` to search the title field, and combine the two with `AND`.
 
-```{r arxiv_search_deconvolution}
+
+```r
 deconv <- arxiv_search('au:"Peter Hall" AND ti:deconvolution')
 nrow(deconv)
 ```
 
+```
+## [1] 4
+```
+
 Let's display just the authors and title for the results.
 
-```{r authors_title}
+
+```r
 deconv[, c('title', 'authors')]
 ```
 
-We can open the abstract pages for these `r nrow(deconv)` manuscripts
+```
+##                                                                             title
+## 1                                     A ridge-parameter approach to deconvolution
+## 2                                     On deconvolution with repeated measurements
+## 3 Estimation of distributions, moments and quantiles in deconvolution\n  problems
+## 4   Kernel methods and minimum contrast estimators for empirical\n  deconvolution
+##                                        authors
+## 1                 Peter Hall|Alexander Meister
+## 2 Aurore Delaigle|Peter Hall|Alexander Meister
+## 3               Peter Hall|Soumendra N. Lahiri
+## 4                   Aurore Delaigle|Peter Hall
+```
+
+We can open the abstract pages for these 4 manuscripts
 using `arxiv_open()`. It takes, as input, the output of
 `arxiv_search()`.
 
-```{r arxiv_open, eval=FALSE}
+
+```r
 arxiv_open(deconv)
 ```
 
@@ -156,48 +188,137 @@ Generally, one would ignore `id_list` and focus on forming the `query`
 argument. The aRxiv package includes a dataset `query_terms` that
 lists the terms (like `au`) that you can use.
 
-```{r query_terms}
+
+```r
 query_terms
+```
+
+```
+##               term                                      description
+## 1               ti                                            Title
+## 2               au                                           Author
+## 3              abs                                         Abstract
+## 4               co                                          Comment
+## 5               jr                                Journal Reference
+## 6              cat                                 Subject Category
+## 7               rn                                    Report Number
+## 8              all                                 All of the above
+## 9    submittedDate Date/time of initial submission, as YYYYMMDDHHMM
+## 10 lastUpdatedDate        Date/time of last update, as YYYYMMDDHHMM
 ```
 
 Use a colon (`:`) to separate the query term from the actual query.
 Multiple queries can be combined with `AND`, `OR`, and `ANDNOT`. The
 default is `OR`.
 
-```{r illustrate_AND}
+
+```r
 arxiv_count('au:Peter au:Hall')
+```
+
+```
+## [1] 14860
+```
+
+```r
 arxiv_count('au:Peter OR au:Hall')
+```
+
+```
+## [1] 14860
+```
+
+```r
 arxiv_count('au:Peter AND au:Hall')
+```
+
+```
+## [1] 72
+```
+
+```r
 arxiv_count('au:Hall ANDNOT au:Peter')
+```
+
+```
+## [1] 1292
 ```
 
 It appears that in the author field (and many other fields) you must
 search full words, and that wild cards not allowed.
 
-```{r illustrate_wildcard}
+
+```r
 arxiv_count('au:P* AND au:Hall')
+```
+
+```
+## [1] 0
+```
+
+```r
 arxiv_count('au:P AND au:Hall')
+```
+
+```
+## [1] 567
+```
+
+```r
 arxiv_count('au:"P Hall"')
+```
+
+```
+## [1] 37
 ```
 
 ### Subject classifications
 
-arXiv has a set of `r nrow(arxiv_cats)` subject classifications,
+arXiv has a set of 127 subject classifications,
 searchable with the prefix `cat:`. The aRxiv package contains a
 dataset `arxiv_cats` containing the abbreviations and descriptions.
 Here are the statistics categories.
 
-```{r arxiv_cats}
+
+```r
 arxiv_cats[grep('^stat', arxiv_cats$abbreviation),]
+```
+
+```
+##   abbreviation                   description
+## 1      stat.AP     Statistics - Applications
+## 2      stat.CO      Statistics - Computation
+## 3      stat.ML Statistics - Machine Learning
+## 4      stat.ME      Statistics - Methodology
+## 5      stat.TH           Statistics - Theory
 ```
 
 To search these categories, you need to include either the full term
 or use the `*` wildcard.
 
-```{r search_cats}
+
+```r
 arxiv_count('cat:stat')
+```
+
+```
+## [1] 0
+```
+
+```r
 arxiv_count('cat:stat.AP')
+```
+
+```
+## [1] 3360
+```
+
+```r
 arxiv_count('cat:stat*')
+```
+
+```
+## [1] 17853
 ```
 
 ### Dates and ranges of dates
@@ -213,14 +334,24 @@ example `20071018122534` for `2007-10-18 12:25:34`. You can use `*`
 for a wildcard for the times. For example, to get all manuscripts
 with initial submission on 2007-10-18:
 
-```{r wildcard_times}
+
+```r
 arxiv_count('submittedDate:20071018*')
+```
+
+```
+## [1] 196
 ```
 
 But you can't use the wildcard within the _dates_.
 
-```{r wildcard_date}
+
+```r
 arxiv_count('submittedDate:2007*')
+```
+
+```
+## [1] 0
 ```
 
 To get a count of all manuscripts with original submission in 2007,
@@ -228,8 +359,13 @@ use a date range, like `[from_date TO to_date]`. (If you give a partial
 date, it's treated as the earliest date/time that matches, and the
 range appears to be up to but not including the second date/time.)
 
-```{r daterange}
+
+```r
 arxiv_count('submittedDate:[2007 TO 2008]')
+```
+
+```
+## [1] 55749
 ```
 
 ## Search results
@@ -237,9 +373,18 @@ arxiv_count('submittedDate:[2007 TO 2008]')
 The output of `arxiv_search()` is a data frame with the following
 columns.
 
-```{r arxiv_search_result}
+
+```r
 res <- arxiv_search('au:"Terry Speed"')
 names(res)
+```
+
+```
+##  [1] "id"               "submitted"        "updated"         
+##  [4] "title"            "abstract"         "authors"         
+##  [7] "affiliations"     "link_abstract"    "link_pdf"        
+## [10] "link_doi"         "comment"          "journal_ref"     
+## [13] "doi"              "primary_category" "categories"
 ```
 
 The columns are described in the help file for `arxiv_search()`. Try
@@ -259,9 +404,21 @@ A few short notes:
   (e.g., F.2.2). These are not searchable with `cat:` but are
   searchable with a general search.
 
-```{r search_msc}
+
+```r
 arxiv_count("cat:14J60")
+```
+
+```
+## [1] 0
+```
+
+```r
 arxiv_count("14J60")
+```
+
+```
+## [1] 367
 ```
 
 
@@ -276,10 +433,15 @@ presented according to the order in `id_list`.
 Here's an example, to sort the results by the date the manuscripts
 were last updated, in descending order.
 
-```{r sortby_example}
+
+```r
 res <- arxiv_search('au:"Terry Speed"', sort_by="updated",
                     ascending=FALSE)
 res$updated
+```
+
+```
+## [1] "2012-01-31 05:54:46" "2008-06-27 08:25:01"
 ```
 
 
@@ -325,7 +487,8 @@ period for the delay configurable with the R option
 
 To reduce the delay to 1 second, use:
 
-```{r aRxiv_delay, eval=FALSE}
+
+```r
 options(aRxiv_delay=1)
 ```
 
