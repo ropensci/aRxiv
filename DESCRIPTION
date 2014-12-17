@@ -24,4 +24,5 @@ Suggests:
     roxygen2,
     testthat
 VignetteBuilder: knitr
+BuildVignettes: no
 LazyData: true

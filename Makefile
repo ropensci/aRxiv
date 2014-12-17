@@ -12,7 +12,8 @@ doc:
 vignettes: inst/doc/aRxiv.html
 
 inst/doc/aRxiv.html: vignettes/aRxiv.Rmd
-	cd $(@D);R -e 'library(knitr);knit2html("../../$<")'
+	cp $< $(@D)
+	cd $(@D);R -e 'library(knitr);knit2html("$(<F)")'
 
 data: data/arxiv_cats.RData
 
