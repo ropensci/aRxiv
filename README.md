@@ -69,4 +69,4 @@ Licensed under the [MIT license](http://cran.r-project.org/web/licenses/MIT). ([
 
 ---
 
-[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![ropensci.org](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
