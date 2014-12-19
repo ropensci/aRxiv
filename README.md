@@ -73,4 +73,4 @@ This package is part of a richer suite called [fulltext](https://github.com/rope
 
 ---
 
-[![ropensci.org](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![ropensci footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
