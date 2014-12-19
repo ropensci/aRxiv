@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/ropensci/aRxiv.png?branch=master)](https://travis-ci.org/ropensci/aRxiv)
-[![Build status](https://ci.appveyor.com/api/projects/status/kkqyqak224a98jlh)](https://ci.appveyor.com/project/karthik/arxiv)
+[![Travis build status](https://travis-ci.org/ropensci/aRxiv.png?branch=master)](https://travis-ci.org/ropensci/aRxiv)
+[![Appveyor build status](https://ci.appveyor.com/api/projects/status/kkqyqak224a98jlh)](https://ci.appveyor.com/project/karthik/arxiv)
 
 ## R interface to arXiv
 
@@ -73,4 +73,4 @@ This package is part of a richer suite called [fulltext](https://github.com/rope
 
 ---
 
-[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![ropensci.org](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
