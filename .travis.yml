@@ -14,3 +14,4 @@ notifications:
     on_failure: change
   slack:
     secure: Sm5AG7aeHpUXH+rKJMKZdH/eiqo/vMPjJgxrnobKgM8OHZFDVGfIUNpq/9dNJ2EyytTx/px540BwtyzW05MLXzu3nuetEwYW7pZEWR6l2MOoslCSOAjvusXDJnxYjHx9HEGEQAbTuyoKnL1qO0d6j1oUqPxTV5A3sYw3QKqm12o=
+env: NOT_CRAN=true
