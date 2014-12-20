@@ -23,6 +23,8 @@
 #' @param sep String to use to separate multiple authors,
 #' affiliations, DOI links, and categories, in the case that
 #' \code{output_format="data.frame"}.
+#' @param timeout Maximum time (in seconds) too allow for connection
+#' to arXiv, to avoid hanging.
 #'
 #' @export
 #'
@@ -91,7 +93,8 @@ arxiv_search <-
 function(query=NULL, id_list=NULL, start=0, limit=10,
          sort_by=c("submitted", "updated", "relevance"),
          ascending=TRUE, batchsize=100, force=FALSE,
-         output_format=c("data.frame", "list"), sep="|")
+         output_format=c("data.frame", "list"), sep="|",
+         timeout=10)
 {
     query_url <- "http://export.arxiv.org/api/query"
 
@@ -128,12 +131,18 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
                                       output_format=output_format, sep=sep))
     }
 
-    # do search
     delay_if_necessary()
-    search_result <- httr::POST(query_url,
-                                body=list(search_query=query, id_list=id_list,
-                                          start=start, max_results=limit,
-                                          sortBy=recode_sortby(sort_by), sortOrder=sort_order))
+    # do search
+    # (extra messy to avoid possible problems when testing on CRAN
+    #    timeout_action defined in timeout.R)
+    search_result <- tryCatch(httr::POST(query_url,
+                                         body=list(search_query=query, id_list=id_list,
+                                                   start=start, max_results=limit,
+                                                   sortBy=recode_sortby(sort_by), sortOrder=sort_order),
+                                         httr::timeout(timeout)),
+                              error=timeout_action)
+    if(is.null(search_result)) return(invisible(NULL))
+
     set_arxiv_time() # set time for last call to arXiv
 
     # convert XML results to a list

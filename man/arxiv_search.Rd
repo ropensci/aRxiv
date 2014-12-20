@@ -7,7 +7,7 @@
 arxiv_search(query = NULL, id_list = NULL, start = 0, limit = 10,
   sort_by = c("submitted", "updated", "relevance"), ascending = TRUE,
   batchsize = 100, force = FALSE, output_format = c("data.frame", "list"),
-  sep = "|")
+  sep = "|", timeout = 10)
 }
 \arguments{
 \item{query}{Search pattern as a string; a vector of such strings
@@ -35,6 +35,9 @@ provided)}
 \item{sep}{String to use to separate multiple authors,
 affiliations, DOI links, and categories, in the case that
 \code{output_format="data.frame"}.}
+
+\item{timeout}{Maximum time (in seconds) too allow for connection
+to arXiv, to avoid hanging.}
 }
 \value{
 If \code{output_format="data.frame"}, the result is a data
