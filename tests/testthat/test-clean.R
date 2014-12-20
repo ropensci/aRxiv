@@ -9,14 +9,18 @@ query <- "lastUpdatedDate:[199701010000 TO 199701012400]"
 # ignore search_info attribute and class
 expect_equal(omit_attr(arxiv_count(query)), 20)
 
-# do raw search to test parsing
-library(httr)
-query_url <- "http://export.arxiv.org/api/query"
-delay_if_necessary()
-z <- POST(query_url, body=list(search_query=query,
-                               start=0, max_results=20,
-                               sort_by="submitted"))
-z <- get_entries(result2list(z))
+# do this only if not on CRAN
+on_cran <- Sys.getenv("NOT_CRAN")!="true"
+if(!on_cran) {
+    # do raw search to test parsing
+    query_url <- "http://export.arxiv.org/api/query"
+    delay_if_necessary()
+
+    z <- httr::POST(query_url, body=list(search_query=query,
+                                         start=0, max_results=20,
+                                         sort_by="submitted"))
+    z <- get_entries(result2list(z))
+}
 
 test_that("clean_authors works right", {
     skip_on_cran()
