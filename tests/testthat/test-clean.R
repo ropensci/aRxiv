@@ -4,14 +4,15 @@ context("cleaning the records")
 old_delay <- getOption("aRxiv_delay")
 options(aRxiv_delay=0.5)
 
-# count papers on 1997-01-01
-query <- "lastUpdatedDate:[199701010000 TO 199701012400]"
-# ignore search_info attribute and class
-expect_equal(omit_attr(arxiv_count(query)), 20)
-
 # do this only if not on CRAN
 on_cran <- Sys.getenv("NOT_CRAN")!="true"
 if(!on_cran) {
+    # count papers on 1997-01-01
+    query <- "lastUpdatedDate:[199701010000 TO 199701012400]"
+
+    # ignore search_info attribute and class
+    expect_equal(omit_attr(arxiv_count(query)), 20)
+
     # do raw search to test parsing
     query_url <- "http://export.arxiv.org/api/query"
     delay_if_necessary()
