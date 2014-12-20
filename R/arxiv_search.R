@@ -23,8 +23,6 @@
 #' @param sep String to use to separate multiple authors,
 #' affiliations, DOI links, and categories, in the case that
 #' \code{output_format="data.frame"}.
-#' @param timeout Maximum time (in seconds) too allow for connection
-#' to arXiv, to avoid hanging.
 #'
 #' @export
 #'
@@ -93,8 +91,7 @@ arxiv_search <-
 function(query=NULL, id_list=NULL, start=0, limit=10,
          sort_by=c("submitted", "updated", "relevance"),
          ascending=TRUE, batchsize=100, force=FALSE,
-         output_format=c("data.frame", "list"), sep="|",
-         timeout=10)
+         output_format=c("data.frame", "list"), sep="|")
 {
     query_url <- "http://export.arxiv.org/api/query"
 
@@ -139,7 +136,7 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
                                          body=list(search_query=query, id_list=id_list,
                                                    start=start, max_results=limit,
                                                    sortBy=recode_sortby(sort_by), sortOrder=sort_order),
-                                         httr::timeout(timeout)),
+                                         httr::timeout(get_arxiv_timeout())),
                               error=timeout_action)
     if(is.null(search_result)) return(invisible(NULL))
 

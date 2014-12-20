@@ -4,7 +4,7 @@
 \alias{arxiv_count}
 \title{Count number of results for a given search}
 \usage{
-arxiv_count(query = NULL, id_list = NULL, timeout = 10)
+arxiv_count(query = NULL, id_list = NULL)
 }
 \arguments{
 \item{query}{Search pattern as a string; a vector of such strings is
@@ -12,9 +12,6 @@ also allowed, in which case the elements are combined with \code{AND}.}
 
 \item{id_list}{arXiv doc IDs, as comma-delimited string or a vector
 of such strings}
-
-\item{timeout}{Maximum time (in seconds) too allow for connection
-to arXiv, to avoid hanging.}
 }
 \value{
 Number of results (integer). An attribute

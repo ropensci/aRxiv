@@ -7,8 +7,6 @@
 #' also allowed, in which case the elements are combined with \code{AND}.
 #' @param id_list arXiv doc IDs, as comma-delimited string or a vector
 #' of such strings
-#' @param timeout Maximum time (in seconds) too allow for connection
-#' to arXiv, to avoid hanging.
 #'
 #' @export
 #'
@@ -35,7 +33,7 @@
 #' }
 #' \dontshow{options(aRxiv_delay=old_delay)}
 arxiv_count <-
-function(query=NULL, id_list=NULL, timeout=10)
+function(query=NULL, id_list=NULL)
 {
     query_url <- "http://export.arxiv.org/api/query"
 
@@ -49,7 +47,7 @@ function(query=NULL, id_list=NULL, timeout=10)
     search_result <- tryCatch(httr::POST(query_url,
                                          body=list(search_query=query, id_list=id_list,
                                                    start=0, max_gresults=0),
-                                         httr::timeout(timeout)),
+                                         httr::timeout(get_arxiv_timeout())),
                               error=timeout_action)
     if(is.null(search_result)) return(invisible(NULL))
 
