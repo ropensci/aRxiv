@@ -217,7 +217,7 @@ arxiv_count('au:Peter au:Hall')
 ```
 
 ```
-## [1] 14860
+## [1] 14883
 ```
 
 ```r
@@ -225,7 +225,7 @@ arxiv_count('au:Peter OR au:Hall')
 ```
 
 ```
-## [1] 14860
+## [1] 14883
 ```
 
 ```r
@@ -241,7 +241,7 @@ arxiv_count('au:Hall ANDNOT au:Peter')
 ```
 
 ```
-## [1] 1292
+## [1] 1294
 ```
 
 It appears that in the author field (and many other fields) you must
@@ -261,7 +261,7 @@ arxiv_count('au:P AND au:Hall')
 ```
 
 ```
-## [1] 567
+## [1] 568
 ```
 
 ```r
@@ -310,7 +310,7 @@ arxiv_count('cat:stat.AP')
 ```
 
 ```
-## [1] 3360
+## [1] 3367
 ```
 
 ```r
@@ -318,7 +318,7 @@ arxiv_count('cat:stat*')
 ```
 
 ```
-## [1] 17853
+## [1] 17901
 ```
 
 ### Dates and ranges of dates
@@ -541,6 +541,7 @@ are combined.
   [MIT](https://github.com/ropensci/aRxiv/blob/master/LICENSE)
 - Report bugs or suggestions improvements by [submitting an issue](https://github.com/ropensci/aRxiv/issues) to
   [our GitHub repository for aRxiv](https://github.com/ropensci/aRxiv).
+
 
 
 
