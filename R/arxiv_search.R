@@ -103,7 +103,7 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     output_format <- match.arg(output_format)
 
     if(is.null(start)) start <- 0
-    if(is.null(limit)) limit <- arxiv_count(query, list)
+    if(is.null(limit)) limit <- arxiv_count(query, id_list)
 
     stopifnot(start >= 0)
     stopifnot(limit >= 0)
