@@ -22,13 +22,9 @@ set_message_on_timeout <-
 
 # action if arxiv times out
 timeout_action <-
-    function(e)
+    function()
 {
-    if(message_on_timeout()) {
-        message(e)
-        cat("\n")
-    }
-    else stop(e)
+    if(!message_on_timeout()) stop()
 
     NULL
 }

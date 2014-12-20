@@ -132,13 +132,15 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     # do search
     # (extra messy to avoid possible problems when testing on CRAN
     #    timeout_action defined in timeout.R)
-    search_result <- tryCatch(httr::POST(query_url,
-                                         body=list(search_query=query, id_list=id_list,
-                                                   start=start, max_results=limit,
-                                                   sortBy=recode_sortby(sort_by), sortOrder=sort_order),
-                                         httr::timeout(get_arxiv_timeout())),
-                              error=timeout_action)
-    if(is.null(search_result)) return(invisible(NULL))
+    search_result <- try(httr::POST(query_url,
+                                    body=list(search_query=query, id_list=id_list,
+                                              start=start, max_results=limit,
+                                              sortBy=recode_sortby(sort_by), sortOrder=sort_order),
+                                    httr::timeout(get_arxiv_timeout())))
+    if(class(search_result) == "try-error") {
+        timeout_action()
+        return(invisible(NULL))
+    }
 
     set_arxiv_time() # set time for last call to arXiv
 
