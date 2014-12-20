@@ -1,4 +1,3 @@
-
 context("cleaning the records")
 
 # shorter delay to speed tests
@@ -20,6 +19,7 @@ z <- POST(query_url, body=list(search_query=query,
 z <- get_entries(result2list(z))
 
 test_that("clean_authors works right", {
+    skip_on_cran()
 
     cleaned_auth <- clean_authors(z[[1]])
     expected_result <- list(names="J. Michael Owen|Jens V. Villumsen",
@@ -38,6 +38,7 @@ test_that("clean_authors works right", {
 })
 
 test_that("clean_links works right", {
+    skip_on_cran()
 
     cleaned_links <- clean_links(z[[1]])
     expected_result <- list(link_abstract="http://arxiv.org/abs/astro-ph/9603156v3",
@@ -68,6 +69,7 @@ test_that("clean_links works right", {
 
 
 test_that("clean_categories works right", {
+    skip_on_cran()
 
     cleaned_categories <- clean_categories(z[[1]])
     expected_result <- "astro-ph"
@@ -90,6 +92,7 @@ test_that("clean_categories works right", {
 })
 
 test_that("clean_record works right", {
+    skip_on_cran()
 
     clean_record <- clean_record(z[[1]])
     expected_result <- c(id="astro-ph/9603156v3",
@@ -155,6 +158,7 @@ test_that("clean_record works right", {
 })
 
 test_that("listresult2df works right", {
+    skip_on_cran()
 
     zdf <- listresult2df(z)
 

@@ -1,7 +1,7 @@
-
 context("basic searches")
 
 test_that("empty results don't give an error", {
+    skip_on_cran()
 
     # shorter delay to speed tests
     old_delay <- getOption("aRxiv_delay")
@@ -25,6 +25,7 @@ test_that("empty results don't give an error", {
 
 
 test_that("weird results for IDs not found", {
+    skip_on_cran()
 
     # shorter delay to speed tests
     old_delay <- getOption("aRxiv_delay")
@@ -55,6 +56,7 @@ test_that("weird results for IDs not found", {
 
 
 test_that("total_result attribute is correct", {
+    skip_on_cran()
 
     # shorter delay to speed tests
     old_delay <- getOption("aRxiv_delay")

@@ -1,7 +1,7 @@
-
 context("arxiv_errors")
 
 test_that("arxiv_error_message gives right info", {
+    skip_on_cran()
 
     # shorter delay to speed tests
     old_delay <- getOption("aRxiv_delay")
@@ -25,6 +25,7 @@ test_that("arxiv_error_message gives right info", {
 })
 
 test_that("arxiv_search throws error", {
+    skip_on_cran()
 
     # shorter delay to speed tests
     old_delay <- getOption("aRxiv_delay")
