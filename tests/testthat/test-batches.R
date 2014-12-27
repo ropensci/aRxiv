@@ -1,7 +1,7 @@
-
 context("arxiv_search in batches")
 
 test_that("batch search gives same result as all together", {
+    skip_on_cran()
 
     # shorter delay to speed tests
     old_delay <- getOption("aRxiv_delay")

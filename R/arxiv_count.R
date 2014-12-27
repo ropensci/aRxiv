@@ -40,11 +40,19 @@ function(query=NULL, id_list=NULL)
     query <- paste_query(query)
     id_list <- paste_id_list(id_list)
 
-    # do search
     delay_if_necessary()
-    search_result <- httr::POST(query_url,
-                                body=list(search_query=query, id_list=id_list,
-                                          start=0, max_results=0))
+    # do search
+    # (extra messy to avoid possible problems when testing on CRAN
+    #    timeout_action defined in timeout.R)
+    search_result <- try(httr::POST(query_url,
+                                    body=list(search_query=query, id_list=id_list,
+                                              start=0, max_gresults=0),
+                                    httr::timeout(get_arxiv_timeout())))
+    if(class(search_result) == "try-error") {
+        timeout_action()
+        return(invisible(NULL))
+    }
+
     set_arxiv_time() # set time for last call to arXiv
 
     # convert XML results to a list

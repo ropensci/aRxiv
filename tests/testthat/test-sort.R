@@ -1,7 +1,7 @@
-
 context("sort_by and sort_order args work")
 
 test_that("sort by publishedDate", {
+    skip_on_cran()
 
     # shorter delay to speed tests
     old_delay <- getOption("aRxiv_delay")
@@ -24,6 +24,7 @@ test_that("sort by publishedDate", {
 
 
 test_that("sort by lastUpdatedDate", {
+    skip_on_cran()
 
     # shorter delay to speed tests
     old_delay <- getOption("aRxiv_delay")

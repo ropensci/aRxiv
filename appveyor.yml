@@ -21,3 +21,6 @@ notifications:
     auth_token:
       secure: Da1t3XpyPl/xPpY98Ay83DJc6J0p8jsdu5GB3dMVBypGXGSss6D/4rzHdCmN+xNu
     channel: builds
+
+environment:
+  NOT_CRAN: true

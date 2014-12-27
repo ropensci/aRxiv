@@ -1,6 +1,7 @@
 context("search range of dates")
 
 test_that("search date ranges is quirky", {
+    skip_on_cran()
 
     # shorter delay to speed tests
     old_delay <- getOption("aRxiv_delay")

@@ -387,13 +387,13 @@ default is <code>OR</code>.</p>
 <pre><code class="r">arxiv_count(&#39;au:Peter au:Hall&#39;)
 </code></pre>
 
-<pre><code>## [1] 14860
+<pre><code>## [1] 14883
 </code></pre>
 
 <pre><code class="r">arxiv_count(&#39;au:Peter OR au:Hall&#39;)
 </code></pre>
 
-<pre><code>## [1] 14860
+<pre><code>## [1] 14883
 </code></pre>
 
 <pre><code class="r">arxiv_count(&#39;au:Peter AND au:Hall&#39;)
@@ -405,7 +405,7 @@ default is <code>OR</code>.</p>
 <pre><code class="r">arxiv_count(&#39;au:Hall ANDNOT au:Peter&#39;)
 </code></pre>
 
-<pre><code>## [1] 1292
+<pre><code>## [1] 1294
 </code></pre>
 
 <p>It appears that in the author field (and many other fields) you must
@@ -420,7 +420,7 @@ search full words, and that wild cards not allowed.</p>
 <pre><code class="r">arxiv_count(&#39;au:P AND au:Hall&#39;)
 </code></pre>
 
-<pre><code>## [1] 567
+<pre><code>## [1] 568
 </code></pre>
 
 <pre><code class="r">arxiv_count(&#39;au:&quot;P Hall&quot;&#39;)
@@ -459,13 +459,13 @@ or use the <code>*</code> wildcard.</p>
 <pre><code class="r">arxiv_count(&#39;cat:stat.AP&#39;)
 </code></pre>
 
-<pre><code>## [1] 3360
+<pre><code>## [1] 3367
 </code></pre>
 
 <pre><code class="r">arxiv_count(&#39;cat:stat*&#39;)
 </code></pre>
 
-<pre><code>## [1] 17853
+<pre><code>## [1] 17901
 </code></pre>
 
 <h3>Dates and ranges of dates</h3>

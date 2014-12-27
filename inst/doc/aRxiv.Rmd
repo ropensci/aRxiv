@@ -14,13 +14,12 @@ quantitative finance, and statistics. The
 
 Note that the arXiv API _does not_ require an API key.
 
-```{r check_arxiv_connection, include=FALSE}
-# check connection to arXiv; abort if no connection
-library(knitr)
-library(aRxiv)
-if(!can_arxiv_connect()) {
-    opts_knit$set(stop_on_error = 2L)
-    stop("Cannot connect to arXiv")
+```{r be_graceful_on_cran, include=FALSE}
+# if on cran, avoid errors when connection problems
+on_cran <- Sys.getenv("NOT_CRAN")!="true"
+if(on_cran) {
+    aRxiv:::set_arxiv_timeout(1)
+    aRxiv:::set_message_on_timeout(TRUE)
 }
 ```
 
@@ -380,6 +379,12 @@ are combined.
   [our GitHub repository for aRxiv](https://github.com/ropensci/aRxiv).
 
 
+```{r reset_to_defaults, include=FALSE}
+if(on_cran) {
+    aRxiv:::set_arxiv_timeout(30)
+    aRxiv:::set_message_on_timeout(FALSE)
+}
+```
 
 <!-- the following to make it look nicer -->
 <link href="http://kbroman.org/qtlcharts/assets/vignettes/vignette.css" rel="stylesheet"></link>
