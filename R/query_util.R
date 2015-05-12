@@ -13,3 +13,10 @@ function(id_list)
     if(is.null(id_list) || length(id_list)==1) return(id_list)
     paste(id_list, collapse=",")
 }
+
+# drop NULL values from a list
+drop_nulls <-
+function(list)
+{
+    list[!vapply(list, is.null, TRUE)]
+}
