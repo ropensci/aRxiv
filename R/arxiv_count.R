@@ -60,7 +60,6 @@ function(query=NULL, id_list=NULL)
     # convert XML results to a list
     listresult <- result2list(search_result)
 
-    return(listresult)
     # check for arXiv error
     error_message <- arxiv_error_message(listresult)
     if(!is.null(error_message)) {
