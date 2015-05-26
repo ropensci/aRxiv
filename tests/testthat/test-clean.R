@@ -21,6 +21,20 @@ if(!on_cran) {
                                          start=0, max_results=20,
                                          sort_by="submitted"))
     z <- get_entries(result2list(z))
+
+    # force a particular order
+    id <- sapply(z, "[[", "id")
+    exp_id <- c("http://arxiv.org/abs/astro-ph/9603156v3", "http://arxiv.org/abs/astro-ph/9612225v2",
+                "http://arxiv.org/abs/astro-ph/9612227v2", "http://arxiv.org/abs/astro-ph/9701001v1",
+                "http://arxiv.org/abs/astro-ph/9701002v1", "http://arxiv.org/abs/cond-mat/9705215v1",
+                "http://arxiv.org/abs/cs/9701101v1", "http://arxiv.org/abs/cs/9701102v1",
+                "http://arxiv.org/abs/gr-qc/9701001v1", "http://arxiv.org/abs/gr-qc/9701002v1",
+                "http://arxiv.org/abs/hep-th/9511114v4", "http://arxiv.org/abs/hep-th/9612056v2",
+                "http://arxiv.org/abs/hep-th/9701002v1", "http://arxiv.org/abs/hep-th/9702183v2",
+                "http://arxiv.org/abs/hep-th/9703045v3", "http://arxiv.org/abs/hep-th/9706029v1",
+                "http://arxiv.org/abs/physics/9701001v1", "http://arxiv.org/abs/q-alg/9610003v2",
+                "http://arxiv.org/abs/q-alg/9701001v1", "http://arxiv.org/abs/quant-ph/9701001v1")
+    z <- z[match(exp_id, id)]
 }
 
 test_that("clean_authors works right", {
