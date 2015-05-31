@@ -21,6 +21,7 @@ Imports:
 Suggests:
     devtools,
     knitr,
+    rmarkdown,
     roxygen2,
     testthat
 VignetteBuilder: knitr

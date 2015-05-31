@@ -1,9 +1,11 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{aRxiv tutorial}
--->
-
-# aRxiv tutorial
+---
+title: aRxiv tutorial
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{aRxiv tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8](inputenc)
+---
 
 [arXiv](http://arxiv.org) is a repository of electronic preprints for
 computer science, mathematics, physics, quantitative biology,
@@ -36,7 +38,7 @@ via [CRAN](http://cran.r-project.org):
 install.packages("aRxiv")
 ```
 
-Or use `devtools::install_github()` to get the (more recent) version
+Or use `devtools::install_github()` to get the (possibly more recent) version
 at [GitHub](https://github.com/rOpenSci/aRxiv):
 
 ```{r install_pkgs, eval=FALSE}
@@ -385,6 +387,3 @@ if(on_cran) {
     aRxiv:::set_message_on_timeout(FALSE)
 }
 ```
-
-<!-- the following to make it look nicer -->
-<link href="http://kbroman.org/qtlcharts/assets/vignettes/vignette.css" rel="stylesheet"></link>
