@@ -4,10 +4,10 @@ all: doc notes data vignettes
 notes: inst/ToDo.html
 
 inst/ToDo.html: inst/ToDo.md
-	R -e 'library(markdown);markdownToHTML("$<", "$@")'
+	R -e 'markdown::markdownToHTML("$<", "$@")'
 
 doc:
-	R -e 'library(devtools);document()'
+	R -e 'devtools::document()'
 
 vignettes: inst/doc/aRxiv.html
 
