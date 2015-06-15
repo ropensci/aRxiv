@@ -1,0 +1,46 @@
+aRxiv 0.5.10
+------------
+
+BUG FIXES
+
+* Fix a small problem related to a new behavior in a pre-release
+  version of the httr package. (httr is no longer dropping NULLs from
+  the POST search body.)
+
+* Fix a test error, that arose due to a change in the order of records
+  returned by a query.
+
+
+aRxiv 0.5.8
+------------
+
+BUG FIXES
+
+* arXiv connection errors was causing test errors. Added a function to
+  test connection to arXiv; tests are skipped if we can't connect.
+
+* try to avoid many of the tests on CRAN, where intermittent test
+  errors will cause universal headaches.
+
+
+aRxiv 0.5.5
+------------
+
+BUG FIXES
+
+* Fix mistakes in the table in the help for arxiv_search that
+  describes the output.
+
+* When searching in batches, arxiv_search could return more than the
+  requested limit.
+
+* Fix tests of date range; a new 2013 arXiv manuscript changed the
+  expected count.
+
+
+aRxiv 0.5.2
+------------
+
+NEW FEATURES
+
+* released to CRAN
