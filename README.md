@@ -1,5 +1,6 @@
 [![Travis build status](https://travis-ci.org/ropensci/aRxiv.png?branch=master)](https://travis-ci.org/ropensci/aRxiv)
 [![Appveyor build status](https://ci.appveyor.com/api/projects/status/kkqyqak224a98jlh)](https://ci.appveyor.com/project/karthik/arxiv)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/aRxiv)](http://cran.r-project.org/package=aRxiv)
 
 ## R interface to arXiv
 
