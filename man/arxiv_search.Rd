@@ -98,6 +98,7 @@ z$journal_ref
 z <- arxiv_search("submittedDate:[199701010000 TO 199701012400]", limit=2)
 }
 \dontshow{options(aRxiv_delay=old_delay)}
+
 }
 \seealso{
 \code{\link{arxiv_count}}, \code{\link{arxiv_open}},

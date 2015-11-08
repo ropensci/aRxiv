@@ -20,5 +20,6 @@ Check for connection to arXiv API
 \donttest{
 can_arxiv_connect(2)
 }
+
 }
 

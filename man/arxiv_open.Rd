@@ -27,6 +27,7 @@ is 3 sec.
 \examples{
 \donttest{z <- arxiv_search('au:"Peter Hall" AND ti:deconvolution')
 arxiv_open(z)}
+
 }
 \seealso{
 \code{\link{arxiv_search}}

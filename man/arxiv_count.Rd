@@ -37,6 +37,7 @@ arxiv_count(query = 'au:"Peter Hall" AND cat:stat*')
 arxiv_count("submittedDate:[2013 TO 2014]")
 }
 \dontshow{options(aRxiv_delay=old_delay)}
+
 }
 \seealso{
 \code{\link{arxiv_search}}, \code{\link{query_terms}},
