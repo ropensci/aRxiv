@@ -17,12 +17,11 @@
 #'
 #' @seealso \code{\link{arxiv_search}}
 #'
-#' @export
-#'
 #' @examples
 #' \donttest{z <- arxiv_search('au:"Peter Hall" AND ti:deconvolution')
 #' arxiv_open(z)}
-
+#'
+#' @export
 arxiv_open <-
 function(search_results, limit=20)
 {

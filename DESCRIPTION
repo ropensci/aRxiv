@@ -1,7 +1,7 @@
 Package: aRxiv
 Title: Interface to the arXiv API
-Version: 0.5.12
-Date: 2015-06-15
+Version: 0.5.13
+Date: 2015-11-08
 Authors@R: c(person("Karthik", "Ram", role="aut",
     email="karthik.ram@gmail.com"),
     person("Karl", "Broman", rol=c("aut","cre"),
@@ -26,3 +26,4 @@ Suggests:
     testthat
 VignetteBuilder: knitr
 LazyData: true
+RoxygenNote: 5.0.0

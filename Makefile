@@ -1,10 +1,5 @@
-all: doc notes data vignettes
-.PHONY: notes doc data vignettes
-
-notes: inst/ToDo.html
-
-inst/ToDo.html: inst/ToDo.md
-	R -e 'markdown::markdownToHTML("$<", "$@")'
+all: doc data vignettes
+.PHONY: doc data vignettes
 
 doc:
 	R -e 'devtools::document()'

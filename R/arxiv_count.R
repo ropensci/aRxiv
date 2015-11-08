@@ -8,8 +8,6 @@
 #' @param id_list arXiv doc IDs, as comma-delimited string or a vector
 #' of such strings
 #'
-#' @export
-#'
 #' @return Number of results (integer). An attribute
 #' \code{"search_info"} contains information about the search
 #' parameters and the time at which it was performed.
@@ -32,6 +30,8 @@
 #' arxiv_count("submittedDate:[2013 TO 2014]")
 #' }
 #' \dontshow{options(aRxiv_delay=old_delay)}
+#'
+#' @export
 arxiv_count <-
 function(query=NULL, id_list=NULL)
 {

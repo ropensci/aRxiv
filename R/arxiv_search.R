@@ -24,8 +24,6 @@
 #' affiliations, DOI links, and categories, in the case that
 #' \code{output_format="data.frame"}.
 #'
-#' @export
-#'
 #' @return If \code{output_format="data.frame"}, the result is a data
 #' frame with each row being a manuscript and columns being the
 #' various fields.
@@ -87,6 +85,8 @@
 #' z <- arxiv_search("submittedDate:[199701010000 TO 199701012400]", limit=2)
 #' }
 #' \dontshow{options(aRxiv_delay=old_delay)}
+#'
+#' @export
 arxiv_search <-
 function(query=NULL, id_list=NULL, start=0, limit=10,
          sort_by=c("submitted", "updated", "relevance"),
