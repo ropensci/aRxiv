@@ -226,7 +226,7 @@ test_that("listresult2df works right", {
                paste0("Comment on ``Additional analytically exact solutions for three-anyons''\n  and ``Fermion Ground State of Three ",
                       "Particles in a Harmonic Potential Well\n  and Its Anyon Interpolation''"),
                "On the free field realization of $WBC_n$ algebras", "Coadjoint orbits of the Virasoro algebra and the global Liouville\n  equation",
-               "Spontaneous Symmetry Breaking in SO(3) Gauge Theory to Discrete Subgroups",
+               "Spontaneous Symmetry Breaking in SO(3) Gauge Theory to Discrete\n  Subgroups",
                "Pick-up ion dynamics at the structured quasi-perpendicular shock",
                "Advances in Quantum and Braided Geometry", "Quantum Geometry and the Planck Scale",
                "Strengths and Weaknesses of Quantum Computing")
