@@ -1,6 +1,9 @@
 language: r
 sudo: required
 
+after_success:
+- Rscript -e 'covr::codecov()'
+
 notifications:
   email:
     on_success: change
