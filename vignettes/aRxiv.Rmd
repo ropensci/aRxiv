@@ -7,12 +7,12 @@ vignette: >
   \usepackage[utf8](inputenc)
 ---
 
-[arXiv](http://arxiv.org) is a repository of electronic preprints for
+[arXiv](https://arxiv.org) is a repository of electronic preprints for
 computer science, mathematics, physics, quantitative biology,
 quantitative finance, and statistics. The
 [aRxiv package](https://github.com/ropensci/aRxiv) provides an
-[R](http://www.r-project.org) interface to the
-[arXiv API](http://arxiv.org/help/api/index).
+[R](https://www.r-project.org) interface to the
+[arXiv API](https://arxiv.org/help/api/index).
 
 Note that the arXiv API _does not_ require an API key.
 
@@ -32,7 +32,7 @@ options(aRxiv_delay=0.5)
 ## Installation
 
 You can install the [aRxiv package](https://github.com/rOpenSci/aRxiv)
-via [CRAN](http://cran.r-project.org):
+via [CRAN](https://cran.r-project.org):
 
 ```{r install_from_cran, eval=FALSE}
 install.packages("aRxiv")
@@ -49,7 +49,7 @@ install_github("ropensci/aRxiv")
 
 ## Basic use
 
-Use `arxiv_search()` to search [arXiv](http://arxiv.org),
+Use `arxiv_search()` to search [arXiv](https://arxiv.org),
 `arxiv_count()` to get a simple count of manuscripts matching a
 query, and `arxiv_open()` to open the abstract pages for a set of
 results from `arxiv_search()`.
@@ -60,7 +60,7 @@ examples.
 Suppose we wanted to identify all arXiv manuscripts with &ldquo;`Peter
 Hall`&rdquo; as an author. It is best to first get a count, so that we have
 a sense of how many records the search will return. (Peter Hall is
-&ldquo;[among the world's most prolific and highly cited authors in both probability and statistics](http://en.wikipedia.org/wiki/Peter_Gavin_Hall).&rdquo;)
+&ldquo;[among the world's most prolific and highly cited authors in both probability and statistics](https://en.wikipedia.org/wiki/Peter_Gavin_Hall).&rdquo;)
 We first use `library()` to load the aRxiv package and then
 `arxiv_count()` to get the count.
 
@@ -135,7 +135,7 @@ arxiv_open(deconv)
 The two basic arguments to `arxiv_count()` and `arxiv_search()` are
 `query`, a
 character string representing the search, and `id_list`, a list of
-[arXiv manuscript identifiers](http://arxiv.org/help/arxiv_identifier).
+[arXiv manuscript identifiers](https://arxiv.org/help/arxiv_identifier).
 
 - If only `query` is provided, manuscripts matching that query are
   returned.
@@ -288,19 +288,19 @@ res$updated
 
 ### Metadata limitations
 
-The [arXiv metadata](http://arxiv.org/help/prep) has a number of
+The [arXiv metadata](https://arxiv.org/help/prep) has a number of
 limitations, the key issue being that it is author-supplied and so not
 necessarily consistent between records.
 
 Authors' names may vary between records (e.g., T. P. Speed vs. Terry
 Speed vs. Terence P. Speed). Further, arXiv provides no ability to
 distinguish multiple individuals with the same name (c.f.,
-[ORCID](http://orcid.org)).
+[ORCID](https://orcid.org)).
 
 Authors' institutional affiliations are mostly missing.  The arXiv
 submission form does not include an affiliation field; affiliations
 are entered within the author field, in parentheses.  The
-[metadata instructions](http://arxiv.org/help/prep#author) may not be
+[metadata instructions](https://arxiv.org/help/prep#author) may not be
 widely read.
 
 There are no key words; you are stuck with searching the free text in
@@ -314,7 +314,7 @@ incomplete or inappropriate.
 
 Care should be taken to avoid multiple requests to the arXiv API in a
 short period of time. The
-[arXiv API user manual](http://arxiv.org/help/api/user-manual) states:
+[arXiv API user manual](https://arxiv.org/help/api/user-manual) states:
 
 > In cases where the API needs to be called multiple times in a row,
 > we encourage you to play nice and incorporate a 3 second delay in

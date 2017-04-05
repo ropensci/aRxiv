@@ -1,24 +1,24 @@
 [![Travis build status](https://travis-ci.org/ropensci/aRxiv.png?branch=master)](https://travis-ci.org/ropensci/aRxiv)
 [![Appveyor build status](https://ci.appveyor.com/api/projects/status/kkqyqak224a98jlh)](https://ci.appveyor.com/project/karthik/arxiv)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/aRxiv)](http://cran.r-project.org/package=aRxiv)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/aRxiv)](https://cran.r-project.org/package=aRxiv)
 [![codecov.io](https://codecov.io/github/ropensci/aRxiv/coverage.svg?branch=master)](https://codecov.io/github/ropensci/aRxiv?branch=master)
 
 ## R interface to arXiv
 
-[arXiv](http://arxiv.org) is a repository of electronic preprints for
+[arXiv](https://arxiv.org) is a repository of electronic preprints for
 computer science, mathematics, physics, quantitative biology,
 quantitative finance, and statistics. The
-[aRxiv](http://github.com/ropensci/aRxiv) package is an R interface to
-the [arXiv API](http://arxiv.org/help/api/index).
+[aRxiv](https://github.com/ropensci/aRxiv) package is an R interface to
+the [arXiv API](https://arxiv.org/help/api/index).
 
 Note that the arXiv API _does not_ require an API key.
 
-The [aRxiv](http://github.com/ropensci/aRxiv) package is in early development.
+The [aRxiv](https://github.com/ropensci/aRxiv) package is in early development.
 
 
 ### Installation
 
-You can install the package via [CRAN](http://cran.r-project.org):
+You can install the package via [CRAN](https://cran.r-project.org):
 
 ```r
 install.packages("aRxiv")
@@ -46,7 +46,7 @@ str(z)
 
 ### Tutorial
 
-An aRxiv tutorial is available at the rOpenSci website, [here](http://ropensci.org/tutorials/arxiv_tutorial.html).
+An aRxiv tutorial is available at the rOpenSci website, [here](https://ropensci.org/tutorials/arxiv_tutorial.html).
 
 To view the tutorial from R, use:
 
@@ -57,17 +57,17 @@ vignette("aRxiv", "aRxiv")
 
 ### Links
 
-* [arXiv](http://arxiv.org)
-* [arXiv API](http://arxiv.org/help/api/index)
-* [arXiv API user manual](http://arxiv.org/help/api/user-manual)
-* [Bulk data access to arXiv](http://arxiv.org/help/bulk_data)
-* [Bulk data access to arXiv metadata via OAI-PMH](http://arxiv.org/help/oa/index)
-* [Bulk data access to arXiv PDFs and source docs](http://arxiv.org/help/bulk_data_s3)
+* [arXiv](https://arxiv.org)
+* [arXiv API](https://arxiv.org/help/api/index)
+* [arXiv API user manual](https://arxiv.org/help/api/user-manual)
+* [Bulk data access to arXiv](https://arxiv.org/help/bulk_data)
+* [Bulk data access to arXiv metadata via OAI-PMH](https://arxiv.org/help/oa/index)
+* [Bulk data access to arXiv PDFs and source docs](https://arxiv.org/help/bulk_data_s3)
 
 
 ### License
 
-Licensed under the [MIT license](http://cran.r-project.org/web/licenses/MIT). ([More information here](http://en.wikipedia.org/wiki/MIT_License).)
+Licensed under the [MIT license](https://cran.r-project.org/web/licenses/MIT). ([More information here](https://en.wikipedia.org/wiki/MIT_License).)
 
 ---
 
@@ -75,4 +75,4 @@ This package is part of a richer suite called [fulltext](https://github.com/rope
 
 ---
 
-[![ropensci footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![ropensci footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
