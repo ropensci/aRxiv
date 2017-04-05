@@ -32,4 +32,3 @@ arxiv_open(z)}
 \seealso{
 \code{\link{arxiv_search}}
 }
-

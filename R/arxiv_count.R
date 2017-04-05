@@ -60,17 +60,22 @@ function(query=NULL, id_list=NULL)
     # convert XML results to a list
     listresult <- result2list(search_result)
 
-    # check for arXiv error
-    error_message <- arxiv_error_message(listresult)
-    if(!is.null(error_message)) {
-        stop("arXiv error: ", error_message)
+    # handle null return
+    if(is.null(listresult)) result <- 0
+    else {
+
+        # check for arXiv error
+        error_message <- arxiv_error_message(listresult)
+        if(!is.null(error_message)) {
+            stop("arXiv error: ", error_message)
+        }
+
+        # check for general http error
+        httr::stop_for_status(search_result)
+
+        # return totalResults
+        result <- as.integer(listresult$totalResults)
     }
-
-    # check for general http error
-    httr::stop_for_status(search_result)
-
-    # return totalResults
-    result <- as.integer(listresult$totalResults)
 
     attr(result, "search_info") <-
         search_attributes(query, id_list, NULL, NULL, NULL, NULL)

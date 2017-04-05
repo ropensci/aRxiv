@@ -104,4 +104,3 @@ z <- arxiv_search("submittedDate:[199701010000 TO 199701012400]", limit=2)
 \code{\link{arxiv_count}}, \code{\link{arxiv_open}},
 \code{\link{query_terms}}, \code{\link{arxiv_cats}}
 }
-

@@ -1,8 +1,10 @@
-
 # convert XML result from arxiv_search to a list format
 result2list <-
 function(searchresult)
 {
+    content <- httr::content(searchresult, "text")
+    if(is.na(content)) return(NULL)
+
     doc <- XML::xmlParse(httr::content(searchresult, "text"), asText=TRUE)
     nodes <- rapply(list(doc), function(a) XML::getNodeSet(a, path="/"),
                     how="replace")
