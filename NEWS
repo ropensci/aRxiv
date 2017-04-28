@@ -1,3 +1,12 @@
+aRxiv 0.5.16
+------------
+
+BUG FIXES
+
+* To eliminate continued pain over empty search queries, just trap
+  them in advance and don't send them to arXiv.
+
+
 aRxiv 0.5.15
 ------------
 
