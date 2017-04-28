@@ -40,6 +40,8 @@ function(query=NULL, id_list=NULL)
     query <- paste_query(query)
     id_list <- paste_id_list(id_list)
 
+    if(is_blank(query) && is_blank(id_list)) return(0)
+
     delay_if_necessary()
     # do search
     # (extra messy to avoid possible problems when testing on CRAN

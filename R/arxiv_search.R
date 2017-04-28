@@ -98,6 +98,8 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     query <- paste_query(query)
     id_list <- paste_id_list(id_list)
 
+    if(is_blank(query) && is_blank(id_list)) return(empty_result())
+
     sort_by <- match.arg(sort_by)
     sort_order <- ifelse(ascending, "ascending", "descending")
     output_format <- match.arg(output_format)
