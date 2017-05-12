@@ -173,7 +173,7 @@ arxiv_count('au:Hall ANDNOT au:Peter')
 ```
 
 It appears that in the author field (and many other fields) you must
-search full words, and that wild cards not allowed.
+search full words, and that wild cards are not allowed.
 
 ```{r illustrate_wildcard}
 arxiv_count('au:P* AND au:Hall')
