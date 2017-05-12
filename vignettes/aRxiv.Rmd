@@ -95,8 +95,8 @@ attr(rec, "total_results")
 The following will get us all `r arxiv_count('au:"Peter Hall"')`
 records.
 
-```{r arxiv_search_limit50}
-rec <- arxiv_search('au:"Peter Hall"', limit=50)
+```{r arxiv_search_limit100}
+rec <- arxiv_search('au:"Peter Hall"', limit=100)
 nrow(rec)
 ```
 

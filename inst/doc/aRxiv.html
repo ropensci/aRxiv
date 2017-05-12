@@ -99,9 +99,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attr</span>(rec, <span class="st">&quot;total_results&quot;</span>)</code></pre></div>
 <pre><code>## [1] 55</code></pre>
 <p>The following will get us all 55 records.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rec &lt;-<span class="st"> </span><span class="kw">arxiv_search</span>(<span class="st">'au:&quot;Peter Hall&quot;'</span>, <span class="dt">limit=</span><span class="dv">50</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rec &lt;-<span class="st"> </span><span class="kw">arxiv_search</span>(<span class="st">'au:&quot;Peter Hall&quot;'</span>, <span class="dt">limit=</span><span class="dv">100</span>)
 <span class="kw">nrow</span>(rec)</code></pre></div>
-<pre><code>## [1] 50</code></pre>
+<pre><code>## [1] 55</code></pre>
 <p><code>arxiv_search()</code> returns a data frame with each row being a single manuscript. The columns are the different fields (e.g., <code>authors</code>, <code>title</code>, <code>abstract</code>, etc.). Fields like <code>authors</code> that contain multiple items will be a single character string with the multiple items separated by a vertical bar (<code>|</code>).</p>
 <p>We might be interested in a more restrictive search, such as for Peter Hall’s arXiv manuscripts that have <code>deconvolution</code> in the title. We use <code>ti:</code> to search the title field, and combine the two with <code>AND</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">deconv &lt;-<span class="st"> </span><span class="kw">arxiv_search</span>(<span class="st">'au:&quot;Peter Hall&quot; AND ti:deconvolution'</span>)
@@ -149,18 +149,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 10 lastUpdatedDate        Date/time of last update, as YYYYMMDDHHMM</code></pre>
 <p>Use a colon (<code>:</code>) to separate the query term from the actual query. Multiple queries can be combined with <code>AND</code>, <code>OR</code>, and <code>ANDNOT</code>. The default is <code>OR</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arxiv_count</span>(<span class="st">'au:Peter au:Hall'</span>)</code></pre></div>
-<pre><code>## [1] 19281</code></pre>
+<pre><code>## [1] 19477</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arxiv_count</span>(<span class="st">'au:Peter OR au:Hall'</span>)</code></pre></div>
-<pre><code>## [1] 19281</code></pre>
+<pre><code>## [1] 19477</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arxiv_count</span>(<span class="st">'au:Peter AND au:Hall'</span>)</code></pre></div>
-<pre><code>## [1] 85</code></pre>
+<pre><code>## [1] 87</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arxiv_count</span>(<span class="st">'au:Hall ANDNOT au:Peter'</span>)</code></pre></div>
-<pre><code>## [1] 1656</code></pre>
-<p>It appears that in the author field (and many other fields) you must search full words, and that wild cards not allowed.</p>
+<pre><code>## [1] 1671</code></pre>
+<p>It appears that in the author field (and many other fields) you must search full words, and that wild cards are not allowed.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arxiv_count</span>(<span class="st">'au:P* AND au:Hall'</span>)</code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arxiv_count</span>(<span class="st">'au:P AND au:Hall'</span>)</code></pre></div>
-<pre><code>## [1] 792</code></pre>
+<pre><code>## [1] 800</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arxiv_count</span>(<span class="st">'au:&quot;P Hall&quot;'</span>)</code></pre></div>
 <pre><code>## [1] 39</code></pre>
 </div>
@@ -178,9 +178,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arxiv_count</span>(<span class="st">'cat:stat'</span>)</code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arxiv_count</span>(<span class="st">'cat:stat.AP'</span>)</code></pre></div>
-<pre><code>## [1] 5398</code></pre>
+<pre><code>## [1] 5497</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arxiv_count</span>(<span class="st">'cat:stat*'</span>)</code></pre></div>
-<pre><code>## [1] 30047</code></pre>
+<pre><code>## [1] 30711</code></pre>
 </div>
 <div id="dates-and-ranges-of-dates" class="section level3">
 <h3>Dates and ranges of dates</h3>
@@ -216,7 +216,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arxiv_count</span>(<span class="st">&quot;cat:14J60&quot;</span>)</code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arxiv_count</span>(<span class="st">&quot;14J60&quot;</span>)</code></pre></div>
-<pre><code>## [1] 469</code></pre>
+<pre><code>## [1] 474</code></pre>
 </div>
 <div id="sorting-results" class="section level2">
 <h2>Sorting results</h2>
@@ -277,7 +277,7 @@ res$updated</code></pre></div>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
