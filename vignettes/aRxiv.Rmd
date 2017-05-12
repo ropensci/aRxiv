@@ -95,8 +95,8 @@ attr(rec, "total_results")
 The following will get us all `r arxiv_count('au:"Peter Hall"')`
 records.
 
-```{r arxiv_search_limit50}
-rec <- arxiv_search('au:"Peter Hall"', limit=50)
+```{r arxiv_search_limit100}
+rec <- arxiv_search('au:"Peter Hall"', limit=100)
 nrow(rec)
 ```
 
@@ -173,7 +173,7 @@ arxiv_count('au:Hall ANDNOT au:Peter')
 ```
 
 It appears that in the author field (and many other fields) you must
-search full words, and that wild cards not allowed.
+search full words, and that wild cards are not allowed.
 
 ```{r illustrate_wildcard}
 arxiv_count('au:P* AND au:Hall')

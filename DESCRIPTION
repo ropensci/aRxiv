@@ -1,7 +1,7 @@
 Package: aRxiv
 Title: Interface to the arXiv API
-Version: 0.5.16
-Date: 2017-04-28
+Version: 0.5.17
+Date: 2017-05-12
 Authors@R: c(person("Karthik", "Ram", role="aut",
     email="karthik.ram@gmail.com"),
     person("Karl", "Broman", rol=c("aut","cre"),
