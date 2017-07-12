@@ -4,3 +4,4 @@ inst/scripts/.RData
 appveyor.yml
 \.Rout$
 inst/ToDo\.html
+^CONDUCT.md$
