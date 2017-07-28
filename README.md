@@ -18,7 +18,7 @@ Note that the arXiv API _does not_ require an API key.
 
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/aRxiv?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/aRxiv)
 [![Travis-CI Build Status](https://travis-ci.org/ropensci/aRxiv.svg?branch=master)](https://travis-ci.org/)
-[![codecov](https://codecov.io/gh/RMHogervorst/aRxiv/branch/master/graph/badge.svg)](https://codecov.io/gh/RMHogervorst/aRxiv)
+[![codecov](https://codecov.io/gh/ropensci/aRxiv/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/aRxiv)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/aRxiv?color=blue)](https://github.com/metacran/cranlogs.app)
 
 __Installation instructions__
