@@ -8,10 +8,10 @@
 #' @usage data(arxiv_cats)
 #'
 #' @format A data frame with two columns: the abbreviations of the
-#' subject classifications (\code{abbreviation}) and the corresponding
-#' description (\code{description}).
+#' subject classifications (`abbreviation`) and the corresponding
+#' description (`description`).
 #'
-#' @source \url{http://arxiv.org/help/api/user-manual}
+#' @source <http://arxiv.org/help/api/user-manual>
 #'
 #' @keywords datasets
 #'

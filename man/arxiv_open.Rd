@@ -7,7 +7,7 @@
 arxiv_open(search_results, limit = 20)
 }
 \arguments{
-\item{search_results}{Data frame of search results, as returned from \code{\link{arxiv_search}}.}
+\item{search_results}{Data frame of search results, as returned from \code{\link[=arxiv_search]{arxiv_search()}}.}
 
 \item{limit}{Maximum number of abstracts to open in one call.}
 }
@@ -20,7 +20,7 @@ Open, in web browser, the abstract pages for each of set of arXiv search results
 }
 \details{
 There is a delay between calls to
-\code{\link[utils]{browseURL}}, with the amount taken from the R
+\code{\link[utils:browseURL]{utils::browseURL()}}, with the amount taken from the R
 option \code{"aRxiv_delay"} (in seconds); if missing, the default
 is 3 sec.
 }
@@ -30,5 +30,5 @@ arxiv_open(z)}
 
 }
 \seealso{
-\code{\link{arxiv_search}}
+\code{\link[=arxiv_search]{arxiv_search()}}
 }
