@@ -4,16 +4,16 @@
 #' before attempting to pull down a very large number of records.
 #'
 #' @param query Search pattern as a string; a vector of such strings is
-#' also allowed, in which case the elements are combined with \code{AND}.
+#' also allowed, in which case the elements are combined with `AND`.
 #' @param id_list arXiv doc IDs, as comma-delimited string or a vector
 #' of such strings
 #'
 #' @return Number of results (integer). An attribute
-#' \code{"search_info"} contains information about the search
+#' `"search_info"` contains information about the search
 #' parameters and the time at which it was performed.
 #'
-#' @seealso \code{\link{arxiv_search}}, \code{\link{query_terms}},
-#' \code{\link{arxiv_cats}}
+#' @seealso [arxiv_search()], [query_terms()],
+#' [arxiv_cats()]
 #'
 #' @examples
 #' \dontshow{old_delay <- getOption("aRxiv_delay")

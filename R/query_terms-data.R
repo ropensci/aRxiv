@@ -6,12 +6,12 @@
 #'
 #' @usage data(query_terms)
 #'
-#' @format A data frame with two columns: the \code{term} and corresponding
-#' \code{description}.
+#' @format A data frame with two columns: the `term` and corresponding
+#' `description`.
 #'
 #' @author Karl W Broman
 #'
-#' @source \url{http://arxiv.org/help/api/user-manual}
+#' @source <http://arxiv.org/help/api/user-manual>
 #'
 #' @keywords datasets
 #'

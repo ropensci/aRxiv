@@ -40,6 +40,6 @@ arxiv_count("submittedDate:[2013 TO 2014]")
 
 }
 \seealso{
-\code{\link{arxiv_search}}, \code{\link{query_terms}},
-\code{\link{arxiv_cats}}
+\code{\link[=arxiv_search]{arxiv_search()}}, \code{\link[=query_terms]{query_terms()}},
+\code{\link[=arxiv_cats]{arxiv_cats()}}
 }

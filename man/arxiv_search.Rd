@@ -6,8 +6,8 @@
 \usage{
 arxiv_search(query = NULL, id_list = NULL, start = 0, limit = 10,
   sort_by = c("submitted", "updated", "relevance"), ascending = TRUE,
-  batchsize = 100, force = FALSE, output_format = c("data.frame", "list"),
-  sep = "|")
+  batchsize = 100, force = FALSE, output_format = c("data.frame",
+  "list"), sep = "|")
 }
 \arguments{
 \item{query}{Search pattern as a string; a vector of such strings
@@ -46,15 +46,15 @@ the XML output of the search, closer to the raw output from arXiv.
 
 The data frame format has the following columns.
 \tabular{rll}{
- [,1] \tab id               \tab arXiv ID \cr
- [,2] \tab submitted        \tab date first submitted \cr
- [,3] \tab updated          \tab date last updated \cr
- [,4] \tab title            \tab manuscript title \cr
- [,5] \tab summary          \tab abstract \cr
- [,6] \tab authors          \tab author names \cr
- [,7] \tab affiliations     \tab author affiliations \cr
- [,8] \tab link_abstract    \tab hyperlink to abstract \cr
- [,9] \tab link_pdf         \tab hyperlink to pdf \cr
+[,1] \tab id               \tab arXiv ID \cr
+[,2] \tab submitted        \tab date first submitted \cr
+[,3] \tab updated          \tab date last updated \cr
+[,4] \tab title            \tab manuscript title \cr
+[,5] \tab summary          \tab abstract \cr
+[,6] \tab authors          \tab author names \cr
+[,7] \tab affiliations     \tab author affiliations \cr
+[,8] \tab link_abstract    \tab hyperlink to abstract \cr
+[,9] \tab link_pdf         \tab hyperlink to pdf \cr
 [,10] \tab link_doi         \tab hyperlink to DOI \cr
 [,11] \tab comment          \tab authors' comment \cr
 [,12] \tab journal_ref      \tab journal reference \cr
@@ -101,6 +101,6 @@ z <- arxiv_search("submittedDate:[199701010000 TO 199701012400]", limit=2)
 
 }
 \seealso{
-\code{\link{arxiv_count}}, \code{\link{arxiv_open}},
-\code{\link{query_terms}}, \code{\link{arxiv_cats}}
+\code{\link[=arxiv_count]{arxiv_count()}}, \code{\link[=arxiv_open]{arxiv_open()}},
+\code{\link[=query_terms]{query_terms()}}, \code{\link[=arxiv_cats]{arxiv_cats()}}
 }

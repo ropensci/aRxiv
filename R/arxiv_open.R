@@ -4,18 +4,18 @@
 #'
 #' Open, in web browser, the abstract pages for each of set of arXiv search results.
 #'
-#' @param search_results Data frame of search results, as returned from \code{\link{arxiv_search}}.
+#' @param search_results Data frame of search results, as returned from [arxiv_search()].
 #' @param limit Maximum number of abstracts to open in one call.
 #'
 #' @details There is a delay between calls to
-#' \code{\link[utils]{browseURL}}, with the amount taken from the R
-#' option \code{"aRxiv_delay"} (in seconds); if missing, the default
+#' [utils::browseURL()], with the amount taken from the R
+#' option `"aRxiv_delay"` (in seconds); if missing, the default
 #' is 3 sec.
 #'
 #' @return (Invisibly) Vector of character strings with URLs of
 #' abstracts opened.
 #'
-#' @seealso \code{\link{arxiv_search}}
+#' @seealso [arxiv_search()]
 #'
 #' @examples
 #' \donttest{z <- arxiv_search('au:"Peter Hall" AND ti:deconvolution')
