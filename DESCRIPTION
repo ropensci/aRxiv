@@ -5,7 +5,7 @@ Date: 2019-03-11
 Authors@R: c(person("Karthik", "Ram", role="aut",
     email="karthik.ram@gmail.com"),
     person("Karl", "Broman", rol=c("aut","cre"),
-    email="kbroman@biostat.wisc.edu"))
+    email="broman@wisc.edu"))
 Description: An interface to the API for 'arXiv'
     (<https://arxiv.org>), a repository of electronic preprints for
     computer science, mathematics, physics, quantitative biology,
