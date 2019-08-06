@@ -59,7 +59,7 @@ examples.
 
 Suppose we wanted to identify all arXiv manuscripts with &ldquo;`Peter
 Hall`&rdquo; as an author. It is best to first get a count, so that we have
-a sense of how many records the search will return. (Peter Hall is
+a sense of how many records the search will return. (Peter Hall was
 &ldquo;[among the world's most prolific and highly cited authors in both probability and statistics](https://en.wikipedia.org/wiki/Peter_Gavin_Hall).&rdquo;)
 We first use `library()` to load the aRxiv package and then
 `arxiv_count()` to get the count.
