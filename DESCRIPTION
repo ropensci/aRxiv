@@ -1,11 +1,11 @@
 Package: aRxiv
 Title: Interface to the arXiv API
-Version: 0.5.18
-Date: 2019-03-11
+Version: 0.5.19
+Date: 2019-08-06
 Authors@R: c(person("Karthik", "Ram", role="aut",
-    email="karthik.ram@gmail.com"),
+    email="karthik.ram@gmail.com", comment=c(ORCID = "0000-0002-0233-1757")),
     person("Karl", "Broman", rol=c("aut","cre"),
-    email="broman@wisc.edu"))
+    email="broman@wisc.edu", comment=c(ORCID = "0000-0002-4914-6671")))
 Description: An interface to the API for 'arXiv'
     (<https://arxiv.org>), a repository of electronic preprints for
     computer science, mathematics, physics, quantitative biology,

@@ -59,7 +59,7 @@ examples.
 
 Suppose we wanted to identify all arXiv manuscripts with &ldquo;`Peter
 Hall`&rdquo; as an author. It is best to first get a count, so that we have
-a sense of how many records the search will return. (Peter Hall is
+a sense of how many records the search will return. (Peter Hall was
 &ldquo;[among the world's most prolific and highly cited authors in both probability and statistics](https://en.wikipedia.org/wiki/Peter_Gavin_Hall).&rdquo;)
 We first use `library()` to load the aRxiv package and then
 `arxiv_count()` to get the count.
@@ -239,7 +239,7 @@ The output of `arxiv_search()` is a data frame with the following
 columns.
 
 ```{r arxiv_search_result}
-res <- arxiv_search('au:"Terry Speed"')
+res <- arxiv_search('au:"Peter Hall"')
 names(res)
 ```
 
@@ -278,8 +278,8 @@ Here's an example, to sort the results by the date the manuscripts
 were last updated, in descending order.
 
 ```{r sortby_example}
-res <- arxiv_search('au:"Terry Speed"', sort_by="updated",
-                    ascending=FALSE)
+res <- arxiv_search('au:"Peter Hall" AND ti:deconvolution',
+                    sort_by="updated", ascending=FALSE)
 res$updated
 ```
 
@@ -292,8 +292,8 @@ The [arXiv metadata](https://arxiv.org/help/prep) has a number of
 limitations, the key issue being that it is author-supplied and so not
 necessarily consistent between records.
 
-Authors' names may vary between records (e.g., T. P. Speed vs. Terry
-Speed vs. Terence P. Speed). Further, arXiv provides no ability to
+Authors' names may vary between records (e.g., Peter Hall vs. Peter G.
+Hall vs. Peter Gavin Hall vs. P Hall). Further, arXiv provides no ability to
 distinguish multiple individuals with the same name (c.f.,
 [ORCID](https://orcid.org)).
 

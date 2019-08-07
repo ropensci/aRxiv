@@ -1,7 +1,7 @@
 # aRxiv
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-![CRAN/GitHub 0.5.16_/_0.5.17](https://img.shields.io/badge/CRAN/GitHub-0.5.16_/_0.5.17-blue.svg)
+![CRAN/GitHub 0.5.16 / 0.5.19](https://img.shields.io/badge/CRAN/GitHub-0.5.16_/_0.5.19-blue.svg)
 
 ## R interface to arXiv
 
@@ -90,7 +90,7 @@ Get citation information for `aRxiv` in R by running: `citation(package = 'aRxiv
 
 ## Code of Conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/ropensci/aRxiv/blob/master/CONDUCT.md).
 By participating in this project you agree to abide by its terms.
 
 
