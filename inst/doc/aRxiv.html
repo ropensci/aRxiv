@@ -383,9 +383,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 10 lastUpdatedDate        Date/time of last update, as YYYYMMDDHHMM</code></pre>
 <p>Use a colon (<code>:</code>) to separate the query term from the actual query. Multiple queries can be combined with <code>AND</code>, <code>OR</code>, and <code>ANDNOT</code>. The default is <code>OR</code>.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">arxiv_count</span>(<span class="st">'au:Peter au:Hall'</span>)</a></code></pre></div>
-<pre><code>## [1] 24865</code></pre>
+<pre><code>## [1] 24876</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">arxiv_count</span>(<span class="st">'au:Peter OR au:Hall'</span>)</a></code></pre></div>
-<pre><code>## [1] 24865</code></pre>
+<pre><code>## [1] 24876</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">arxiv_count</span>(<span class="st">'au:Peter AND au:Hall'</span>)</a></code></pre></div>
 <pre><code>## [1] 112</code></pre>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">arxiv_count</span>(<span class="st">'au:Hall ANDNOT au:Peter'</span>)</a></code></pre></div>
@@ -412,9 +412,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">arxiv_count</span>(<span class="st">'cat:stat'</span>)</a></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">arxiv_count</span>(<span class="st">'cat:stat.AP'</span>)</a></code></pre></div>
-<pre><code>## [1] 8544</code></pre>
+<pre><code>## [1] 8546</code></pre>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">arxiv_count</span>(<span class="st">'cat:stat*'</span>)</a></code></pre></div>
-<pre><code>## [1] 57750</code></pre>
+<pre><code>## [1] 57789</code></pre>
 </div>
 <div id="dates-and-ranges-of-dates" class="section level3">
 <h3>Dates and ranges of dates</h3>
@@ -433,7 +433,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="search-results" class="section level2">
 <h2>Search results</h2>
 <p>The output of <code>arxiv_search()</code> is a data frame with the following columns.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw">arxiv_search</span>(<span class="st">'au:&quot;Terry Speed&quot;'</span>)</a>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw">arxiv_search</span>(<span class="st">'au:&quot;Peter Hall&quot;'</span>)</a>
 <a class="sourceLine" id="cb46-2" data-line-number="2"><span class="kw">names</span>(res)</a></code></pre></div>
 <pre><code>##  [1] &quot;id&quot;               &quot;submitted&quot;        &quot;updated&quot;         
 ##  [4] &quot;title&quot;            &quot;abstract&quot;         &quot;authors&quot;         
@@ -456,17 +456,18 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>Sorting results</h2>
 <p>The <code>arxiv_search()</code> function has two arguments for sorting the results, <code>sort_by</code> (taking values <code>&quot;submitted&quot;</code>, <code>&quot;updated&quot;</code>, or <code>&quot;relevance&quot;</code>) and <code>ascending</code> (<code>TRUE</code> or <code>FALSE</code>). If <code>id_list</code> is provided, these sorting arguments are ignored and the results are presented according to the order in <code>id_list</code>.</p>
 <p>Here’s an example, to sort the results by the date the manuscripts were last updated, in descending order.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw">arxiv_search</span>(<span class="st">'au:&quot;Terry Speed&quot;'</span>, <span class="dt">sort_by=</span><span class="st">&quot;updated&quot;</span>,</a>
-<a class="sourceLine" id="cb52-2" data-line-number="2">                    <span class="dt">ascending=</span><span class="ot">FALSE</span>)</a>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw">arxiv_search</span>(<span class="st">'au:&quot;Peter Hall&quot; AND ti:deconvolution'</span>,</a>
+<a class="sourceLine" id="cb52-2" data-line-number="2">                    <span class="dt">sort_by=</span><span class="st">&quot;updated&quot;</span>, <span class="dt">ascending=</span><span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb52-3" data-line-number="3">res<span class="op">$</span>updated</a></code></pre></div>
-<pre><code>## [1] &quot;2012-01-31 05:54:46&quot; &quot;2008-06-27 08:25:01&quot;</code></pre>
+<pre><code>## [1] &quot;2010-03-01 11:33:37&quot; &quot;2008-10-27 14:27:52&quot; &quot;2008-04-04 12:19:05&quot;
+## [4] &quot;2007-10-18 12:25:34&quot;</code></pre>
 </div>
 <div id="technical-details" class="section level2">
 <h2>Technical details</h2>
 <div id="metadata-limitations" class="section level3">
 <h3>Metadata limitations</h3>
 <p>The <a href="https://arxiv.org/help/prep">arXiv metadata</a> has a number of limitations, the key issue being that it is author-supplied and so not necessarily consistent between records.</p>
-<p>Authors’ names may vary between records (e.g., T. P. Speed vs. Terry Speed vs. Terence P. Speed). Further, arXiv provides no ability to distinguish multiple individuals with the same name (c.f., <a href="https://orcid.org">ORCID</a>).</p>
+<p>Authors’ names may vary between records (e.g., Peter Hall vs. Peter G. Hall vs. Peter Gavin Hall vs. P Hall). Further, arXiv provides no ability to distinguish multiple individuals with the same name (c.f., <a href="https://orcid.org">ORCID</a>).</p>
 <p>Authors’ institutional affiliations are mostly missing. The arXiv submission form does not include an affiliation field; affiliations are entered within the author field, in parentheses. The <a href="https://arxiv.org/help/prep#author">metadata instructions</a> may not be widely read.</p>
 <p>There are no key words; you are stuck with searching the free text in the titles and abstracts.</p>
 <p>Subject classifications are provided by the authors and may be incomplete or inappropriate.</p>
