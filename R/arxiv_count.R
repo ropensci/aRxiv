@@ -52,7 +52,7 @@ function(query=NULL, id_list=NULL)
     search_result <- try(httr::POST(query_url,
                                     body=body,
                                     httr::timeout(get_arxiv_timeout())))
-    if(class(search_result) == "try-error") {
+    if(inherits(search_result, "try-error")) {
         timeout_action()
         return(invisible(NULL))
     }
@@ -103,7 +103,7 @@ function(x)
     attr(x, "search_info") <- NULL
     attr(x, "total_results") <- NULL
 
-    if("arxiv_count" %in% class(x))
+    if(inherits(x, "arxiv_count"))
         x <- unclass(x)
 
     x
