@@ -10,7 +10,7 @@ Description: An interface to the API for 'arXiv'
     (<https://arxiv.org>), a repository of electronic preprints for
     computer science, mathematics, physics, quantitative biology,
     quantitative finance, and statistics.
-URL: https://github.com/ropensci/aRxiv
+URL: https://docs.ropensci.org/aRxiv, https://github.com/ropensci/aRxiv
 BugReports: https://github.com/ropensci/aRxiv/issues
 Depends:
     R (>= 3.0.0)
