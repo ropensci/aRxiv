@@ -4,9 +4,11 @@
 \name{arxiv_cats}
 \alias{arxiv_cats}
 \title{arXiv subject classifications}
-\format{A data frame with two columns: the abbreviations of the
+\format{
+A data frame with two columns: the abbreviations of the
 subject classifications (\code{abbreviation}) and the corresponding
-description (\code{description}).}
+description (\code{description}).
+}
 \source{
 \url{http://arxiv.org/help/api/user-manual}
 }
