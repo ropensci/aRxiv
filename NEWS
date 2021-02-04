@@ -7,6 +7,15 @@ BUG FIXES
   you search multiple batches and later ones were NULL.
 
 
+aRxiv 0.5.20
+------------
+
+MINOR CHANGES
+
+* Small fixes regarding use of class(), in particular changing
+  class(x)=="blah" to inherits(x, "blah").
+
+
 aRxiv 0.5.19
 ------------
 

@@ -141,7 +141,7 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     search_result <- try(httr::POST(query_url,
                                     body=body,
                                     httr::timeout(get_arxiv_timeout())))
-    if(class(search_result) == "try-error") {
+    if(inherits(search_result, "try-error")) {
         timeout_action()
         return(invisible(NULL))
     }
