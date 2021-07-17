@@ -55,7 +55,7 @@ str(z)
 
 ### Tutorial
 
-An aRxiv tutorial is available at the rOpenSci website, [here](https://ropensci.org/tutorials/arxiv_tutorial.html).
+An aRxiv tutorial is available at the rOpenSci website, [here](https://docs.ropensci.org/aRxiv/articles/aRxiv.html).
 
 To view the tutorial from R, use:
 
