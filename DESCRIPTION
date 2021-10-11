@@ -4,7 +4,7 @@ Version: 0.5.20
 Date: 2019-12-05
 Authors@R: c(person("Karthik", "Ram", role="aut",
     email="karthik.ram@gmail.com", comment=c(ORCID = "0000-0002-0233-1757")),
-    person("Karl", "Broman", rol=c("aut","cre"),
+    person("Karl", "Broman", role=c("aut","cre"),
     email="broman@wisc.edu", comment=c(ORCID = "0000-0002-4914-6671")))
 Description: An interface to the API for 'arXiv'
     (<https://arxiv.org>), a repository of electronic preprints for
