@@ -4,10 +4,12 @@
 \name{query_terms}
 \alias{query_terms}
 \title{arXiv query field terms}
-\format{A data frame with two columns: the \code{term} and corresponding
-\code{description}.}
+\format{
+A data frame with two columns: the \code{term} and corresponding
+\code{description}.
+}
 \source{
-\url{http://arxiv.org/help/api/user-manual}
+\url{https://arxiv.org/help/api/user-manual}
 }
 \usage{
 data(query_terms)

@@ -1,7 +1,6 @@
 ^Makefile$
 inst/scripts/.RData
-^\.travis\.yml$
-appveyor.yml
 \.Rout$
 inst/ToDo\.html
 ^CONDUCT.md$
+^\.github$

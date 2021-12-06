@@ -11,7 +11,7 @@
 #' subject classifications (`abbreviation`) and the corresponding
 #' description (`description`).
 #'
-#' @source <http://arxiv.org/help/api/user-manual>
+#' @source <https://arxiv.org/help/api/user-manual>
 #'
 #' @keywords datasets
 #'

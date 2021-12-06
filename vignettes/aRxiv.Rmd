@@ -254,9 +254,9 @@ A few short notes:
 - Missing entries will have an empty character string (`""`).
 - The `categories` column may contain not just the aRxiv categories
   (e.g., `stat.AP`) but also codes for the
-  [Mathematical Subject Classification (MSC)](http://www.ams.org/mathscinet/msc/msc2010.html) (e.g., 14J60)
+  [Mathematical Subject Classification (MSC)](https://mathscinet.ams.org/mathscinet/msc/msc2010.html) (e.g., 14J60)
   and the
-  [ACM Computing Classification System](http://www.acm.org/about/class/1998/)
+  [ACM Computing Classification System](https://www.acm.org/about/class/1998/)
   (e.g., F.2.2). These are not searchable with `cat:` but are
   searchable with a general search.
 
