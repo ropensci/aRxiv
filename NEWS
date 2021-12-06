@@ -1,13 +1,24 @@
-aRxiv 0.5.21
+aRxiv 0.6.1
+-----------
+
+MINOR CHANGES
+
+* For testing, switch to use of github actions rather than appveyor
+  and travis.
+
+BUG FIXES
+
+* Partial fix of a case with a corrupt record. Was getting an error if
+  you search multiple batches and later ones were NULL.
+
+
+aRxiv 0.5.20
 ------------
 
 MINOR CHANGES
 
 * Small fixes regarding use of class(), in particular changing
   class(x)=="blah" to inherits(x, "blah").
-
-* For testing, switch to use of github actions rather than appveyor
-  and travis.
 
 
 aRxiv 0.5.19

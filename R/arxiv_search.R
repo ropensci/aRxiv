@@ -167,8 +167,11 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     results <- get_entries(listresult)
 
     # convert to data frame
-    if(output_format=="data.frame")
+    if(output_format=="data.frame") {
         results <- listresult2df(results, sep=sep)
+    } else {
+        if(is.null(results)) results <- empty_result()
+    }
 
     attr(results, "search_info") <-
         search_attributes(query, id_list, start, limit,
