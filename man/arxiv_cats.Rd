@@ -10,7 +10,7 @@ subject classifications (\code{abbreviation}) and the corresponding
 description (\code{description}).
 }
 \source{
-\url{http://arxiv.org/help/api/user-manual}
+\url{https://arxiv.org/help/api/user-manual}
 }
 \usage{
 data(arxiv_cats)

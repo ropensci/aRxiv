@@ -1,6 +1,7 @@
 # aRxiv
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](
+https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN/GitHub 0.5.19 / 0.6](https://img.shields.io/badge/CRAN/GitHub-0.5.19%20/%200.6-blue.svg)](https://cran.r-project.org/package=aRxiv)
 
 ## R interface to arXiv
@@ -17,8 +18,8 @@ Note that the arXiv API _does not_ require an API key.
 ## Package Status and Installation
 
 [![R-CMD-check](https://github.com/ropensci/aRxiv/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/aRxiv/actions)
-[![codecov](https://codecov.io/gh/ropensci/aRxiv/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/aRxiv)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/aRxiv?color=blue)](https://github.com/metacran/cranlogs.app)
+[![codecov](https://codecov.io/gh/ropensci/aRxiv/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ropensci/aRxiv)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/aRxiv?color=blue)](https://github.com/r-hub/cranlogs.app)
 
 __Installation instructions__
 __Stable Version__
