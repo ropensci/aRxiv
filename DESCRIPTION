@@ -6,8 +6,8 @@ Authors@R: c(person("Karthik", "Ram", role="aut",
     email="karthik.ram@gmail.com", comment=c(ORCID = "0000-0002-0233-1757")),
     person("Karl", "Broman", role=c("aut","cre"),
     email="broman@wisc.edu", comment=c(ORCID = "0000-0002-4914-6671")))
-Description: An interface to the API for 'arXiv'
-    (arxiv.org), a repository of electronic preprints for
+Description: An interface to the API for 'arXiv',
+    a repository of electronic preprints for
     computer science, mathematics, physics, quantitative biology,
     quantitative finance, and statistics.
 URL: https://docs.ropensci.org/aRxiv/, https://github.com/ropensci/aRxiv
