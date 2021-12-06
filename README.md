@@ -2,7 +2,7 @@
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](
 https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![CRAN/GitHub 0.5.19 / 0.6](https://img.shields.io/badge/CRAN/GitHub-0.5.19%20/%200.6-blue.svg)](https://cran.r-project.org/package=aRxiv)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/aRxiv)](https://cran.r-project.org/package=aRxiv)
 
 ## R interface to arXiv
 
