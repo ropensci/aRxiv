@@ -1,10 +1,12 @@
 # grab a couple of tables from arXiv API user manual
 
-library(XML)
 library(httr)
+library(rvest)
 
-url <- "http://arxiv.org/help/api/user-manual"
-tabs <- readHTMLTable(content(GET(url)), stringsAsFactors=FALSE)
+url <- "https://arxiv.org/help/api/user-manual.html"
+tabs <- html_elements(content(GET(url), encoding="UTF-8"), "table")
+tabs <- lapply(tabs, function(z) as.data.frame(html_table(z)))
+
 
 # make the first row the colnames
 header_as_colnames <-
