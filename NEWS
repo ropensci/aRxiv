@@ -1,3 +1,12 @@
+aRxiv 0.7.1
+-----------
+
+MINOR CHANGES
+
+* Update arxiv_cats, datasets with category information, and the scripts to
+  build that and the dataset query_terms.
+
+
 aRxiv 0.6
 ---------
 
