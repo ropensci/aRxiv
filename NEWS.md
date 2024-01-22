@@ -1,5 +1,5 @@
-aRxiv 0.7.3
------------
+aRxiv 0.8
+---------
 
 ### MINOR CHANGES
 
