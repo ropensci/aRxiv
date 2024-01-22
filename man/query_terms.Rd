@@ -9,7 +9,7 @@ A data frame with two columns: the \code{term} and corresponding
 \code{description}.
 }
 \source{
-\url{https://arxiv.org/help/api/user-manual}
+\url{https://arxiv.org/help/api/user-manual.html}
 }
 \usage{
 data(query_terms)
