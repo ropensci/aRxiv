@@ -185,11 +185,18 @@ arxiv_count('au:"P Hall"')
 
 arXiv has a set of `r nrow(arxiv_cats)` subject classifications,
 searchable with the prefix `cat:`. The aRxiv package contains a
-dataset `arxiv_cats` containing the abbreviations and descriptions.
+dataset `arxiv_cats` containing the categories, short and long
+descriptions, as well as field (and, for Physics, subfield).
+Here are the column names.
+
+```{r arxiv_cats_colnames}
+colnames(arxiv_cats)
+```
+
 Here are the statistics categories.
 
 ```{r arxiv_cats}
-arxiv_cats[grep('^stat', arxiv_cats$abbreviation),]
+arxiv_cats[arxiv_cats$field=="Statistics", c("category", "short_description")]
 ```
 
 To search these categories, you need to include either the full term
