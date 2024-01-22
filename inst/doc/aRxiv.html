@@ -350,10 +350,10 @@ biology, quantitative finance, and statistics. The <a href="https://github.com/r
 <p>You can install the <a href="https://github.com/rOpenSci/aRxiv">aRxiv
 package</a> via <a href="https://cran.r-project.org">CRAN</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;aRxiv&quot;</span>)</span></code></pre></div>
-<p>Or use <code>devtools::install_github()</code> to get the (possibly
+<p>Or use <code>remotes::install_github()</code> to get the (possibly
 more recent) version at <a href="https://github.com/rOpenSci/aRxiv">GitHub</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">library</span>(remotes)</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;ropensci/aRxiv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="basic-use" class="section level2">
@@ -487,18 +487,27 @@ search full words, and that wild cards are not allowed.</p>
 <h3>Subject classifications</h3>
 <p>arXiv has a set of 155 subject classifications, searchable with the
 prefix <code>cat:</code>. The aRxiv package contains a dataset
-<code>arxiv_cats</code> containing the abbreviations and descriptions.
-Here are the statistics categories.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>arxiv_cats[<span class="fu">grep</span>(<span class="st">&#39;^stat&#39;</span>, arxiv_cats<span class="sc">$</span>abbreviation),]</span></code></pre></div>
-<pre><code>## [1] category          field             subfield          short_description long_description 
-## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<code>arxiv_cats</code> containing the categories, short and long
+descriptions, as well as field (and, for Physics, subfield). Here are
+the column names.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">colnames</span>(arxiv_cats)</span></code></pre></div>
+<pre><code>## [1] &quot;category&quot;          &quot;field&quot;             &quot;subfield&quot;          &quot;short_description&quot; &quot;long_description&quot;</code></pre>
+<p>Here are the statistics categories.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>arxiv_cats[arxiv_cats<span class="sc">$</span>field<span class="sc">==</span><span class="st">&quot;Statistics&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;category&quot;</span>, <span class="st">&quot;short_description&quot;</span>)]</span></code></pre></div>
+<pre><code>##     category short_description
+## 150  stat.AP      Applications
+## 151  stat.CO       Computation
+## 152  stat.ME       Methodology
+## 153  stat.ML  Machine Learning
+## 154  stat.OT  Other Statistics
+## 155  stat.TH Statistics Theory</code></pre>
 <p>To search these categories, you need to include either the full term
 or use the <code>*</code> wildcard.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat.AP&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat.AP&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] 17577</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat*&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat*&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] 114647</code></pre>
 </div>
 <div id="dates-and-ranges-of-dates" class="section level3">
@@ -513,17 +522,17 @@ for example <code>20071018122534</code> for
 <code>2007-10-18 12:25:34</code>. You can use <code>*</code> for a
 wildcard for the times. For example, to get all manuscripts with initial
 submission on 2007-10-18:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;submittedDate:20071018*&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;submittedDate:20071018*&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] 196</code></pre>
 <p>But you can’t use the wildcard within the <em>dates</em>.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;submittedDate:2007*&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;submittedDate:2007*&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>To get a count of all manuscripts with original submission in 2007,
 use a date range, like <code>[from_date TO to_date]</code>. (If you give
 a partial date, it’s treated as the earliest date/time that matches, and
 the range appears to be up to but not including the second
 date/time.)</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;submittedDate:[2007 TO 2008]&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;submittedDate:[2007 TO 2008]&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] 55749</code></pre>
 </div>
 </div>
@@ -531,8 +540,8 @@ date/time.)</p>
 <h2>Search results</h2>
 <p>The output of <code>arxiv_search()</code> is a data frame with the
 following columns.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot;&#39;</span>)</span>
-<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a><span class="fu">names</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot;&#39;</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a><span class="fu">names</span>(res)</span></code></pre></div>
 <pre><code>##  [1] &quot;id&quot;               &quot;submitted&quot;        &quot;updated&quot;          &quot;title&quot;            &quot;abstract&quot;        
 ##  [6] &quot;authors&quot;          &quot;affiliations&quot;     &quot;link_abstract&quot;    &quot;link_pdf&quot;         &quot;link_doi&quot;        
 ## [11] &quot;comment&quot;          &quot;journal_ref&quot;      &quot;doi&quot;              &quot;primary_category&quot; &quot;categories&quot;</code></pre>
@@ -551,9 +560,9 @@ Subject Classification (MSC)</a> (e.g., 14J60) and the <a href="https://www.acm.
 Classification System</a> (e.g., F.2.2). These are not searchable with
 <code>cat:</code> but are searchable with a general search.</li>
 </ul>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&quot;cat:14J60&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&quot;cat:14J60&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&quot;14J60&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&quot;14J60&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 870</code></pre>
 </div>
 <div id="sorting-results" class="section level2">
@@ -567,9 +576,9 @@ sorting arguments are ignored and the results are presented according to
 the order in <code>id_list</code>.</p>
 <p>Here’s an example, to sort the results by the date the manuscripts
 were last updated, in descending order.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot; AND ti:deconvolution&#39;</span>,</span>
-<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>                    <span class="at">sort_by=</span><span class="st">&quot;updated&quot;</span>, <span class="at">ascending=</span><span class="cn">FALSE</span>)</span>
-<span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a>res<span class="sc">$</span>updated</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot; AND ti:deconvolution&#39;</span>,</span>
+<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>                    <span class="at">sort_by=</span><span class="st">&quot;updated&quot;</span>, <span class="at">ascending=</span><span class="cn">FALSE</span>)</span>
+<span id="cb54-3"><a href="#cb54-3" tabindex="-1"></a>res<span class="sc">$</span>updated</span></code></pre></div>
 <pre><code>## [1] &quot;2010-03-01 11:33:37&quot; &quot;2008-10-27 14:27:52&quot; &quot;2008-04-04 12:19:05&quot; &quot;2007-10-18 12:25:34&quot;</code></pre>
 </div>
 <div id="technical-details" class="section level2">
@@ -605,7 +614,7 @@ code.</p>
 period for the delay configurable with the R option
 <code>&quot;aRxiv_delay&quot;</code> (in seconds). The default is 3 seconds.</p>
 <p>To reduce the delay to 1 second, use:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">aRxiv_delay=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">aRxiv_delay=</span><span class="dv">1</span>)</span></code></pre></div>
 <p><strong>Don’t</strong> do searches in parallel (e.g., via the
 parallel package). You may be locked out from the arXiv API.</p>
 </div>

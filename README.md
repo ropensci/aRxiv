@@ -32,12 +32,12 @@ install.packages("aRxiv")
 
 __Development Version__
 
-Or use `devtools::install_github()` to get the (more recent) version
+Or use `remotes::install_github()` to get the (more recent) version
 at [GitHub](https://github.com/rOpenSci/aRxiv):
 
 ```r
-install.packages("devtools")
-library(devtools)
+install.packages("remotes")
+library(remotes)
 install_github("ropensci/aRxiv")
 ```
 
