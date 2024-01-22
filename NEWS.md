@@ -1,7 +1,7 @@
-aRxiv 0.7.2
+aRxiv 0.7.3
 -----------
 
-MINOR CHANGES
+### MINOR CHANGES
 
 * Update arxiv_cats, datasets with category information, and the scripts to
   build that and the dataset query_terms.
@@ -10,12 +10,12 @@ MINOR CHANGES
 aRxiv 0.6
 ---------
 
-MINOR CHANGES
+### MINOR CHANGES
 
 * For testing, switch to use of github actions rather than appveyor
   and travis.
 
-BUG FIXES
+### BUG FIXES
 
 * Partial fix of a case with a corrupt record. Was getting an error if
   you search multiple batches and later ones were NULL.
@@ -24,7 +24,7 @@ BUG FIXES
 aRxiv 0.5.20
 ------------
 
-MINOR CHANGES
+### MINOR CHANGES
 
 * Small fixes regarding use of class(), in particular changing
   class(x)=="blah" to inherits(x, "blah").
@@ -33,7 +33,7 @@ MINOR CHANGES
 aRxiv 0.5.19
 ------------
 
-MINOR CHANGES
+### MINOR CHANGES
 
 * Add ORCIDs
 
@@ -43,7 +43,7 @@ MINOR CHANGES
 aRxiv 0.5.18
 ------------
 
-MINOR CHANGES
+### MINOR CHANGES
 
 * Convert documentation to markdown
 
@@ -51,7 +51,7 @@ MINOR CHANGES
 aRxiv 0.5.17
 ------------
 
-MINOR CHANGES
+### MINOR CHANGES
 
 * Two small fixes to the vignette.
 
@@ -59,7 +59,7 @@ MINOR CHANGES
 aRxiv 0.5.16
 ------------
 
-BUG FIXES
+### BUG FIXES
 
 * To eliminate continued pain over empty search queries, just trap
   them in advance and don't send them to arXiv.
@@ -68,7 +68,7 @@ BUG FIXES
 aRxiv 0.5.15
 ------------
 
-BUG FIXES
+### BUG FIXES
 
 * Results for empty search queries seems to have changed; fixed to
   give appropriate return values.
@@ -77,7 +77,7 @@ BUG FIXES
 aRxiv 0.5.10
 ------------
 
-BUG FIXES
+### BUG FIXES
 
 * Fix a small problem related to a new behavior in a pre-release
   version of the httr package. (httr is no longer dropping NULLs from
@@ -90,7 +90,7 @@ BUG FIXES
 aRxiv 0.5.8
 ------------
 
-BUG FIXES
+### BUG FIXES
 
 * arXiv connection errors was causing test errors. Added a function to
   test connection to arXiv; tests are skipped if we can't connect.
@@ -102,7 +102,7 @@ BUG FIXES
 aRxiv 0.5.5
 ------------
 
-BUG FIXES
+### BUG FIXES
 
 * Fix mistakes in the table in the help for arxiv_search that
   describes the output.
@@ -117,6 +117,6 @@ BUG FIXES
 aRxiv 0.5.2
 ------------
 
-NEW FEATURES
+### NEW FEATURES
 
 * released to CRAN
