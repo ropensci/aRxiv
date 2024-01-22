@@ -10,8 +10,10 @@ inst/doc/aRxiv.html: vignettes/aRxiv.Rmd
 	cd $(<D); \
 	R -e "rmarkdown::render('$(<F)', output_dir='../$(@D)')"
 
-data: data/arxiv_cats.RData
+data: data/arxiv_cats.RData data/query_terms.RData
 
-data/arxiv_cats.RData: inst/scripts/grab_api_manual_tables.R
-# also data/query_terms.RData (built together)
+data/arxiv_cats.RData: inst/scripts/grab_arxiv_cats.R
+	cd $(<D);R CMD BATCH $(<F)
+
+data/query_terms.RData: inst/scripts/grab_query_terms.R
 	cd $(<D);R CMD BATCH $(<F)

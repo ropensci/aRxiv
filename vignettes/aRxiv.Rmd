@@ -12,7 +12,7 @@ computer science, mathematics, physics, quantitative biology,
 quantitative finance, and statistics. The
 [aRxiv package](https://github.com/ropensci/aRxiv) provides an
 [R](https://www.r-project.org) interface to the
-[arXiv API](https://arxiv.org/help/api/index).
+[arXiv API](https://arxiv.org/help/api/index.html).
 
 Note that the arXiv API _does not_ require an API key.
 
@@ -135,7 +135,7 @@ arxiv_open(deconv)
 The two basic arguments to `arxiv_count()` and `arxiv_search()` are
 `query`, a
 character string representing the search, and `id_list`, a list of
-[arXiv manuscript identifiers](https://arxiv.org/help/arxiv_identifier).
+[arXiv manuscript identifiers](https://arxiv.org/help/arxiv_identifier.html).
 
 - If only `query` is provided, manuscripts matching that query are
   returned.
@@ -288,7 +288,7 @@ res$updated
 
 ### Metadata limitations
 
-The [arXiv metadata](https://arxiv.org/help/prep) has a number of
+The [arXiv metadata](https://arxiv.org/help/prep.html) has a number of
 limitations, the key issue being that it is author-supplied and so not
 necessarily consistent between records.
 
@@ -300,7 +300,7 @@ distinguish multiple individuals with the same name (c.f.,
 Authors' institutional affiliations are mostly missing.  The arXiv
 submission form does not include an affiliation field; affiliations
 are entered within the author field, in parentheses.  The
-[metadata instructions](https://arxiv.org/help/prep#author) may not be
+[metadata instructions](https://arxiv.org/help/prep.html#author) may not be
 widely read.
 
 There are no key words; you are stuck with searching the free text in
@@ -314,7 +314,7 @@ incomplete or inappropriate.
 
 Care should be taken to avoid multiple requests to the arXiv API in a
 short period of time. The
-[arXiv API user manual](https://arxiv.org/help/api/user-manual) states:
+[arXiv API user manual](https://arxiv.org/help/api/user-manual.html) states:
 
 > In cases where the API needs to be called multiple times in a row,
 > we encourage you to play nice and incorporate a 3 second delay in

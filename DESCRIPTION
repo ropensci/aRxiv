@@ -1,7 +1,7 @@
 Package: aRxiv
 Title: Interface to the arXiv API
-Version: 0.6
-Date: 2021-12-06
+Version: 0.7.2
+Date: 2024-01-22
 Authors@R: c(person("Karthik", "Ram", role="aut",
     email="karthik.ram@gmail.com", comment=c(ORCID = "0000-0002-0233-1757")),
     person("Karl", "Broman", role=c("aut","cre"),
@@ -13,7 +13,7 @@ Description: An interface to the API for 'arXiv',
 URL: https://docs.ropensci.org/aRxiv/, https://github.com/ropensci/aRxiv
 BugReports: https://github.com/ropensci/aRxiv/issues
 Depends:
-    R (>= 3.0.0)
+    R (>= 3.5.0)
 License: MIT + file LICENSE
 Imports:
     httr,
@@ -28,5 +28,5 @@ Suggests:
 VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.0
 Roxygen: list(markdown = TRUE)

@@ -5,12 +5,13 @@
 \alias{arxiv_cats}
 \title{arXiv subject classifications}
 \format{
-A data frame with two columns: the abbreviations of the
-subject classifications (\code{abbreviation}) and the corresponding
-description (\code{description}).
+A data frame with five columns: the abbreviations of the
+subject classifications (\code{category}), the field of study,
+subfield of study (within Physics; \code{NA} otherwise), a short
+description, and a longer description.
 }
 \source{
-\url{https://arxiv.org/help/api/user-manual}
+\url{https://arxiv.org/category_taxonomy}
 }
 \usage{
 data(arxiv_cats)

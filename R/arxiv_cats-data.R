@@ -7,11 +7,12 @@
 #'
 #' @usage data(arxiv_cats)
 #'
-#' @format A data frame with two columns: the abbreviations of the
-#' subject classifications (`abbreviation`) and the corresponding
-#' description (`description`).
+#' @format A data frame with five columns: the abbreviations of the
+#'     subject classifications (`category`), the field of study,
+#'     subfield of study (within Physics; `NA` otherwise), a short
+#'     description, and a longer description.
 #'
-#' @source <https://arxiv.org/help/api/user-manual>
+#' @source <https://arxiv.org/category_taxonomy>
 #'
 #' @keywords datasets
 #'

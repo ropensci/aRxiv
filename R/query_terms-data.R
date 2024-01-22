@@ -11,7 +11,7 @@
 #'
 #' @author Karl W Broman
 #'
-#' @source <https://arxiv.org/help/api/user-manual>
+#' @source <https://arxiv.org/help/api/user-manual.html>
 #'
 #' @keywords datasets
 #'

@@ -10,14 +10,14 @@ https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org
 computer science, mathematics, physics, quantitative biology,
 quantitative finance, and statistics. The
 [aRxiv](https://github.com/ropensci/aRxiv) package is an R interface to
-the [arXiv API](https://arxiv.org/help/api/index).
+the [arXiv API](https://arxiv.org/help/api/index.html).
 
 Note that the arXiv API _does not_ require an API key.
 
 
 ## Package Status and Installation
 
-[![R-CMD-check](https://github.com/ropensci/aRxiv/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/aRxiv/actions)
+[![R-CMD-check](https://github.com/ropensci/aRxiv/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/aRxiv/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/gh/ropensci/aRxiv/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ropensci/aRxiv)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/aRxiv?color=blue)](https://github.com/r-hub/cranlogs.app)
 
@@ -67,20 +67,16 @@ vignette("aRxiv", "aRxiv")
 ### Links
 
 * [arXiv](https://arxiv.org)
-* [arXiv API](https://arxiv.org/help/api/index)
-* [arXiv API user manual](https://arxiv.org/help/api/user-manual)
+* [arXiv API](https://arxiv.org/help/api/index.html)
+* [arXiv API user manual](https://arxiv.org/help/api/user-manual.html)
 * [Bulk data access to arXiv](https://arxiv.org/help/bulk_data)
-* [Bulk data access to arXiv metadata via OAI-PMH](https://arxiv.org/help/oa/index)
-* [Bulk data access to arXiv PDFs and source docs](https://arxiv.org/help/bulk_data_s3)
+* [Bulk data access to arXiv metadata via OAI-PMH](https://arxiv.org/help/oa/index.html)
+* [Bulk data access to arXiv PDFs and source docs](https://arxiv.org/help/bulk_data_s3.html)
 
 
 ### License
 
 Licensed under the [MIT license](https://cran.r-project.org/web/licenses/MIT). ([More information here](https://en.wikipedia.org/wiki/MIT_License).)
-
----
-
-This package is part of a richer suite called [fulltext](https://github.com/ropensci/fulltext), along with several other packages, that provides the ability to search for and retrieve full text of open access scholarly articles. We recommend using `fulltext` as the primary R interface to `arXiv` unless your needs are limited to this single source.
 
 ---
 
