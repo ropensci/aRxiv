@@ -70,8 +70,8 @@ vignette("aRxiv", "aRxiv")
 * [arXiv API](https://arxiv.org/help/api/index)
 * [arXiv API user manual](https://arxiv.org/help/api/user-manual)
 * [Bulk data access to arXiv](https://arxiv.org/help/bulk_data)
-* [Bulk data access to arXiv metadata via OAI-PMH](https://arxiv.org/help/oa/index)
-* [Bulk data access to arXiv PDFs and source docs](https://arxiv.org/help/bulk_data_s3)
+* [Bulk data access to arXiv metadata via OAI-PMH](https://arxiv.org/help/oa/index.html)
+* [Bulk data access to arXiv PDFs and source docs](https://arxiv.org/help/bulk_data_s3.html)
 
 
 ### License
