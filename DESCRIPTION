@@ -1,6 +1,6 @@
 Package: aRxiv
 Title: Interface to the arXiv API
-Version: 0.7.2
+Version: 0.8
 Date: 2024-01-22
 Authors@R: c(person("Karthik", "Ram", role="aut",
     email="karthik.ram@gmail.com", comment=c(ORCID = "0000-0002-0233-1757")),
