@@ -1,5 +1,10 @@
-aRxiv 0.9.1
+aRxiv 0.9.2
 -----------
+
+### MINOR CHANGES
+
+* Update vignette due to previous change in the format of the
+  arxiv_cats dataset.
 
 ### BUG FIXES
 
