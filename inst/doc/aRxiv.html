@@ -467,19 +467,19 @@ actual query. Multiple queries can be combined with <code>AND</code>,
 <code>OR</code>, and <code>ANDNOT</code>. The default is
 <code>OR</code>.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:Peter au:Hall&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 37783</code></pre>
+<pre><code>## [1] 37886</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:Peter OR au:Hall&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 37783</code></pre>
+<pre><code>## [1] 37886</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:Peter AND au:Hall&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] 161</code></pre>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:Hall ANDNOT au:Peter&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 2745</code></pre>
+<pre><code>## [1] 2749</code></pre>
 <p>It appears that in the author field (and many other fields) you must
 search full words, and that wild cards are not allowed.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:P* AND au:Hall&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:P AND au:Hall&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 1231</code></pre>
+<pre><code>## [1] 1232</code></pre>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:&quot;P Hall&quot;&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] 44</code></pre>
 </div>
@@ -506,9 +506,9 @@ or use the <code>*</code> wildcard.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat.AP&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 17577</code></pre>
+<pre><code>## [1] 17664</code></pre>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat*&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 114647</code></pre>
+<pre><code>## [1] 115092</code></pre>
 </div>
 <div id="dates-and-ranges-of-dates" class="section level3">
 <h3>Dates and ranges of dates</h3>
@@ -556,14 +556,14 @@ items, separated by a vertical bar (<code>|</code>).</li>
 (<code>&quot;&quot;</code>).</li>
 <li>The <code>categories</code> column may contain not just the aRxiv
 categories (e.g., <code>stat.AP</code>) but also codes for the <a href="https://mathscinet.ams.org/mathscinet/msc/msc2010.html">Mathematical
-Subject Classification (MSC)</a> (e.g., 14J60) and the <a href="https://www.acm.org/about/class/1998/">ACM Computing
+Subject Classification (MSC)</a> (e.g., 14J60) and the <a href="https://www.acm.org/publications/class-2012">ACM Computing
 Classification System</a> (e.g., F.2.2). These are not searchable with
 <code>cat:</code> but are searchable with a general search.</li>
 </ul>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&quot;cat:14J60&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&quot;14J60&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] 870</code></pre>
+<pre><code>## [1] 874</code></pre>
 </div>
 <div id="sorting-results" class="section level2">
 <h2>Sorting results</h2>
