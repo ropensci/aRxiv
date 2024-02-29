@@ -4,3 +4,4 @@ inst/scripts/.RData
 inst/ToDo\.html
 ^CONDUCT.md$
 ^\.github$
+^LICENSE\.md$
