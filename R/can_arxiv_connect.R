@@ -18,11 +18,11 @@ can_arxiv_connect <-
 {
     query_url <- "http://export.arxiv.org/api/query"
 
-    result <- tryCatch(z <- httr::POST(query_url, body=list(search_query="all:electron", max_results=0),
+    result <- tryCatch(z <- httr::GET(query_url, query=list(search_query="all:electron", max_results=0),
                                        httr::timeout(max_time)),
                        error=function(e) paste("Failure to connect in arxiv_check"))
 
-    # check for error in httr::POST
+    # check for error in httr::GET
     if(!is.null(result) && length(result)==1 &&
        result == "Failure to connect in arxiv_check") {
         warning("Failed to connect to ", query_url, " in ", max_time, " sec")

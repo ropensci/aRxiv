@@ -1,7 +1,10 @@
-aRxiv 0.11.1
+aRxiv 0.11.2
 ------------
 
 ### BUG FIXES
+
+* The package had totally stopped working. Got it working again by
+  using `GET` rather than `POST`, and `query` rather than `body`.
 
 * Fixed a typo in `arxiv_count()` that had been introduced way back in
   December, 2014.

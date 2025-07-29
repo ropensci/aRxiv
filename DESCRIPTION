@@ -1,6 +1,6 @@
 Package: aRxiv
 Title: Interface to the arXiv API
-Version: 0.11.1
+Version: 0.11.2
 Date: 2025-07-29
 Authors@R: c(person("Karthik", "Ram", role="aut",
     email="karthik.ram@gmail.com", comment=c(ORCID = "0000-0002-0233-1757")),
@@ -28,5 +28,5 @@ Suggests:
 VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)

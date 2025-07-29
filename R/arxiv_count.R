@@ -49,8 +49,8 @@ function(query=NULL, id_list=NULL)
     body <- list(search_query=query, id_list=id_list,
                  start=0, max_results=0)
     body <- drop_nulls(body)
-    search_result <- try(httr::POST(query_url,
-                                    body=body,
+    search_result <- try(httr::GET(query_url,
+                                    query=body,
                                     httr::timeout(get_arxiv_timeout())))
     if(inherits(search_result, "try-error")) {
         timeout_action()
