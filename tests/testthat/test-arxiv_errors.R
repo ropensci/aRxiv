@@ -13,12 +13,12 @@ test_that("arxiv_error_message gives right info", {
     query_url <- "http://export.arxiv.org/api/query"
 
     delay_if_necessary()
-    good <- POST(query_url, body=list(id_list="1403.3048,1402.2633,1309.1192"))
+    good <- GET(query_url, query=list(id_list="1403.3048,1402.2633,1309.1192"))
     good <- result2list(good)
     expect_null(arxiv_error_message(good))
 
     delay_if_necessary()
-    bad <- POST(query_url, body=list(id_list="1403.3048,1402.2633,1309.119"))
+    bad <- GET(query_url, query=list(id_list="1403.3048,1402.2633,1309.119"))
     bad <- result2list(bad)
     expect_equal(arxiv_error_message(bad), "incorrect id format for 1309.119")
 

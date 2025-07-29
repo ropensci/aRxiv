@@ -263,8 +263,8 @@ A few short notes:
   (e.g., `stat.AP`) but also codes for the
   [Mathematical Subject Classification (MSC)](https://mathscinet.ams.org/mathscinet/msc/msc2010.html) (e.g., 14J60)
   and the
-  [ACM Computing Classification System](https://www.acm.org/publications/class-2012)
-  (e.g., F.2.2). These are not searchable with `cat:` but are
+  ACM Computing Classification System
+  (e.g., F.2.2, see `www.acm.org/publications/class-2012`). These are not searchable with `cat:` but are
   searchable with a general search.
 
 ```{r search_msc}

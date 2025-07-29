@@ -17,7 +17,7 @@ if(!on_cran) {
     query_url <- "http://export.arxiv.org/api/query"
     delay_if_necessary()
 
-    z <- httr::POST(query_url, body=list(search_query=query,
+    z <- httr::GET(query_url, query=list(search_query=query,
                                          start=0, max_results=20,
                                          sort_by="submitted"))
     z <- get_entries(result2list(z))
@@ -74,7 +74,7 @@ test_that("clean_links works right", {
 
     # manuscript with multiple DOI links
     delay_if_necessary()
-    zz <- POST(query_url, body=list(id_list="1206.1585v3",
+    zz <- GET(query_url, query=list(id_list="1206.1585v3",
                                     start=0, max_results=1))
     zz <- get_entries(result2list(zz))
 
@@ -100,7 +100,7 @@ test_that("clean_categories works right", {
 
     # manuscript with 6 categories
     delay_if_necessary()
-    zz <- POST(query_url, body=list(id_list="1303.5613v1",
+    zz <- GET(query_url, query=list(id_list="1303.5613v1",
                                     start=0, max_results=1))
     zz <- get_entries(result2list(zz))
 

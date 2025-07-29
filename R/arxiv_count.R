@@ -47,10 +47,10 @@ function(query=NULL, id_list=NULL)
     # (extra messy to avoid possible problems when testing on CRAN
     #    timeout_action defined in timeout.R)
     body <- list(search_query=query, id_list=id_list,
-                 start=0, max_gresults=0)
+                 start=0, max_results=0)
     body <- drop_nulls(body)
-    search_result <- try(httr::POST(query_url,
-                                    body=body,
+    search_result <- try(httr::GET(query_url,
+                                    query=body,
                                     httr::timeout(get_arxiv_timeout())))
     if(inherits(search_result, "try-error")) {
         timeout_action()

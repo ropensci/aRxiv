@@ -138,8 +138,8 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
                  start=start, max_results=limit,
                  sortBy=recode_sortby(sort_by), sortOrder=sort_order)
     body <- drop_nulls(body)
-    search_result <- try(httr::POST(query_url,
-                                    body=body,
+    search_result <- try(httr::GET(query_url,
+                                    query=body,
                                     httr::timeout(get_arxiv_timeout())))
     if(inherits(search_result, "try-error")) {
         timeout_action()
