@@ -1,3 +1,12 @@
+aRxiv 0.11.1
+------------
+
+### BUG FIXES
+
+* Fixed a typo in `arxiv_count()` that had been introduced way back in
+  December, 2014.
+
+
 aRxiv 0.10
 ----------
 
