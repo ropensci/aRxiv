@@ -221,28 +221,30 @@ useful for limiting a search with _many_ results, so that you may
 combine multiple searches together, each within some window of time,
 to get the full results.
 
-The date/time information is of the form `YYYYMMDDHHMMSS`, for
-example `20071018122534` for `2007-10-18 12:25:34`. You can use `*`
-for a wildcard for the times. For example, to get all manuscripts
-with initial submission on 2007-10-18:
+The date/time information is of the form `YYYYMMDDHHMM`, for
+example `200710181225` for `2007-10-18 12:25`, but you need to provide
+ranges in square brackets, like `[20071018 TO 20071020]`.
+For example, to get all manuscripts with initial submission on 2007-10-18:
 
-```{r wildcard_times}
-arxiv_count('submittedDate:20071018*')
+```{r dates_range}
+arxiv_count('submittedDate:[200710180000 TO 200710182359]')
 ```
 
-But you can't use the wildcard within the _dates_.
+It seems like you can leave off the times:
 
-```{r wildcard_date}
-arxiv_count('submittedDate:2007*')
+```{r dates_range_notimes}
+arxiv_count('submittedDate:[20071018 TO 20071018]')
 ```
 
-To get a count of all manuscripts with original submission in 2007,
-use a date range, like `[from_date TO to_date]`. (If you give a partial
-date, it's treated as the earliest date/time that matches, and the
-range appears to be up to but not including the second date/time.)
+If you give a partial date, it's treated as the earliest date/time
+that matches for the beginning of the range, and the latest date/time
+that matches for the end of the range.
 
-```{r daterange}
+```{r date_range_2007}
+arxiv_count('submittedDate:[2007 TO 2007]')
+arxiv_count('submittedDate:[200701010000 TO 200712312359]')
 arxiv_count('submittedDate:[2007 TO 2008]')
+arxiv_count('submittedDate:[200701010000 TO 200812312359]')
 ```
 
 ## Search results

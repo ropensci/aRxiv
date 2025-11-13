@@ -27,46 +27,32 @@ document.addEventListener('DOMContentLoaded', function(e) {
   }
 });
 </script>
-<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
-// v0.0.1
-// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
-
-document.addEventListener('DOMContentLoaded', function() {
-  const codeList = document.getElementsByClassName("sourceCode");
-  for (var i = 0; i < codeList.length; i++) {
-    var linkList = codeList[i].getElementsByTagName('a');
-    for (var j = 0; j < linkList.length; j++) {
-      if (linkList[j].innerHTML === "") {
-        linkList[j].setAttribute('aria-hidden', 'true');
-      }
-    }
-  }
-});
-</script>
 
 <style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
 
 
 <style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -78,55 +64,54 @@ pre > code.sourceCode { white-space: pre-wrap; }
 pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {   }
+{ }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -356,152 +341,334 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<p><a href="https://arxiv.org">arXiv</a> is a repository of electronic preprints for computer science, mathematics, physics, quantitative biology, quantitative finance, and statistics. The <a href="https://github.com/ropensci/aRxiv">aRxiv package</a> provides an <a href="https://www.r-project.org">R</a> interface to the <a href="https://arxiv.org/help/api/index.html">arXiv API</a>.</p>
+<p><a href="https://arxiv.org">arXiv</a> is a repository of electronic
+preprints for computer science, mathematics, physics, quantitative
+biology, quantitative finance, and statistics. The <a href="https://github.com/ropensci/aRxiv">aRxiv package</a> provides an
+<a href="https://www.r-project.org">R</a> interface to the <a href="https://arxiv.org/help/api/index.html">arXiv API</a>.</p>
 <p>Note that the arXiv API <em>does not</em> require an API key.</p>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
-<p>You can install the <a href="https://github.com/rOpenSci/aRxiv">aRxiv package</a> via <a href="https://cran.r-project.org">CRAN</a>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;aRxiv&quot;</span>)</span></code></pre></div>
-<p>Or use <code>remotes::install_github()</code> to get the (possibly more recent) version at <a href="https://github.com/rOpenSci/aRxiv">GitHub</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">library</span>(remotes)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">install_github</span>(<span class="st">&quot;ropensci/aRxiv&quot;</span>)</span></code></pre></div>
+<p>You can install the <a href="https://github.com/rOpenSci/aRxiv">aRxiv
+package</a> via <a href="https://cran.r-project.org">CRAN</a>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;aRxiv&quot;</span>)</span></code></pre></div>
+<p>Or use <code>remotes::install_github()</code> to get the (possibly
+more recent) version at <a href="https://github.com/rOpenSci/aRxiv">GitHub</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">library</span>(remotes)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;ropensci/aRxiv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="basic-use" class="section level2">
 <h2>Basic use</h2>
-<p>Use <code>arxiv_search()</code> to search <a href="https://arxiv.org">arXiv</a>, <code>arxiv_count()</code> to get a simple count of manuscripts matching a query, and <code>arxiv_open()</code> to open the abstract pages for a set of results from <code>arxiv_search()</code>.</p>
-<p>We’ll get to the details in a moment. For now, let’s look at a few examples.</p>
-<p>Suppose we wanted to identify all arXiv manuscripts with “<code>Peter Hall</code>” as an author. It is best to first get a count, so that we have a sense of how many records the search will return. (Peter Hall was “<a href="https://en.wikipedia.org/wiki/Peter_Gavin_Hall">among the world’s most prolific and highly cited authors in both probability and statistics</a>.”) We first use <code>library()</code> to load the aRxiv package and then <code>arxiv_count()</code> to get the count.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">library</span>(aRxiv)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;au:&quot;Peter Hall&quot;&#39;</span>)</span></code></pre></div>
-<p>The <code>au:</code> part indicates to search the author field; we use double quotes to search for a <em>phrase</em>.</p>
-<p>To obtain the actual records matching the query, use <code>arxiv_search()</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>rec &lt;-<span class="st"> </span><span class="kw">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot;&#39;</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">nrow</span>(rec)</span></code></pre></div>
-<p>The default is to grab no more than 10 records; this limit can be changed with the <code>limit</code> argument. But note that the arXiv API will not let you download more than 50,000 or so records, and even in that case it’s best to do so in batches; more on this below.</p>
-<p>Also note that the result of <code>arxiv_search()</code> has an attribute <code>&quot;total_results&quot;</code> containing the total count of search results; this is the same as what <code>arxiv_count()</code> provides.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">attr</span>(rec, <span class="st">&quot;total_results&quot;</span>)</span></code></pre></div>
+<p>Use <code>arxiv_search()</code> to search <a href="https://arxiv.org">arXiv</a>, <code>arxiv_count()</code> to get a
+simple count of manuscripts matching a query, and
+<code>arxiv_open()</code> to open the abstract pages for a set of
+results from <code>arxiv_search()</code>.</p>
+<p>We’ll get to the details in a moment. For now, let’s look at a few
+examples.</p>
+<p>Suppose we wanted to identify all arXiv manuscripts with
+“<code>Peter Hall</code>” as an author. It is best to first get a count,
+so that we have a sense of how many records the search will return.
+(Peter Hall was “<a href="https://en.wikipedia.org/wiki/Peter_Gavin_Hall">among the world’s
+most prolific and highly cited authors in both probability and
+statistics</a>.”) We first use <code>library()</code> to load the aRxiv
+package and then <code>arxiv_count()</code> to get the count.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(aRxiv)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:&quot;Peter Hall&quot;&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 264</code></pre>
+<p>The <code>au:</code> part indicates to search the author field; we
+use double quotes to search for a <em>phrase</em>.</p>
+<p>To obtain the actual records matching the query, use
+<code>arxiv_search()</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>rec <span class="ot">&lt;-</span> <span class="fu">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot;&#39;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">nrow</span>(rec)</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<p>The default is to grab no more than 10 records; this limit can be
+changed with the <code>limit</code> argument. But note that the arXiv
+API will not let you download more than 50,000 or so records, and even
+in that case it’s best to do so in batches; more on this below.</p>
+<p>Also note that the result of <code>arxiv_search()</code> has an
+attribute <code>&quot;total_results&quot;</code> containing the total count of
+search results; this is the same as what <code>arxiv_count()</code>
+provides.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">attr</span>(rec, <span class="st">&quot;total_results&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 264</code></pre>
 <p>The following will get us all of the records.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>rec &lt;-<span class="st"> </span><span class="kw">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot;&#39;</span>, <span class="dt">limit=</span><span class="dv">100</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">nrow</span>(rec)</span></code></pre></div>
-<p><code>arxiv_search()</code> returns a data frame with each row being a single manuscript. The columns are the different fields (e.g., <code>authors</code>, <code>title</code>, <code>abstract</code>, etc.). Fields like <code>authors</code> that contain multiple items will be a single character string with the multiple items separated by a vertical bar (<code>|</code>).</p>
-<p>We might be interested in a more restrictive search, such as for Peter Hall’s arXiv manuscripts that have <code>deconvolution</code> in the title. We use <code>ti:</code> to search the title field, and combine the two with <code>AND</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>deconv &lt;-<span class="st"> </span><span class="kw">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot; AND ti:deconvolution&#39;</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">nrow</span>(deconv)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>rec <span class="ot">&lt;-</span> <span class="fu">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot;&#39;</span>, <span class="at">limit=</span><span class="dv">100</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">nrow</span>(rec)</span></code></pre></div>
+<pre><code>## [1] 100</code></pre>
+<p><code>arxiv_search()</code> returns a data frame with each row being
+a single manuscript. The columns are the different fields (e.g.,
+<code>authors</code>, <code>title</code>, <code>abstract</code>, etc.).
+Fields like <code>authors</code> that contain multiple items will be a
+single character string with the multiple items separated by a vertical
+bar (<code>|</code>).</p>
+<p>We might be interested in a more restrictive search, such as for
+Peter Hall’s arXiv manuscripts that have <code>deconvolution</code> in
+the title. We use <code>ti:</code> to search the title field, and
+combine the two with <code>AND</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>deconv <span class="ot">&lt;-</span> <span class="fu">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot; AND ti:deconvolution&#39;</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">nrow</span>(deconv)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
 <p>Let’s display just the authors and title for the results.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>deconv[, <span class="kw">c</span>(<span class="st">&#39;title&#39;</span>, <span class="st">&#39;authors&#39;</span>)]</span></code></pre></div>
-<p>We can open the abstract pages for these manuscripts using <code>arxiv_open()</code>. It takes, as input, the output of <code>arxiv_search()</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">arxiv_open</span>(deconv)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>deconv[, <span class="fu">c</span>(<span class="st">&#39;title&#39;</span>, <span class="st">&#39;authors&#39;</span>)]</span></code></pre></div>
+<pre><code>##                                                                          title
+## 1                                  A ridge-parameter approach to deconvolution
+## 2                                  On deconvolution with repeated measurements
+## 3 Estimation of distributions, moments and quantiles in deconvolution problems
+## 4   Kernel methods and minimum contrast estimators for empirical deconvolution
+##                                        authors
+## 1                 Peter Hall|Alexander Meister
+## 2 Aurore Delaigle|Peter Hall|Alexander Meister
+## 3               Peter Hall|Soumendra N. Lahiri
+## 4                   Aurore Delaigle|Peter Hall</code></pre>
+<p>We can open the abstract pages for these manuscripts using
+<code>arxiv_open()</code>. It takes, as input, the output of
+<code>arxiv_search()</code>.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">arxiv_open</span>(deconv)</span></code></pre></div>
 </div>
 <div id="forming-queries" class="section level2">
 <h2>Forming queries</h2>
-<p>The two basic arguments to <code>arxiv_count()</code> and <code>arxiv_search()</code> are <code>query</code>, a character string representing the search, and <code>id_list</code>, a list of <a href="https://arxiv.org/help/arxiv_identifier.html">arXiv manuscript identifiers</a>.</p>
+<p>The two basic arguments to <code>arxiv_count()</code> and
+<code>arxiv_search()</code> are <code>query</code>, a character string
+representing the search, and <code>id_list</code>, a list of <a href="https://arxiv.org/help/arxiv_identifier.html">arXiv manuscript
+identifiers</a>.</p>
 <ul>
-<li>If only <code>query</code> is provided, manuscripts matching that query are returned.</li>
-<li>If only <code>id_list</code> is provided, manuscripts in the list are returned.</li>
-<li>If both are provided, manuscripts in <code>id_list</code> that match <code>query</code> will be returned.</li>
+<li>If only <code>query</code> is provided, manuscripts matching that
+query are returned.</li>
+<li>If only <code>id_list</code> is provided, manuscripts in the list
+are returned.</li>
+<li>If both are provided, manuscripts in <code>id_list</code> that match
+<code>query</code> will be returned.</li>
 </ul>
-<p><code>query</code> may be a single character string or a vector of character strings. If it is a vector, the elements are pasted together with <code>AND</code>.</p>
-<p><code>id_list</code> may be a vector of character strings or a single comma-separated character string.</p>
+<p><code>query</code> may be a single character string or a vector of
+character strings. If it is a vector, the elements are pasted together
+with <code>AND</code>.</p>
+<p><code>id_list</code> may be a vector of character strings or a single
+comma-separated character string.</p>
 <div id="search-terms" class="section level3">
 <h3>Search terms</h3>
-<p>Generally, one would ignore <code>id_list</code> and focus on forming the <code>query</code> argument. The aRxiv package includes a dataset <code>query_terms</code> that lists the terms (like <code>au</code>) that you can use.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>query_terms</span></code></pre></div>
-<p>Use a colon (<code>:</code>) to separate the query term from the actual query. Multiple queries can be combined with <code>AND</code>, <code>OR</code>, and <code>ANDNOT</code>. The default is <code>OR</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;au:Peter au:Hall&#39;</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;au:Peter OR au:Hall&#39;</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;au:Peter AND au:Hall&#39;</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;au:Hall ANDNOT au:Peter&#39;</span>)</span></code></pre></div>
-<p>It appears that in the author field (and many other fields) you must search full words, and that wild cards are not allowed.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;au:P* AND au:Hall&#39;</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;au:P AND au:Hall&#39;</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;au:&quot;P Hall&quot;&#39;</span>)</span></code></pre></div>
+<p>Generally, one would ignore <code>id_list</code> and focus on forming
+the <code>query</code> argument. The aRxiv package includes a dataset
+<code>query_terms</code> that lists the terms (like <code>au</code>)
+that you can use.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>query_terms</span></code></pre></div>
+<pre><code>##               term                                      description
+## 1               ti                                            Title
+## 2               au                                           Author
+## 3              abs                                         Abstract
+## 4               co                                          Comment
+## 5               jr                                Journal Reference
+## 6              cat                                 Subject Category
+## 7               rn                                    Report Number
+## 8              all                                 All of the above
+## 9    submittedDate Date/time of initial submission, as YYYYMMDDHHMM
+## 10 lastUpdatedDate        Date/time of last update, as YYYYMMDDHHMM</code></pre>
+<p>Use a colon (<code>:</code>) to separate the query term from the
+actual query. Multiple queries can be combined with <code>AND</code>,
+<code>OR</code>, and <code>ANDNOT</code>. The default is
+<code>OR</code>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:Peter au:Hall&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 48989</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:Peter OR au:Hall&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 48989</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:Peter AND au:Hall&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 264</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:Hall ANDNOT au:Peter&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 3035</code></pre>
+<p>It appears that in the author field (and many other fields) you must
+search full words, and that wild cards are not allowed.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:P* AND au:Hall&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 2026</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:P AND au:Hall&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 1800</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:&quot;P Hall&quot;&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 1800</code></pre>
 </div>
 <div id="subject-classifications" class="section level3">
 <h3>Subject classifications</h3>
-<p>arXiv has a set of 155 subject classifications, searchable with the prefix <code>cat:</code>. The aRxiv package contains a dataset <code>arxiv_cats</code> containing the categories, short and long descriptions, as well as field (and, for Physics, subfield). Here are the column names.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">colnames</span>(arxiv_cats)</span></code></pre></div>
+<p>arXiv has a set of 155 subject classifications, searchable with the
+prefix <code>cat:</code>. The aRxiv package contains a dataset
+<code>arxiv_cats</code> containing the categories, short and long
+descriptions, as well as field (and, for Physics, subfield). Here are
+the column names.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">colnames</span>(arxiv_cats)</span></code></pre></div>
+<pre><code>## [1] &quot;category&quot;          &quot;field&quot;             &quot;subfield&quot;          &quot;short_description&quot; &quot;long_description&quot;</code></pre>
 <p>Here are the statistics categories.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>arxiv_cats[arxiv_cats<span class="op">$</span>field<span class="op">==</span><span class="st">&quot;Statistics&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;category&quot;</span>, <span class="st">&quot;short_description&quot;</span>)]</span></code></pre></div>
-<p>To search these categories, you need to include either the full term or use the <code>*</code> wildcard.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;cat:stat&#39;</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;cat:stat.AP&#39;</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;cat:stat*&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>arxiv_cats[arxiv_cats<span class="sc">$</span>field<span class="sc">==</span><span class="st">&quot;Statistics&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;category&quot;</span>, <span class="st">&quot;short_description&quot;</span>)]</span></code></pre></div>
+<pre><code>##     category short_description
+## 150  stat.AP      Applications
+## 151  stat.CO       Computation
+## 152  stat.ME       Methodology
+## 153  stat.ML  Machine Learning
+## 154  stat.OT  Other Statistics
+## 155  stat.TH Statistics Theory</code></pre>
+<p>To search these categories, you need to include either the full term
+or use the <code>*</code> wildcard.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat.AP&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 21867</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat*&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 121355</code></pre>
 </div>
 <div id="dates-and-ranges-of-dates" class="section level3">
 <h3>Dates and ranges of dates</h3>
-<p>The terms <code>submittedDate</code> (date/time of first submission) and <code>lastUpdatedDate</code> (date/time of last revision) are particularly useful for limiting a search with <em>many</em> results, so that you may combine multiple searches together, each within some window of time, to get the full results.</p>
-<p>The date/time information is of the form <code>YYYYMMDDHHMMSS</code>, for example <code>20071018122534</code> for <code>2007-10-18 12:25:34</code>. You can use <code>*</code> for a wildcard for the times. For example, to get all manuscripts with initial submission on 2007-10-18:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;submittedDate:20071018*&#39;</span>)</span></code></pre></div>
-<p>But you can’t use the wildcard within the <em>dates</em>.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;submittedDate:2007*&#39;</span>)</span></code></pre></div>
-<p>To get a count of all manuscripts with original submission in 2007, use a date range, like <code>[from_date TO to_date]</code>. (If you give a partial date, it’s treated as the earliest date/time that matches, and the range appears to be up to but not including the second date/time.)</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&#39;submittedDate:[2007 TO 2008]&#39;</span>)</span></code></pre></div>
+<p>The terms <code>submittedDate</code> (date/time of first submission)
+and <code>lastUpdatedDate</code> (date/time of last revision) are
+particularly useful for limiting a search with <em>many</em> results, so
+that you may combine multiple searches together, each within some window
+of time, to get the full results.</p>
+<p>The date/time information is of the form <code>YYYYMMDDHHMM</code>,
+for example <code>200710181225</code> for <code>2007-10-18 12:25</code>,
+but you need to provide ranges in square brackets, like
+<code>[20071018 TO 20071020]</code>. For example, to get all manuscripts
+with initial submission on 2007-10-18:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;submittedDate:[200710180000 TO 200710182359]&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 196</code></pre>
+<p>It seems like you can leave off the times:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;submittedDate:[20071018 TO 20071018]&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 196</code></pre>
+<p>If you give a partial date, it’s treated as the earliest date/time
+that matches for the beginning of the range, and the latest date/time
+that matches for the end of the range.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;submittedDate:[2007 TO 2007]&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 55749</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;submittedDate:[200701010000 TO 200712312359]&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 55749</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;submittedDate:[2007 TO 2008]&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 114559</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;submittedDate:[200701010000 TO 200812312359]&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] 114559</code></pre>
 </div>
 </div>
 <div id="search-results" class="section level2">
 <h2>Search results</h2>
-<p>The output of <code>arxiv_search()</code> is a data frame with the following columns.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a>res &lt;-<span class="st"> </span><span class="kw">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot;&#39;</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="kw">names</span>(res)</span></code></pre></div>
-<p>The columns are described in the help file for <code>arxiv_search()</code>. Try <code>?arxiv_search</code>.</p>
+<p>The output of <code>arxiv_search()</code> is a data frame with the
+following columns.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot;&#39;</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a><span class="fu">names</span>(res)</span></code></pre></div>
+<pre><code>##  [1] &quot;id&quot;               &quot;submitted&quot;        &quot;updated&quot;          &quot;title&quot;            &quot;abstract&quot;        
+##  [6] &quot;authors&quot;          &quot;affiliations&quot;     &quot;link_abstract&quot;    &quot;link_pdf&quot;         &quot;link_doi&quot;        
+## [11] &quot;comment&quot;          &quot;journal_ref&quot;      &quot;doi&quot;              &quot;primary_category&quot; &quot;categories&quot;</code></pre>
+<p>The columns are described in the help file for
+<code>arxiv_search()</code>. Try <code>?arxiv_search</code>.</p>
 <p>A few short notes:</p>
 <ul>
-<li>Each field is a single character string. <code>authors</code>, <code>link_doi</code>, and <code>categories</code> may contain multiple items, separated by a vertical bar (<code>|</code>).</li>
-<li>Missing entries will have an empty character string (<code>&quot;&quot;</code>).</li>
-<li>The <code>categories</code> column may contain not just the aRxiv categories (e.g., <code>stat.AP</code>) but also codes for the <a href="https://mathscinet.ams.org/mathscinet/msc/msc2010.html">Mathematical Subject Classification (MSC)</a> (e.g., 14J60) and the ACM Computing Classification System (e.g., F.2.2, see <code>www.acm.org/publications/class-2012</code>). These are not searchable with <code>cat:</code> but are searchable with a general search.</li>
+<li>Each field is a single character string. <code>authors</code>,
+<code>link_doi</code>, and <code>categories</code> may contain multiple
+items, separated by a vertical bar (<code>|</code>).</li>
+<li>Missing entries will have an empty character string
+(<code>&quot;&quot;</code>).</li>
+<li>The <code>categories</code> column may contain not just the aRxiv
+categories (e.g., <code>stat.AP</code>) but also codes for the <a href="https://mathscinet.ams.org/mathscinet/msc/msc2010.html">Mathematical
+Subject Classification (MSC)</a> (e.g., 14J60) and the ACM Computing
+Classification System (e.g., F.2.2, see
+<code>www.acm.org/publications/class-2012</code>). These are not
+searchable with <code>cat:</code> but are searchable with a general
+search.</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&quot;cat:14J60&quot;</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a><span class="kw">arxiv_count</span>(<span class="st">&quot;14J60&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&quot;cat:14J60&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&quot;14J60&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 691</code></pre>
 </div>
 <div id="sorting-results" class="section level2">
 <h2>Sorting results</h2>
-<p>The <code>arxiv_search()</code> function has two arguments for sorting the results, <code>sort_by</code> (taking values <code>&quot;submitted&quot;</code>, <code>&quot;updated&quot;</code>, or <code>&quot;relevance&quot;</code>) and <code>ascending</code> (<code>TRUE</code> or <code>FALSE</code>). If <code>id_list</code> is provided, these sorting arguments are ignored and the results are presented according to the order in <code>id_list</code>.</p>
-<p>Here’s an example, to sort the results by the date the manuscripts were last updated, in descending order.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a>res &lt;-<span class="st"> </span><span class="kw">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot; AND ti:deconvolution&#39;</span>,</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a>                    <span class="dt">sort_by=</span><span class="st">&quot;updated&quot;</span>, <span class="dt">ascending=</span><span class="ot">FALSE</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a>res<span class="op">$</span>updated</span></code></pre></div>
+<p>The <code>arxiv_search()</code> function has two arguments for
+sorting the results, <code>sort_by</code> (taking values
+<code>&quot;submitted&quot;</code>, <code>&quot;updated&quot;</code>, or
+<code>&quot;relevance&quot;</code>) and <code>ascending</code> (<code>TRUE</code>
+or <code>FALSE</code>). If <code>id_list</code> is provided, these
+sorting arguments are ignored and the results are presented according to
+the order in <code>id_list</code>.</p>
+<p>Here’s an example, to sort the results by the date the manuscripts
+were last updated, in descending order.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot; AND ti:deconvolution&#39;</span>,</span>
+<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a>                    <span class="at">sort_by=</span><span class="st">&quot;updated&quot;</span>, <span class="at">ascending=</span><span class="cn">FALSE</span>)</span>
+<span id="cb60-3"><a href="#cb60-3" tabindex="-1"></a>res<span class="sc">$</span>updated</span></code></pre></div>
+<pre><code>## [1] &quot;2009-09-29 20:02:35&quot; &quot;2008-12-18 20:54:00&quot; &quot;2008-10-28 00:00:04&quot; &quot;2010-03-02 01:00:04&quot;</code></pre>
 </div>
 <div id="technical-details" class="section level2">
 <h2>Technical details</h2>
 <div id="metadata-limitations" class="section level3">
 <h3>Metadata limitations</h3>
-<p>The <a href="https://arxiv.org/help/prep.html">arXiv metadata</a> has a number of limitations, the key issue being that it is author-supplied and so not necessarily consistent between records.</p>
-<p>Authors’ names may vary between records (e.g., Peter Hall vs. Peter G. Hall vs. Peter Gavin Hall vs. P Hall). Further, arXiv provides no ability to distinguish multiple individuals with the same name (c.f., <a href="https://orcid.org">ORCID</a>).</p>
-<p>Authors’ institutional affiliations are mostly missing. The arXiv submission form does not include an affiliation field; affiliations are entered within the author field, in parentheses. The <a href="https://arxiv.org/help/prep.html#author">metadata instructions</a> may not be widely read.</p>
-<p>There are no key words; you are stuck with searching the free text in the titles and abstracts.</p>
-<p>Subject classifications are provided by the authors and may be incomplete or inappropriate.</p>
+<p>The <a href="https://arxiv.org/help/prep.html">arXiv metadata</a> has
+a number of limitations, the key issue being that it is author-supplied
+and so not necessarily consistent between records.</p>
+<p>Authors’ names may vary between records (e.g., Peter Hall vs. Peter
+G. Hall vs. Peter Gavin Hall vs. P Hall). Further, arXiv provides no
+ability to distinguish multiple individuals with the same name (c.f., <a href="https://orcid.org">ORCID</a>).</p>
+<p>Authors’ institutional affiliations are mostly missing. The arXiv
+submission form does not include an affiliation field; affiliations are
+entered within the author field, in parentheses. The <a href="https://arxiv.org/help/prep.html#author">metadata instructions</a>
+may not be widely read.</p>
+<p>There are no key words; you are stuck with searching the free text in
+the titles and abstracts.</p>
+<p>Subject classifications are provided by the authors and may be
+incomplete or inappropriate.</p>
 </div>
 <div id="limit-time-between-search-requests" class="section level3">
 <h3>Limit time between search requests</h3>
-<p>Care should be taken to avoid multiple requests to the arXiv API in a short period of time. The <a href="https://arxiv.org/help/api/user-manual.html">arXiv API user manual</a> states:</p>
+<p>Care should be taken to avoid multiple requests to the arXiv API in a
+short period of time. The <a href="https://arxiv.org/help/api/user-manual.html">arXiv API user
+manual</a> states:</p>
 <blockquote>
-<p>In cases where the API needs to be called multiple times in a row, we encourage you to play nice and incorporate a 3 second delay in your code.</p>
+<p>In cases where the API needs to be called multiple times in a row, we
+encourage you to play nice and incorporate a 3 second delay in your
+code.</p>
 </blockquote>
-<p>The aRxiv package institutes a delay between requests, with the time period for the delay configurable with the R option <code>&quot;aRxiv_delay&quot;</code> (in seconds). The default is 3 seconds.</p>
+<p>The aRxiv package institutes a delay between requests, with the time
+period for the delay configurable with the R option
+<code>&quot;aRxiv_delay&quot;</code> (in seconds). The default is 3 seconds.</p>
 <p>To reduce the delay to 1 second, use:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="kw">options</span>(<span class="dt">aRxiv_delay=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><strong>Don’t</strong> do searches in parallel (e.g., via the parallel package). You may be locked out from the arXiv API.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">aRxiv_delay=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><strong>Don’t</strong> do searches in parallel (e.g., via the
+parallel package). You may be locked out from the arXiv API.</p>
 </div>
 <div id="limit-number-of-items-returned" class="section level3">
 <h3>Limit number of items returned</h3>
-<p>The arXiv API returns only complete records (including the entire abstracts); searches returning large numbers of records can be very slow.</p>
-<p>It’s best to use <code>arxiv_count()</code> before <code>arxiv_search()</code>, so that you have a sense of how many records you will receive. If the count is large, you may wish to refine your query.</p>
-<p>arXiv has a hard limit of around 50,000 records; for a query that matches more than 50,000 manuscripts, there is no way to receive the full results. The simplest solution to this problem is to break the query into smaller pieces, for example using slices of time, with a range of dates for <code>submittedDate</code> or <code>lastUpdatedDate</code>.</p>
-<p>The <code>limit</code> argument to <code>arxiv_search()</code> (with default <code>limit=10</code>) limits the number of records to be returned. If you wish to receive more than 10 records, you must specify a larger limit (e.g., <code>limit=100</code>).</p>
-<p>To avoid accidental searches that may return a very large number of records, <code>arxiv_search()</code> uses an R option, <code>aRxiv_toomany</code> (with a default of 15,000), and refuses to attempt a search that will return results above that limit.</p>
+<p>The arXiv API returns only complete records (including the entire
+abstracts); searches returning large numbers of records can be very
+slow.</p>
+<p>It’s best to use <code>arxiv_count()</code> before
+<code>arxiv_search()</code>, so that you have a sense of how many
+records you will receive. If the count is large, you may wish to refine
+your query.</p>
+<p>arXiv has a hard limit of around 50,000 records; for a query that
+matches more than 50,000 manuscripts, there is no way to receive the
+full results. The simplest solution to this problem is to break the
+query into smaller pieces, for example using slices of time, with a
+range of dates for <code>submittedDate</code> or
+<code>lastUpdatedDate</code>.</p>
+<p>The <code>limit</code> argument to <code>arxiv_search()</code> (with
+default <code>limit=10</code>) limits the number of records to be
+returned. If you wish to receive more than 10 records, you must specify
+a larger limit (e.g., <code>limit=100</code>).</p>
+<p>To avoid accidental searches that may return a very large number of
+records, <code>arxiv_search()</code> uses an R option,
+<code>aRxiv_toomany</code> (with a default of 15,000), and refuses to
+attempt a search that will return results above that limit.</p>
 </div>
 <div id="make-requests-in-batches" class="section level3">
 <h3>Make requests in batches</h3>
-<p>Even for searches that return a moderate number of records (say 2,000), it may be best to make the requests in batches: Use a smaller value for the <code>limit</code> argument (say 100), and make multiple requests with different offsets, indicated with the <code>start</code> argument, for the initial record to return.</p>
-<p>This is done automatically with the <code>batchsize</code> argument to <code>arxiv_search()</code>. A search is split into multiple calls, with no more than <code>batchsize</code> records to be returned by each, and then the results are combined.</p>
+<p>Even for searches that return a moderate number of records (say
+2,000), it may be best to make the requests in batches: Use a smaller
+value for the <code>limit</code> argument (say 100), and make multiple
+requests with different offsets, indicated with the <code>start</code>
+argument, for the initial record to return.</p>
+<p>This is done automatically with the <code>batchsize</code> argument
+to <code>arxiv_search()</code>. A search is split into multiple calls,
+with no more than <code>batchsize</code> records to be returned by each,
+and then the results are combined.</p>
 </div>
 </div>
 <div id="license-and-bugs" class="section level2">
 <h2>License and bugs</h2>
 <ul>
 <li>License: <a href="https://github.com/ropensci/aRxiv/blob/master/LICENSE">MIT</a></li>
-<li>Report bugs or suggestions improvements by <a href="https://github.com/ropensci/aRxiv/issues">submitting an issue</a> to <a href="https://github.com/ropensci/aRxiv">our GitHub repository for aRxiv</a>.</li>
+<li>Report bugs or suggestions improvements by <a href="https://github.com/ropensci/aRxiv/issues">submitting an issue</a>
+to <a href="https://github.com/ropensci/aRxiv">our GitHub repository for
+aRxiv</a>.</li>
 </ul>
 </div>
 

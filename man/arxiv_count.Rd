@@ -34,7 +34,7 @@ arxiv_count(query = 'au:"Peter Hall" AND cat:stat*')
 
 # count papers for a range of dates
 #    here, everything in 2013
-arxiv_count("submittedDate:[2013 TO 2014]")
+arxiv_count("submittedDate:[2013 TO 2013]")
 }
 \dontshow{options(aRxiv_delay=old_delay)}
 
