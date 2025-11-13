@@ -6,6 +6,8 @@ aRxiv 0.13-2
 * Small changes to aRxiv vignette to avoid errors if we cannot connect
   to the arXiv API.
 
+* In the vignette: the arXiv API no longer allows you to search on `lastUpdatedDate`.
+
 ### BUG FIXES
 
 * The arXiv API no longer seems to allow `max_results == 0`, so in

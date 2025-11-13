@@ -215,11 +215,11 @@ arxiv_count('cat:stat*')
 
 ### Dates and ranges of dates
 
-The terms `submittedDate` (date/time of first submission) and
-`lastUpdatedDate` (date/time of last revision) are particularly
+The term `submittedDate` (date/time of first submission) is particularly
 useful for limiting a search with _many_ results, so that you may
 combine multiple searches together, each within some window of time,
-to get the full results.
+to get the full results. (There's also `lastUpdatedDate`, but it seems
+we can no longer search on that field.)
 
 The date/time information is of the form `YYYYMMDDHHMM`, for
 example `200710181225` for `2007-10-18 12:25`, but you need to provide
@@ -362,7 +362,7 @@ arXiv has a hard limit of around 50,000 records; for a query that
 matches more than 50,000 manuscripts, there is no way to receive the
 full results. The simplest solution to this problem is to break the
 query into smaller pieces, for example using slices of time, with a
-range of dates for `submittedDate` or `lastUpdatedDate`.
+range of dates for `submittedDate`.
 
 The `limit` argument to `arxiv_search()` (with default `limit=10`)
 limits the number of records to be returned. If you wish to receive

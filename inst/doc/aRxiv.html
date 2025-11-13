@@ -513,11 +513,12 @@ or use the <code>*</code> wildcard.</p>
 </div>
 <div id="dates-and-ranges-of-dates" class="section level3">
 <h3>Dates and ranges of dates</h3>
-<p>The terms <code>submittedDate</code> (date/time of first submission)
-and <code>lastUpdatedDate</code> (date/time of last revision) are
-particularly useful for limiting a search with <em>many</em> results, so
-that you may combine multiple searches together, each within some window
-of time, to get the full results.</p>
+<p>The term <code>submittedDate</code> (date/time of first submission)
+is particularly useful for limiting a search with <em>many</em> results,
+so that you may combine multiple searches together, each within some
+window of time, to get the full results. (There’s also
+<code>lastUpdatedDate</code>, but it seems we can no longer search on
+that field.)</p>
 <p>The date/time information is of the form <code>YYYYMMDDHHMM</code>,
 for example <code>200710181225</code> for <code>2007-10-18 12:25</code>,
 but you need to provide ranges in square brackets, like
@@ -638,8 +639,7 @@ your query.</p>
 matches more than 50,000 manuscripts, there is no way to receive the
 full results. The simplest solution to this problem is to break the
 query into smaller pieces, for example using slices of time, with a
-range of dates for <code>submittedDate</code> or
-<code>lastUpdatedDate</code>.</p>
+range of dates for <code>submittedDate</code>.</p>
 <p>The <code>limit</code> argument to <code>arxiv_search()</code> (with
 default <code>limit=10</code>) limits the number of records to be
 returned. If you wish to receive more than 10 records, you must specify
