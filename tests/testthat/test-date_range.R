@@ -9,14 +9,11 @@ test_that("search date ranges is quirky", {
     options(aRxiv_delay=0.5)
 
 
-    # single date doesn't work
-    expect_equal( omit_attr( arxiv_count("submittedDate:2013*") ), 0)
+    # is the same as truncating; completed to earliest time with that stem
+    expect_equal( omit_attr( arxiv_count("submittedDate:[19920101 TO 19921231]") ),   3191)
+    expect_equal( omit_attr( arxiv_count("submittedDate:[199201010000 TO 199212312359]") ),   3191)
 
-    # * is the same as truncating; completed to earliest time with that stem
-    expect_equal( omit_attr( arxiv_count("submittedDate:[19920101* TO 19921231*]") ), 3182)
-    expect_equal( omit_attr( arxiv_count("submittedDate:[19920101 TO 19921231]") ),   3182)
-
-    # to search a single year, use that year to the next one
-    expect_equal( omit_attr( arxiv_count("submittedDate:[1992 TO 1993]") ),           3190)
+    # to search a single year, use that year to that same year
+    expect_equal( omit_attr( arxiv_count("submittedDate:[1992 TO 1992]") ),           3191)
 
 })
