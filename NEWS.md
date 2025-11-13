@@ -1,3 +1,12 @@
+aRxiv 0.15.1
+------------
+
+### BUG FIXES
+
+* Got `clean_links()` working again, so abstract, pdf and doi links
+  are included in the search results.
+
+
 aRxiv 0.14
 ----------
 

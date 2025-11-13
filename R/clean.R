@@ -1,4 +1,3 @@
-
 # clean up a record
 #   - multiple author -> single strings of authors & institutions
 #   - multiple links -> link_abstract, link_pdf, link_doi
@@ -122,17 +121,17 @@ function(record, sep="|")
     links <- gsub("\\s*;\\s*$", "", links)
 
     # abstract: rel=alternate
-    wh <- (rel=="alternate")
+    wh <- grepl("/abs/", links)
     if(any(wh)) abstract <- paste(links[wh], collapse=sep)
     else abstract <- ""
 
     # pdf: rel=related and title=pdf
-    wh <- (rel=="related" & title=="pdf")
+    wh <- grepl("/pdf/", links)
     if(any(wh)) pdf <- paste(links[wh], collapse=sep)
     else pdf <- ""
 
     # doi: rel=related and title=doi
-    wh <- (rel=="related" & title=="doi")
+    wh <- grepl("/doi.org/", links)
     if(any(wh)) doi <- paste(links[wh], collapse=sep)
     else doi <- ""
 

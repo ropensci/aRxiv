@@ -61,17 +61,24 @@ test_that("clean_links works right", {
     skip_on_cran()
 
     cleaned_links <- clean_links(z[[1]])
-    expected_result <- list(link_abstract="http://arxiv.org/abs/astro-ph/9603156v3",
-                            link_pdf="http://arxiv.org/pdf/astro-ph/9603156v3",
-                            link_doi="http://dx.doi.org/10.1086/304018")
-#    expect_equal(cleaned_links, expected_result)
+    expected_result <- list(link_abstract = "https://arxiv.org/abs/gr-qc/9701001v1",
+                            link_pdf = "https://arxiv.org/pdf/gr-qc/9701001v1",
+                            link_doi = "https://doi.org/10.1103/PhysRevD.56.785")
+    expect_equal(cleaned_links, expected_result)
 
 
     cleaned_links <- clean_links(z[[2]])
-    expected_result <- list(link_abstract="http://arxiv.org/abs/astro-ph/9612225v2",
-                            link_pdf="http://arxiv.org/pdf/astro-ph/9612225v2",
-                            link_doi="")
-#    expect_equal(cleaned_links, expected_result)
+    expected_result <- list(link_abstract = "https://arxiv.org/abs/gr-qc/9701002v1",
+                            link_pdf = "https://arxiv.org/pdf/gr-qc/9701002v1",
+                            link_doi = "https://doi.org/10.1088/0264-9381/14/12/029")
+    expect_equal(cleaned_links, expected_result)
+
+    # missing DOI
+    cleaned_links <- clean_links(z[[12]])
+    expected_result <- list(link_abstract = "https://arxiv.org/abs/cs/9701102v1",
+                            link_pdf = "https://arxiv.org/pdf/cs/9701102v1",
+                            link_doi = "")
+    expect_equal(cleaned_links, expected_result)
 
     # manuscript with multiple DOI links
     delay_if_necessary()
@@ -80,10 +87,10 @@ test_that("clean_links works right", {
     zz <- get_entries(result2list(zz))
 
     cleaned_links <- clean_links(zz[[1]])
-    expected_result <- list(link_abstract="http://arxiv.org/abs/1206.1585v3",
-                            link_pdf="http://arxiv.org/pdf/1206.1585v3",
-                            link_doi="http://dx.doi.org/10.1112/jlms/jdt036|http://dx.doi.org/10.1112/jlms/jdu001")
-#    expect_equal(cleaned_links, expected_result)
+    expected_result <- list(link_abstract="https://arxiv.org/abs/1206.1585v3",
+                            link_pdf="https://arxiv.org/pdf/1206.1585v3",
+                            link_doi="https://doi.org/10.1112/jlms/jdt036|https://doi.org/10.1112/jlms/jdu001")
+    expect_equal(cleaned_links, expected_result)
 
 })
 
@@ -144,9 +151,9 @@ test_that("clean_record works right", {
                                            "determine the theory of gravity by the observation of gravitational waves."),
                           authors = "Motoyuki Saijo|Hisa-aki Shinkai|Kei-ichi Maeda",
                           affiliations = "",
-                          link_abstract = "",
-                          link_pdf = "",
-                          link_doi = "",
+                          link_abstract = "https://arxiv.org/abs/gr-qc/9701001v1",
+                          link_pdf = "https://arxiv.org/pdf/gr-qc/9701001v1",
+                          link_doi = "https://doi.org/10.1103/PhysRevD.56.785",
                           comment = "24 pages, revtex, 18 figures are attached with ps files",
                           journal_ref = "Phys.Rev. D56 (1997) 785-797",
                           doi = "10.1103/PhysRevD.56.785",
@@ -164,9 +171,9 @@ test_that("clean_record works right", {
                                           "classification of compact, simply connected four-manifolds."),
                          authors = "Gabor Etesi",
                          affiliations = "",
-                         link_abstract = "",
-                         link_pdf = "",
-                         link_doi = "",
+                         link_abstract = "https://arxiv.org/abs/hep-th/9705206v3",
+                         link_pdf = "https://arxiv.org/pdf/hep-th/9705206v3",
+                         link_doi = "https://doi.org/10.1007/s002200050408",
                          comment = "9 pages, latex, journal reference added",
                          journal_ref = "Commun.Math.Phys. 195 (1998) 691-697",
                          doi = "10.1007/s002200050408",
