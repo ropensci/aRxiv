@@ -26,7 +26,7 @@ of such strings}
 
 \item{start}{An offset for the start of search}
 
-\item{limit}{Maximum number of records to return.}
+\item{limit}{Maximum number of records to return (must be > 0).}
 
 \item{sort_by}{How to sort the results (ignored if \code{id_list} is
 provided)}

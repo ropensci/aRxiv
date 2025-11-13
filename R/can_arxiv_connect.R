@@ -18,7 +18,7 @@ can_arxiv_connect <-
 {
     query_url <- "http://export.arxiv.org/api/query"
 
-    result <- tryCatch(z <- httr::GET(query_url, query=list(search_query="all:electron", max_results=0),
+    result <- tryCatch(z <- httr::GET(query_url, query=list(search_query="all:electron", max_results=1),
                                        httr::timeout(max_time)),
                        error=function(e) paste("Failure to connect in arxiv_check"))
 

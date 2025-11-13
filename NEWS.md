@@ -1,10 +1,16 @@
-aRxiv 0.13-1
+aRxiv 0.13-2
 ------------
 
 ### MINOR CHANGES
 
 * Small changes to aRxiv vignette to avoid errors if we cannot connect
   to the arXiv API.
+
+### BUG FIXES
+
+* The arXiv API no longer seems to allow `max_results == 0`, so in
+  `arxiv_search()` we now require `limit>0`, and in `arxiv_count()`
+  and `can_arxiv_connect()` we use `max_results=1`.
 
 
 aRxiv 0.12

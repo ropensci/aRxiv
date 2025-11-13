@@ -12,7 +12,7 @@
 #' @param id_list arXiv doc IDs, as comma-delimited string or a vector
 #' of such strings
 #' @param start An offset for the start of search
-#' @param limit Maximum number of records to return.
+#' @param limit Maximum number of records to return (must be > 0).
 #' @param sort_by How to sort the results (ignored if `id_list` is
 #' provided)
 #' @param ascending If TRUE, sort in ascending order; else descending
@@ -108,7 +108,7 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
     if(is.null(limit)) limit <- arxiv_count(query, id_list)
 
     stopifnot(start >= 0)
-    stopifnot(limit >= 0)
+    if(limit <= 0) stop("limit must be > 0")
     stopifnot(batchsize >= 1)
 
     # if force=FALSE, check that we aren't asking for too much

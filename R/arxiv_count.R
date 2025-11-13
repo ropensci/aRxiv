@@ -47,7 +47,7 @@ function(query=NULL, id_list=NULL)
     # (extra messy to avoid possible problems when testing on CRAN
     #    timeout_action defined in timeout.R)
     body <- list(search_query=query, id_list=id_list,
-                 start=0, max_results=0)
+                 start=0, max_results=1)
     body <- drop_nulls(body)
     search_result <- try(httr::GET(query_url,
                                     query=body,
