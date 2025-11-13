@@ -139,8 +139,8 @@ function(query=NULL, id_list=NULL, start=0, limit=10,
                  sortBy=recode_sortby(sort_by), sortOrder=sort_order)
     body <- drop_nulls(body)
     search_result <- try(httr::GET(query_url,
-                                    query=body,
-                                    httr::timeout(get_arxiv_timeout())))
+                                   query=body,
+                                   httr::timeout(get_arxiv_timeout())))
     if(inherits(search_result, "try-error")) {
         timeout_action()
         return(invisible(NULL))
