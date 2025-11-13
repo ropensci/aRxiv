@@ -1,3 +1,12 @@
+aRxiv 0.13-1
+------------
+
+### MINOR CHANGES
+
+* Small changes to aRxiv vignette to avoid errors if we cannot connect
+  to the arXiv API.
+
+
 aRxiv 0.12
 ----------
 

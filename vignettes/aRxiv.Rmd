@@ -23,6 +23,12 @@ if(on_cran) {
     aRxiv:::set_arxiv_timeout(1)
     aRxiv:::set_message_on_timeout(TRUE)
 }
+
+# if aRxiv connection is down, skip everything else
+if(!aRxiv::can_arxiv_connect(1)) {
+    library(aRxiv)
+    knitr::opts_chunk$set(eval=FALSE)
+}
 ```
 
 ```{r change_aRxiv_delay_option, include=FALSE}
@@ -92,8 +98,7 @@ is the same as what `arxiv_count()` provides.
 attr(rec, "total_results")
 ```
 
-The following will get us all `r arxiv_count('au:"Peter Hall"')`
-records.
+The following will get us all of the records.
 
 ```{r arxiv_search_limit100}
 rec <- arxiv_search('au:"Peter Hall"', limit=100)
@@ -121,7 +126,7 @@ Let's display just the authors and title for the results.
 deconv[, c('title', 'authors')]
 ```
 
-We can open the abstract pages for these `r nrow(deconv)` manuscripts
+We can open the abstract pages for these manuscripts
 using `arxiv_open()`. It takes, as input, the output of
 `arxiv_search()`.
 
