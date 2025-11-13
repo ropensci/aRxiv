@@ -32,25 +32,20 @@ test_that("weird results for IDs not found", {
     on.exit(options(aRxiv_delay=old_delay))
     options(aRxiv_delay=0.5)
 
-    # if id_list is syntactically correct but no manuscript, get weird results
+    # if id_list is syntactically correct but no manuscript, use to get weird results, but now just empty
     empty <- empty_result()
-    blank <- rbind(empty,
-                   as.data.frame(matrix(rep("", ncol(empty)), nrow=1),
-                                 stringsAsFactors=FALSE))
-    dimnames(blank) <- list(1, colnames(empty))
-
+    # blank <- rbind(empty,
+    #                as.data.frame(matrix(rep("", ncol(empty)), nrow=1),
+    #                              stringsAsFactors=FALSE))
+    # dimnames(blank) <- list(1, colnames(empty))
     z <- omit_attr(arxiv_search(id_list="0041.0148"))
-    expect_equal(z, blank)
+    expect_equal(z, empty)
 
-    # if you add a version number, the result includes the id and the
-    #     links to the abstract and PDF
+    # if you add a version number, the result used to include the id and the links to the abstract and PDF
+    # but now just empty
     id <- "0041.0148v1"
     z <- omit_attr(arxiv_search(id_list=id))
-    expected <- blank
-    expected$id <- id
-    expected$link_abstract <- paste0("http://arxiv.org/abs/", id)
-    expected$link_pdf <- paste0("http://arxiv.org/pdf/", id)
-    expect_equal(z, expected)
+    expect_equal(z, empty)
 
 })
 
