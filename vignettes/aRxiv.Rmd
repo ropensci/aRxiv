@@ -25,7 +25,8 @@ if(on_cran) {
 }
 
 # if aRxiv connection is down, skip everything else
-if(!aRxiv::can_arxiv_connect(1)) {
+# actually, for CRAN, just skip everything no matter what
+if(on_cran || !aRxiv::can_arxiv_connect(1)) {
     library(aRxiv)
     knitr::opts_chunk$set(eval=FALSE)
 }
