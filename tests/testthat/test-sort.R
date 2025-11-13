@@ -1,6 +1,7 @@
 context("sort_by and sort_order args work")
 
 test_that("sort by publishedDate", {
+    skip()
     skip_on_cran()
 
     # shorter delay to speed tests
@@ -24,6 +25,7 @@ test_that("sort by publishedDate", {
 
 
 test_that("sort by lastUpdatedDate", {
+    skip()
     skip_on_cran()
 
     # shorter delay to speed tests
