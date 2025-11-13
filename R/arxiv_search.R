@@ -82,7 +82,7 @@
 #' z$journal_ref
 #'
 #' # search for a range of dates (in this case, one day)
-#' z <- arxiv_search("submittedDate:[199701010000 TO 199701012400]", limit=2)
+#' z <- arxiv_search("submittedDate:[199701010000 TO 199701012359]", limit=2)
 #' }
 #' \dontshow{options(aRxiv_delay=old_delay)}
 #'
