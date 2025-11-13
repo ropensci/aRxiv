@@ -14,6 +14,9 @@ aRxiv 0.13-2
   `arxiv_search()` we now require `limit>0`, and in `arxiv_count()`
   and `can_arxiv_connect()` we use `max_results=1`.
 
+* Skipping tests of `sort_by` in `arxiv_search()`; the arXiv API
+  seems to be ignoring it.
+
 
 aRxiv 0.12
 ----------
