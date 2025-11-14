@@ -1,8 +1,11 @@
 all: doc data vignettes
-.PHONY: doc data vignettes
+.PHONY: doc data vignettes test
 
 doc:
 	R -e 'devtools::document()'
+
+test:
+	R -e 'devtools::test()'
 
 vignettes: inst/doc/aRxiv.html
 
