@@ -27,8 +27,13 @@ function(search_results, limit=20)
 {
     stopifnot(limit >= 1)
 
-    if(nrow(search_results) == 0)
+    if(!is.data.frame(search_results))
+        stop("Input should be a data frame, as returned from arxiv_search()")
+
+    if(nrow(search_results) == 0) {
+        warning("Input has 0 rows")
         return(invisible(NULL))
+    }
 
     links <- search_results$link_abstract
     links <- links[links != ""]
