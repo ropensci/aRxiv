@@ -31,6 +31,9 @@ can_arxiv_connect <-
 
     # check for arXiv error
     listresult <- result2list(z)
+
+    if(is.null(listresult)) return(FALSE) # got nothing back
+
     error_message <- arxiv_error_message(listresult)
     if(!is.null(error_message)) {
         warning("arXiv error: ", error_message)

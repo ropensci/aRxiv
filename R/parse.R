@@ -2,10 +2,14 @@
 result2list <-
 function(searchresult)
 {
-    content <- httr::content(searchresult, "text")
+    content <- httr::content(searchresult, "text", encoding="UTF-8")
     if(is.na(content)) return(NULL)
+    if(is.character(content) && length(content)==1 && content=="Rate exceeded.") {
+        warning('arXiv error: "', content, '"')
+        return(NULL)
+    }
 
-    doc <- XML::xmlParse(httr::content(searchresult, "text"), asText=TRUE)
+    doc <- XML::xmlParse(httr::content(searchresult, "text", encoding="UTF-8"), asText=TRUE)
     nodes <- rapply(list(doc), function(a) XML::getNodeSet(a, path="/"),
                     how="replace")
     result <- rapply(nodes, function(x) XML::xmlToList(x), how="replace")[[1]][[1]][[1]]
