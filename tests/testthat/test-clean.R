@@ -128,7 +128,7 @@ test_that("clean_record works right", {
     clean_record <- clean_record(z[[1]])
     expected_result <-  c(id = "gr-qc/9701001v1",
                           submitted = "1997-01-01 03:07:48",
-                          updated = "2006-09-25 18:53:29",
+                          updated = "1997-01-01 03:07:48",
                           title = "Gravitational Waves in Brans-Dicke Theory : Analysis by Test Particles around a Kerr Black Hole",
                           abstract = paste("  Analyzing test particles falling into a Kerr black hole, we study gravitational waves",
                                            "in Brans-Dicke theory of gravity. First we consider a test particle plunging with a",
@@ -164,7 +164,7 @@ test_that("clean_record works right", {
     clean_record <- clean_record(z[[3]])
     expected_result <- c(id = "hep-th/9705206v3",
                          submitted = "1997-01-01 13:37:51",
-                         updated = "2009-10-30 20:39:48",
+                         updated = "1998-08-16 09:21:16",
                          title = "A Global Uniqueness Theorem for Stationary Black Holes",
                          abstract = paste("  A global uniqueness theorem for stationary black holes is proved as a",
                                           "direct consequence of the Topological Censorship Theorem and the topological",
@@ -202,13 +202,13 @@ test_that("listresult2df works right", {
     expect_equal(zdf$authors, authors)
 
     # date updated
-    updated <- c("2006-09-25 18:53:29", "2009-10-30 20:24:57", "2009-10-30 20:39:48",
-                 "2016-08-30 17:06:18", "2009-10-30 20:39:04", "2009-10-30 20:38:16",
-                 "2008-02-03 01:13:08", "2008-02-03 01:14:45", "2009-10-30 20:14:54",
-                 "2005-09-17 14:53:57", "2016-09-06 16:54:37", "2009-09-25 02:47:25",
-                 "2016-08-24 21:08:56", "2008-02-03 01:10:16", "2016-08-30 17:06:20",
-                 "2009-09-25 02:47:25", "2009-10-30 20:45:31", "2016-08-31 14:31:34",
-                 "2020-03-26 00:02:41", "2009-10-30 20:38:06")
+    updated <-   c("1997-01-01 03:07:48", "1997-01-01 10:51:29", "1998-08-16 09:21:16",
+                   "1997-01-01 11:21:47", "1997-11-13 17:28:23", "1997-01-01 12:56:51",
+                   "1997-01-01 07:42:16", "1997-01-01 01:21:36", "1997-01-06 06:51:41",
+                   "1997-01-01 01:11:55", "1997-01-01 09:57:00", "1997-01-01 00:00:00",
+                   "1997-07-31 14:10:54", "1998-02-05 18:11:10", "1997-01-01 07:03:28",
+                   "1997-01-01 00:00:00", "1997-01-01 07:40:56", "1997-02-03 06:57:18",
+                   "1997-01-01 13:55:07", "1997-01-01 10:54:15")
     expect_equal(zdf$updated, updated)
 
     # date submitted

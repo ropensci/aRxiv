@@ -1,7 +1,6 @@
 context("sort_by and sort_order args work")
 
 test_that("sort by publishedDate", {
-    skip()
     skip_on_cran()
 
     # shorter delay to speed tests
@@ -25,7 +24,6 @@ test_that("sort by publishedDate", {
 
 
 test_that("sort by lastUpdatedDate", {
-    skip()
     skip_on_cran()
 
     # shorter delay to speed tests
@@ -37,13 +35,13 @@ test_that("sort by lastUpdatedDate", {
 
     z <- arxiv_search(query=query, sort_by="updated",
                       start=12, limit=2)
-    expected <- c("2011-07-13 01:34:59", "2011-10-02 19:07:38")
+    expected <- c("2011-04-12 06:55:31", "2011-04-12 12:08:54")
     expect_equal(z$updated, expected)
 
     total <- attr(z, "total_results")
     zr <- arxiv_search(query=query, sort_by="updated",
                        ascending=FALSE, start=total-11, limit=2)
-    expected <- c("2011-04-11 12:07:03", "2011-03-18 12:56:04")
+    expected <- c("2011-03-18 12:56:04", "2011-02-15 05:49:04")
     expect_equal(zr$updated, expected)
 
 })

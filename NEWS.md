@@ -1,4 +1,4 @@
-aRxiv 0.15.2
+aRxiv 0.15.3
 ------------
 
 ### BUG FIXES
@@ -8,6 +8,8 @@ aRxiv 0.15.2
 
 * Capture result that looks blank but contains the error "Rate exceeded."
   [Issue #66]
+
+* `sort_by` in `arxiv_search()` is working again. [Issue #70]
 
 
 aRxiv 0.14
