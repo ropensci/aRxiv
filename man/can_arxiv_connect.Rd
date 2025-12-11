@@ -17,8 +17,9 @@ otherwise.
 Check for connection to arXiv API
 }
 \examples{
-\donttest{ if(interactive()) {
-can_arxiv_connect(2)
+\donttest{
+if(interactive()) {
+    can_arxiv_connect(2)
 } }
 
 }

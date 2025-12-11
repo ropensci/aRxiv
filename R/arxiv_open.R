@@ -18,9 +18,10 @@
 #' @seealso [arxiv_search()]
 #'
 #' @examples
-#' \donttest{ if(interactive()) {
-#' z <- arxiv_search('au:"Peter Hall" AND ti:deconvolution')
-#' arxiv_open(z)
+#' \donttest{
+#' if(interactive()) {
+#'     z <- arxiv_search('au:"Peter Hall" AND ti:deconvolution')
+#'     arxiv_open(z)
 #' } }
 #'
 #' @export
