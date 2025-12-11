@@ -391,7 +391,7 @@ are combined.
 ## License and bugs
 
 - License:
-  [MIT](https://github.com/ropensci/aRxiv/blob/master/LICENSE)
+  [MIT](https://github.com/ropensci/aRxiv/blob/master/LICENSE.md)
 - Report bugs or suggestions improvements by [submitting an issue](https://github.com/ropensci/aRxiv/issues) to
   [our GitHub repository for aRxiv](https://github.com/ropensci/aRxiv).
 

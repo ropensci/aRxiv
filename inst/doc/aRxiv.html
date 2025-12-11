@@ -374,7 +374,7 @@ statistics</a>.”) We first use <code>library()</code> to load the aRxiv
 package and then <code>arxiv_count()</code> to get the count.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(aRxiv)</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:&quot;Peter Hall&quot;&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 264</code></pre>
+<pre><code>## [1] 76</code></pre>
 <p>The <code>au:</code> part indicates to search the author field; we
 use double quotes to search for a <em>phrase</em>.</p>
 <p>To obtain the actual records matching the query, use
@@ -391,11 +391,11 @@ attribute <code>&quot;total_results&quot;</code> containing the total count of
 search results; this is the same as what <code>arxiv_count()</code>
 provides.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">attr</span>(rec, <span class="st">&quot;total_results&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] 264</code></pre>
+<pre><code>## [1] 76</code></pre>
 <p>The following will get us all of the records.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>rec <span class="ot">&lt;-</span> <span class="fu">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot;&#39;</span>, <span class="at">limit=</span><span class="dv">100</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">nrow</span>(rec)</span></code></pre></div>
-<pre><code>## [1] 100</code></pre>
+<pre><code>## [1] 76</code></pre>
 <p><code>arxiv_search()</code> returns a data frame with each row being
 a single manuscript. The columns are the different fields (e.g.,
 <code>authors</code>, <code>title</code>, <code>abstract</code>, etc.).
@@ -468,21 +468,21 @@ actual query. Multiple queries can be combined with <code>AND</code>,
 <code>OR</code>, and <code>ANDNOT</code>. The default is
 <code>OR</code>.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:Peter au:Hall&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 48989</code></pre>
+<pre><code>## [1] 49295</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:Peter OR au:Hall&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 48989</code></pre>
+<pre><code>## [1] 49295</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:Peter AND au:Hall&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 264</code></pre>
+<pre><code>## [1] 266</code></pre>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:Hall ANDNOT au:Peter&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 3035</code></pre>
+<pre><code>## [1] 3063</code></pre>
 <p>It appears that in the author field (and many other fields) you must
 search full words, and that wild cards are not allowed.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:P* AND au:Hall&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 2026</code></pre>
+<pre><code>## [1] 2046</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:P AND au:Hall&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 1800</code></pre>
+<pre><code>## [1] 1817</code></pre>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;au:&quot;P Hall&quot;&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 1800</code></pre>
+<pre><code>## [1] 136</code></pre>
 </div>
 <div id="subject-classifications" class="section level3">
 <h3>Subject classifications</h3>
@@ -507,9 +507,9 @@ or use the <code>*</code> wildcard.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat.AP&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 21867</code></pre>
+<pre><code>## [1] 22092</code></pre>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&#39;cat:stat*&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] 121355</code></pre>
+<pre><code>## [1] 122354</code></pre>
 </div>
 <div id="dates-and-ranges-of-dates" class="section level3">
 <h3>Dates and ranges of dates</h3>
@@ -571,7 +571,7 @@ search.</li>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&quot;cat:14J60&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a><span class="fu">arxiv_count</span>(<span class="st">&quot;14J60&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] 691</code></pre>
+<pre><code>## [1] 692</code></pre>
 </div>
 <div id="sorting-results" class="section level2">
 <h2>Sorting results</h2>
@@ -587,7 +587,7 @@ were last updated, in descending order.</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">arxiv_search</span>(<span class="st">&#39;au:&quot;Peter Hall&quot; AND ti:deconvolution&#39;</span>,</span>
 <span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a>                    <span class="at">sort_by=</span><span class="st">&quot;updated&quot;</span>, <span class="at">ascending=</span><span class="cn">FALSE</span>)</span>
 <span id="cb60-3"><a href="#cb60-3" tabindex="-1"></a>res<span class="sc">$</span>updated</span></code></pre></div>
-<pre><code>## [1] &quot;2009-09-29 20:02:35&quot; &quot;2008-12-18 20:54:00&quot; &quot;2008-10-28 00:00:04&quot; &quot;2010-03-02 01:00:04&quot;</code></pre>
+<pre><code>## [1] &quot;2010-03-01 11:33:37&quot; &quot;2008-10-27 14:27:52&quot; &quot;2008-04-04 12:19:05&quot; &quot;2007-10-18 12:25:34&quot;</code></pre>
 </div>
 <div id="technical-details" class="section level2">
 <h2>Technical details</h2>
@@ -665,7 +665,7 @@ and then the results are combined.</p>
 <div id="license-and-bugs" class="section level2">
 <h2>License and bugs</h2>
 <ul>
-<li>License: <a href="https://github.com/ropensci/aRxiv/blob/master/LICENSE">MIT</a></li>
+<li>License: <a href="https://github.com/ropensci/aRxiv/blob/master/LICENSE.md">MIT</a></li>
 <li>Report bugs or suggestions improvements by <a href="https://github.com/ropensci/aRxiv/issues">submitting an issue</a>
 to <a href="https://github.com/ropensci/aRxiv">our GitHub repository for
 aRxiv</a>.</li>
