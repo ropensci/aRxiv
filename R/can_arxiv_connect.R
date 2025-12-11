@@ -8,9 +8,9 @@
 #' otherwise.
 #'
 #' @examples
-#' \donttest{
+#' \donttest{ if(interactive()) {
 #' can_arxiv_connect(2)
-#' }
+#' } }
 #'
 #' @export
 can_arxiv_connect <-

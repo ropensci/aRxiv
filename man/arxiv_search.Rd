@@ -89,7 +89,7 @@ Allows for progammatic searching of the arXiv pre-print repository.
 \examples{
 \dontshow{old_delay <- getOption("aRxiv_delay")
           options(aRxiv_delay=1)}
-\donttest{
+\donttest{ if(interactive()) {
 # search for author Peter Hall with deconvolution in title
 z <- arxiv_search(query = 'au:"Peter Hall" AND ti:deconvolution', limit=2)
 attr(z, "total_results") # total no. records matching query
@@ -104,7 +104,7 @@ z$journal_ref
 
 # search for a range of dates (in this case, one day)
 z <- arxiv_search("submittedDate:[199701010000 TO 199701012359]", limit=2)
-}
+} }
 \dontshow{options(aRxiv_delay=old_delay)}
 
 }
