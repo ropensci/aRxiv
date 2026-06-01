@@ -7,6 +7,15 @@ vignette: >
   \usepackage[utf8](inputenc)
 ---
 
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](
+https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/aRxiv)](https://cran.r-project.org/package=aRxiv)
+[![r-universe badge](https://ropensci.r-universe.dev/aRxiv/badges/version)](https://ropensci.r-universe.dev/aRxiv)
+
+[![R-CMD-check](https://github.com/ropensci/aRxiv/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/aRxiv/actions/workflows/R-CMD-check.yaml)
+[![codecov](https://codecov.io/gh/ropensci/aRxiv/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ropensci/aRxiv)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/aRxiv?color=blue)](https://github.com/r-hub/cranlogs.app)
+
 [arXiv](https://arxiv.org) is a repository of electronic preprints for
 computer science, mathematics, physics, quantitative biology,
 quantitative finance, and statistics. The
@@ -45,10 +54,18 @@ via [CRAN](https://cran.r-project.org):
 install.packages("aRxiv")
 ```
 
-Or use `remotes::install_github()` to get the (possibly more recent) version
-at [GitHub](https://github.com/rOpenSci/aRxiv):
+Or get the most recent version from [R
+universe](https://ropensci.r-universe.dev):
 
-```{r install_pkgs, eval=FALSE}
+```{r, install_from_runiverse, eval=FALSE}
+install.packages("aRxiv", repos=c("https://ropensci.r-universe.dev",
+                                  "https://cloud.r-project.org"))
+```
+
+Or use `remotes::install_github()` to install it from
+[GitHub](https://github.com/rOpenSci/aRxiv):
+
+```{r, install_from_github, eval=FALSE}
 install.packages("remotes")
 library(remotes)
 install_github("ropensci/aRxiv")

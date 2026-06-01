@@ -33,8 +33,16 @@ install.packages("aRxiv")
 
 __Development Version__
 
-Or use `remotes::install_github()` to get the (more recent) version
-at [GitHub](https://github.com/rOpenSci/aRxiv):
+Or get the most recent version from [R
+universe](https://ropensci.r-universe.dev):
+
+```r
+install.packages("aRxiv", repos=c("https://ropensci.r-universe.dev",
+                                  "https://cloud.r-project.org"))
+```
+
+Or use `remotes::install_github()` to install it from
+[GitHub](https://github.com/rOpenSci/aRxiv):
 
 ```r
 install.packages("remotes")
